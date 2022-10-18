@@ -1,4 +1,4 @@
-package com.woniuxy.wuye.common;
+package com.woniuxy.wuye.common.entity;
 
 import lombok.Data;
 
@@ -10,8 +10,6 @@ import java.util.Date;
  */
 @Data
 public class TbCycle implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * 主键
