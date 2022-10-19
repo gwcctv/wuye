@@ -8,10 +8,7 @@ import lombok.Data;
  */
 @Data
 public class TbRuleConfiguration {
-    /**
-     * ''
-     */
-    private String id;
+    private Integer id;
 
     /**
      * 规则名称

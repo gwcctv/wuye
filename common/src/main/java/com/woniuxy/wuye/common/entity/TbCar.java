@@ -1,8 +1,11 @@
 package com.woniuxy.wuye.common.entity;
 
+import lombok.Data;
+
 /**
  * 物业车辆实体类
  */
+@Data
 public class TbCar {
     /**
      * 主键id

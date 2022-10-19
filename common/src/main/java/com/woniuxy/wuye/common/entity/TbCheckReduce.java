@@ -23,10 +23,10 @@ public class TbCheckReduce implements Serializable {
      */
     private String number;
 
-    /**
-     * 项目ID
-     */
-    private Integer projectId;
+//    /**
+//     * 项目ID
+//     */
+//    private Integer projectId;
 
     /**
      * 收费项目ID
@@ -54,6 +54,11 @@ public class TbCheckReduce implements Serializable {
     private String produceStatus;
 
     /**
+     * 创建热
+     */
+    private  String produceName;
+
+    /**
      * 创建时间
      */
     private Date produceTime;
@@ -68,4 +73,19 @@ public class TbCheckReduce implements Serializable {
      */
     private String reduceReason;
 
+/**
+ * 项目名
+ * */
+    private String projectName;
+
+
+    /**
+     * 收费项目名称
+     * */
+    private String itemName;
+
+/**
+ * 减免类型 物业费减免 水电费减免等
+ * */
+    private String deductionName;
 }

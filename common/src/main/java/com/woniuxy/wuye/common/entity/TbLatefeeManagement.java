@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 public class TbLatefeeManagement  {
-    private String id;
+    private Integer id;
 
     /**
      * 滞纳金费项编号

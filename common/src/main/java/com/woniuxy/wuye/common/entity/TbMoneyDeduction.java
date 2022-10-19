@@ -7,7 +7,7 @@ import lombok.Data;
  */
 @Data
 public class TbMoneyDeduction  {
-    private String id;
+    private Integer id;
 
     /**
      * 减免类型名称
