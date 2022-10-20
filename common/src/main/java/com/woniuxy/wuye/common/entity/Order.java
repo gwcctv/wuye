@@ -1,6 +1,11 @@
 package com.woniuxy.wuye.common.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,13 +15,15 @@ import java.util.Date;
  * @date:2022/10/18/18:55
  **/
 @Data
-public class Order implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("tb_order")
+public class Order{
     /**
      * 主键
      */
-    private Integer orderId;
+    @TableId(value = "order_id")
+    private long orderId;
 
     /**
      * 计划类型
