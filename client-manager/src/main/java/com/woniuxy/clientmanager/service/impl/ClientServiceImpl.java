@@ -63,6 +63,11 @@ public class ClientServiceImpl implements ClientService {
         return pageBean;
     }
 
+    /**
+     *
+     * @param tbClient
+     * @return
+     */
     @Override
     public List<TbClient> findClientByCondition(TbClient tbClient) {
         return clientMapper.findClientByCondition(tbClient);
