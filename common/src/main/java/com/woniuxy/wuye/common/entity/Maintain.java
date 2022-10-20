@@ -1,9 +1,16 @@
 package com.woniuxy.wuye.common.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@TableName("tb_maintain")
 public class Maintain{
     /**
      * <pre>

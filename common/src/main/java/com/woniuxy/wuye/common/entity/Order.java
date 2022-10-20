@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 /**
@@ -58,7 +59,7 @@ public class Order{
     /**
      * 状态
      */
-    private String status;
+    private String state;
 
     /**
      * 接收人
