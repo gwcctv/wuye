@@ -1,5 +1,8 @@
 package com.woniuxy.wuye.common.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,6 +19,7 @@ public class TbCheckReduce implements Serializable {
     /**
      * 主键
      */
+    @TableId(value = "id",type = IdType.AUTO )
     private Integer id;
 
     /**
@@ -31,7 +35,8 @@ public class TbCheckReduce implements Serializable {
     /**
      * 收费项目ID
      */
-    private Integer feetypeID;
+    @TableField("feetype_id")
+    private Integer feetypeId;
 
     /**
      * 减免类型ID
@@ -61,7 +66,7 @@ public class TbCheckReduce implements Serializable {
     /**
      * 创建时间
      */
-    private Date produceTime;
+    private String produceTime;
 
     /**
      * 房产ID
