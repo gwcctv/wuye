@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 public class TbChargeableItems  {
-    private String id;
+    private Integer id;
     /**
      * 项目名称
      */
@@ -17,7 +17,7 @@ public class TbChargeableItems  {
     /**
      *项目类型
      */
-    private String itmeTypeId;
+    private Integer itmeTypeId;
 
     /**
      * 项目性质

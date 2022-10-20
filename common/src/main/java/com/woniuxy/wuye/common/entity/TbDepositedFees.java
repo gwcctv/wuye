@@ -7,6 +7,8 @@ package com.woniuxy.wuye.common.entity;
  **/
 import lombok.Data;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -28,13 +30,33 @@ public class TbDepositedFees implements Serializable {
     private TbClient depositedUser;
 
     /**
+     * 预存总金额
+     */
+    private String depositedTotal;
+
+    /**
+     * 已抵扣金额
+     */
+    private String alreadyOffsetFees;
+
+    /**
+     * 已退款金额
+     */
+    private String alreadyRefundFees;
+
+    /**
      * 剩余预存金额
      */
     private String remainderDeposited;
 
     /**
-     * 更新时间
+     * 最近预存时间
      */
-    private String time;
+    private String recentDepositedTime;
+
+    /**
+     * 最近抵扣时间
+     */
+    private String recentOffsetTime;
 
 }

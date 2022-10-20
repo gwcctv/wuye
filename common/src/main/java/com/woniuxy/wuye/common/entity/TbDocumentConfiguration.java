@@ -5,12 +5,9 @@ package com.woniuxy.wuye.common.entity;
  */
 import lombok.Data;
 
-/**
- * `tb_document_configuration`
- */
 @Data
 public class TbDocumentConfiguration  {
-    private String id;
+    private Integer id;
 
     /**
      * 单据类型
@@ -25,7 +22,7 @@ public class TbDocumentConfiguration  {
     /**
      * 适用项目
      */
-    private String projectId;
+    private Integer projectId;
 
     /**
      * 收款单位
