@@ -64,8 +64,8 @@ public class TbProject implements Serializable {
     private Date takeoverDate;
 
     /**
-     * 备注
+     * 状态
      */
-    private String description;
+    private String state;
 
 }

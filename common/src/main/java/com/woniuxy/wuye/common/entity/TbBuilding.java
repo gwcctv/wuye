@@ -1,8 +1,11 @@
 package com.woniuxy.wuye.common.entity;
 
+import lombok.Data;
+
 /**
  * 物业楼栋实体类
  */
+@Data
 public class TbBuilding {
     /**
      * 楼栋主键id
@@ -42,4 +45,9 @@ public class TbBuilding {
      * 所属项目id
      */
     private Integer projectId;
+    /**
+     * 所属项目名字
+     */
+    private String projectName;
+//    private TbProject tbProject;
 }

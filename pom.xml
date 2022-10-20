@@ -11,7 +11,9 @@
     <modules>
         <module>common</module>
         <module>client-manager</module>
+        <module>batchservice</module>
         <module>order-server</module>
+        <module>finance-business-configuration</module>
     </modules>
 
     <properties>
