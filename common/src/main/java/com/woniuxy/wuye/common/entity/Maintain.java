@@ -1,16 +1,17 @@
 package com.woniuxy.wuye.common.entity;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.util.Date;
 
-public class Maintain implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Maintain{
     /**
      * <pre>
      *
      * </pre>
      */
-    private Integer maintainId;
+    @TableId("maintain_id")
+    private long maintainId;
 
     /**
      * <pre>

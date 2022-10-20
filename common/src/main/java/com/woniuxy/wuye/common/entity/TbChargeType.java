@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class TbChargeType  {
 
-    private String id;
+    private Integer id;
     /**
      * 类型名称
      */
