@@ -41,12 +41,12 @@ public class TbUnpaidBills implements Serializable {
     /**
      * 外键--收费项目
      */
-    private TbChargeableItems feesItem;
+    private String feesItem;
 
     /**
      * 外键--收费标准
      */
-    private TbFeesStandardConfiguration feesStandard;
+    private String feesStandard;
 
     /**
      * 账单开始时间
@@ -112,5 +112,9 @@ public class TbUnpaidBills implements Serializable {
      * 后关联收款单id
      */
     private Integer tbPaidBillsId;
+    /**
+     * 是否删除，默认0未删除，1已删除
+     */
+    private Integer isDelete;
 
 }
