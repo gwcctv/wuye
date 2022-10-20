@@ -6,7 +6,10 @@ import lombok.Data;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-
+/**
+ * 收费项目表接口
+ * @魏锦鹏
+ */
 public interface TbChargeableItemsMapper {
     @Insert("insert into tb_chargeable_items (item_name,itme_type_id,fees_quality,situation,remark,periodic) " +
             "values(#{itemName},#{itmeTypeId},#{feesQuality},#{situation},#{remark},#{periodic})")

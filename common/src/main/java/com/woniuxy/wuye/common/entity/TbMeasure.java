@@ -53,6 +53,7 @@ public class TbMeasure  {
      */
     @TableField(value = "project_name", condition = SqlCondition.EQUAL)
     private Integer projectName;
+    private String thisProjectName;
 
     /**
      * 收费项目
@@ -77,5 +78,10 @@ public class TbMeasure  {
      */
     @TableField(value = "last_read", condition = SqlCondition.EQUAL)
     private String lastRead;
+
+    private String buildingId;
+    private String unit;
+    private String layer;
+    private String houseNumber;
 
 }

@@ -19,7 +19,7 @@ public class TbPaidBills implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 用户名
      */
     private Integer id;
 
@@ -36,7 +36,7 @@ public class TbPaidBills implements Serializable {
     /**
      * 客户名称
      */
-    private String houseOwner;
+    private TbClient houseOwner;
 
     /**
      * 应收金额
@@ -137,5 +137,10 @@ public class TbPaidBills implements Serializable {
      * 支付状态
      */
     private String payStatus;
+
+    /**
+     * 是否删除，默认0未删除，1已删除
+     */
+    private Integer isDelete;
 
 }
