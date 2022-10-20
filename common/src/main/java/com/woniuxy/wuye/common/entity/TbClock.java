@@ -13,7 +13,7 @@ public class TbClock implements Serializable {
     /**
      * 主键ID
      */
-    private String id;
+    private Integer id;
 
     /**
      * 项目ID
@@ -64,5 +64,30 @@ public class TbClock implements Serializable {
      * 本次抄表时间
      */
     private String thisRecordTime;
+
+    /**
+     * 项目名
+     */
+    private String projectName;
+    /**
+     * 表种类 水表 电表
+     */
+    private String machineType;
+    /**
+     * 表类型 公区表 房间表
+     */
+    private String measureType;
+    /**
+     * 计量表名称
+     */
+    private String measureName;
+    /**
+     * 客户ID
+     */
+    private Integer clientId;
+    /**
+     * 客户名称
+     */
+    private String clientName;
 
 }

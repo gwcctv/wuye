@@ -11,7 +11,7 @@
     <modules>
         <module>common</module>
         <module>batchservice</module>
-        <module>order-server</module>
+
     </modules>
 
     <properties>

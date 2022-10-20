@@ -43,33 +43,33 @@ public class TbCycle implements Serializable {
     /**
      * 周期收费开始时间
      */
-@TableField(condition = SqlCondition.EQUAL)
-    private Date startYear;
+@TableField(value = "start_year",condition = SqlCondition.EQUAL)
+    private String startYear;
     /**
      * 周期收费开始时间
      */
-    @TableField(condition = SqlCondition.EQUAL)
-    private Date startMonth;
+    @TableField(value = "start_month",condition = SqlCondition.EQUAL)
+    private String startMonth;
     /**
      * 周期收费开始时间
      */
-    @TableField(condition = SqlCondition.EQUAL)
-    private Date startDay;
+    @TableField(value = "start_day",condition = SqlCondition.EQUAL)
+    private String startDay;
     /**
      * 周期收费停止时间
      */
-    @TableField(condition = SqlCondition.EQUAL)
-    private Date endYear;
+    @TableField(value = "end_year",condition = SqlCondition.EQUAL)
+    private String endYear;
     /**
      * 周期收费停止时间
      */
-    @TableField(condition = SqlCondition.EQUAL)
-    private Date endMonth;
+    @TableField(value = "end_month",condition = SqlCondition.EQUAL)
+    private String endMonth;
     /**
      * 周期收费停止时间
      */
-    @TableField(condition = SqlCondition.EQUAL)
-    private Date endDay;
+    @TableField(value = "end_day",condition = SqlCondition.EQUAL)
+    private String endDay;
     /**
      * 创建状态
      */
@@ -86,7 +86,7 @@ public class TbCycle implements Serializable {
      * 创建时间
      */
     @TableField(value = "produce_time",condition = SqlCondition.EQUAL)
-    private Date produceTime;
+    private String produceTime;
 
     /**
      * 业务批次号
@@ -117,31 +117,37 @@ public class TbCycle implements Serializable {
     /**
      * 收费项目名称
      * */
+    @TableField(exist = false)
     private String itemName;
 
     /**
      * 单元号
      * */
+    @TableField(exist = false)
     private String unit;
 
 /**
  * 楼层
  * */
+@TableField(exist = false)
     private String layer;
 
 /**
  * 房号
  * */
+@TableField(exist = false)
     private String houseNumber;
 
 /**
  * 项目名
  * */
+@TableField(exist = false)
     private String projectName;
 
 
     /**
      * 楼栋号
      * */
+    @TableField(exist = false)
     private String  buildingNumber;
 }
