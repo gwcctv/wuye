@@ -3,17 +3,13 @@ package com.woniuxy.busconfig.provider;
 import com.woniuxy.wuye.common.entity.TbChargeableItems;
 import com.woniuxy.wuye.common.entity.TbFeesStandardConfiguration;
 import org.apache.ibatis.jdbc.SQL;
-
 /**
- * @author baobo
- * @date 2022-08-27-16:31
+ * 用户可修改字段
+ * @魏锦鹏
+ *
  */
 public class TbFeesStandardConfigurationSqlProvider {
-	/**
-	 * 用户可修改字段
-	 * @魏锦鹏
-	 *
-	 */
+
 	public String update(TbFeesStandardConfiguration tbFeesStandardConfiguration) {
 		return  new SQL() {
 			{
