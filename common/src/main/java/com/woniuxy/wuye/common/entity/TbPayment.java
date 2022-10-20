@@ -95,6 +95,11 @@ public class TbPayment implements Serializable {
     /**
      * 创建时间
      */
-    private String createTiem;
+    private String createTime;
+
+    /**
+     * 是否删除，默认0未删除，1已删除
+     */
+    private Integer isDelete;
 
 }

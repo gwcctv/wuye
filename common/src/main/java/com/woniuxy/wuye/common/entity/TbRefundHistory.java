@@ -52,4 +52,9 @@ public class TbRefundHistory implements Serializable {
      */
     private String refundReason ;
 
+    /**
+     * 是否删除，默认0未删除，1已删除
+     */
+    private Integer isDelete;
+
 }

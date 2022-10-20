@@ -1,16 +1,24 @@
 package com.woniuxy.wuye.common.entity;
 
-import java.io.Serializable;
-import java.util.Date;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class Equipment implements Serializable {
-    private static final long serialVersionUID = 1L;
+import java.util.Date;
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@TableName("tb_equipment")
+public class Equipment{
     /**
      * <pre>
      *
      * </pre>
      */
-    private Integer equipmentId;
+    @TableId(value = "equipment_id")
+    private long equipmentId;
 
     /**
      * <pre>
