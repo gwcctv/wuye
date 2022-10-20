@@ -1,6 +1,9 @@
 package com.woniuxy.wuye.common.entity;
 
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -8,6 +11,8 @@ import java.io.Serializable;
  * TbClient
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TbClient implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -71,5 +76,30 @@ public class TbClient implements Serializable {
      * 客户状态
      */
     private String clientState;
+
+    /**
+     * 房产楼层
+     */
+    private String layer;
+
+    /**
+     *  房产单元
+     */
+    private String unit;
+
+    /**
+     *  项目名字
+     */
+    private String projectName;
+
+    /**
+     *  楼栋编号
+     */
+    private String buildingNumber;
+
+    /**
+     *  房产编号
+     */
+    private String houseNumber;
 
 }

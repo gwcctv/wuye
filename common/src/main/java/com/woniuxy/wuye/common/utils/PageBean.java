@@ -1,11 +1,14 @@
 package com.woniuxy.wuye.common.utils;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
  *
  *封装
  */
+@Data
 public class PageBean<T> {
 private List<T> data;//数据
 private int currPage;//当前页数
