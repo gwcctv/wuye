@@ -45,4 +45,9 @@ public class TbBuilding {
      * 所属项目id
      */
     private Integer projectId;
+    /**
+     * 所属项目名字
+     */
+    private String projectName;
+//    private TbProject tbProject;
 }
