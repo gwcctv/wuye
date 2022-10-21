@@ -17,6 +17,10 @@ public class TbHouse implements Serializable {
      * 房产id
      */
     private Integer houseId;
+    /**
+     * 客户id
+     */
+    private Integer clientId;
 
     /**
      * 楼栋id
@@ -97,5 +101,18 @@ public class TbHouse implements Serializable {
      * 房产坐落
      */
     private String description;
+    /**
+     * 项目名
+     */
+    private String projectName;
+    /**
+     * 楼栋号
+     */
+    private Integer buildingNumber;
+    /**
+     * 客户名
+     */
+    private String clientName;
+
 
 }

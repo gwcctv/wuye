@@ -5,12 +5,12 @@ spring:
     username: root
     password: 123456
   application:
-    name:project-manager
+    name:house-manager
   web:
     resources:
       static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${oa.empphoto}
 server:
-  port: 8080
+  port: 8082
   servelt:
     context-path: /
 
