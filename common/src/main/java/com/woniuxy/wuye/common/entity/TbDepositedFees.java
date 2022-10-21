@@ -7,8 +7,6 @@ package com.woniuxy.wuye.common.entity;
  **/
 import lombok.Data;
 
-import lombok.Data;
-
 import java.io.Serializable;
 
 /**
@@ -58,5 +56,10 @@ public class TbDepositedFees implements Serializable {
      * 最近抵扣时间
      */
     private String recentOffsetTime;
+
+    /**
+     * 是否删除，默认0未删除，1已删除
+     */
+    private Integer isDelete;
 
 }

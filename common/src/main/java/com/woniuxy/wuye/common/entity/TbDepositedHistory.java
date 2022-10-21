@@ -10,7 +10,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 预存金额历史
+ * 预存金额记录
  */
 @Data
 public class TbDepositedHistory implements Serializable {
@@ -23,7 +23,7 @@ public class TbDepositedHistory implements Serializable {
     private Integer id;
 
     /**
-     * 关联用户表用户id
+     * 关联用户表
      */
     private TbClient depositedUser;
 
@@ -40,7 +40,7 @@ public class TbDepositedHistory implements Serializable {
     /**
      * 可抵项目
      */
-    private String offserItem;
+    private String offsetItem;
 
     /**
      * 收款方式
@@ -87,4 +87,12 @@ public class TbDepositedHistory implements Serializable {
      */
     private String note;
 
+    /**
+     * 是否删除，默认0未删除，1已删除
+     */
+    private Integer isDelete;
+    /**
+     * 外键关联预存金额表id
+     */
+    private TbDepositedFees tbDepositedFeesId;
 }

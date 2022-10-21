@@ -26,4 +26,10 @@ public class TbMeasureTest {
         queryWrapper.eq("id","1");
         tbMeasureMapper.update(tbMeasure,queryWrapper);
     }
+    @Test
+    public void getByCondition (){
+        TbMeasure tbMeasure = new TbMeasure();
+       tbMeasure.setThisProjectName("jdgWo");
+        tbMeasureMapper.getTbMeasure(tbMeasure).forEach(System.out::println);
+    }
 }

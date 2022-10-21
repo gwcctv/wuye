@@ -1,6 +1,10 @@
 package com.woniuxy.wuye.common.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,15 +12,17 @@ import java.util.Date;
 /**
  * 巡检工单
  */
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class Inspection implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@TableName("tb_inspection")
+public class Inspection{
 
     /**
      * 巡检工单id
      */
-    private Integer inspectionId;
+    @TableId(value = "inspection_id")
+    private long inspectionId;
 
     /**
      * 编号
