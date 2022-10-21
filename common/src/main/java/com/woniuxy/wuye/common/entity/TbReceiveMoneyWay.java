@@ -23,7 +23,7 @@ public class TbReceiveMoneyWay implements Serializable {
     /**
      * 收款类型 线上线下
      */
-    private String TYPE;
+    private String type;
 
     /**
      * 结算账户ID
@@ -38,6 +38,10 @@ public class TbReceiveMoneyWay implements Serializable {
     /**
      * 状态
      */
-    private String STATUS;
+    private String status;
+    /**
+     * 账户名
+     * */
+    String account;
 
 }
