@@ -13,10 +13,11 @@
         <module>cash-register</module>
         <module>client-manager</module>
         <module>batchservice</module>
-        <module>order-server</module>
         <module>finance-business-configuration</module>
         <module>equipment-server</module>
-
+<module>order-server</module>
+        <module>project-manager</module>
+        <module>building-manager</module>
     </modules>
 
     <properties>

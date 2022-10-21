@@ -10,7 +10,10 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
 
 import java.util.List;
-
+/**
+ * 收费标准配置表接口
+ * @魏锦鹏
+ */
 public interface TbFeesStandardConfigurationMapper {
     @Insert("insert into tb_fees_standard_configuration (standard_num,standard_name,fees_item,billing_method,price,situation) " +
             "values(#{standardNum},#{standardName},#{feesItem},#{billingMethod},#{price},#{situation})")

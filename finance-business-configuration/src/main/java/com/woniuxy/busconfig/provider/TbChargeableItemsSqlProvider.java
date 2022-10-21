@@ -2,17 +2,13 @@ package com.woniuxy.busconfig.provider;
 
 import com.woniuxy.wuye.common.entity.TbChargeableItems;
 import org.apache.ibatis.jdbc.SQL;
-
 /**
- * @author baobo
- * @date 2022-08-27-16:31
+ * 用户可修改字段
+ * @魏锦鹏
+ *
  */
 public class TbChargeableItemsSqlProvider {
-	/**
-	 * 用户可修改字段
-	 * @魏锦鹏
-	 *
-	 */
+
 	public String update(TbChargeableItems tbChargeableItems) {
 		return  new SQL() {
 			{
