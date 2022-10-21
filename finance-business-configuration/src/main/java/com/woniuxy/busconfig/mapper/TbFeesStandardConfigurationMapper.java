@@ -4,10 +4,7 @@ import com.woniuxy.busconfig.provider.TbChargeableItemsSqlProvider;
 import com.woniuxy.busconfig.provider.TbFeesStandardConfigurationSqlProvider;
 import com.woniuxy.wuye.common.entity.TbChargeableItems;
 import com.woniuxy.wuye.common.entity.TbFeesStandardConfiguration;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.SelectProvider;
-import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 /**
@@ -17,6 +14,7 @@ import java.util.List;
 public interface TbFeesStandardConfigurationMapper {
     @Insert("insert into tb_fees_standard_configuration (standard_num,standard_name,fees_item,billing_method,price,situation) " +
             "values(#{standardNum},#{standardName},#{feesItem},#{billingMethod},#{price},#{situation})")
+    @Options(useGeneratedKeys=true ,keyColumn="id" ,keyProperty="id")
     void addTbFeesStandardConfiguration(TbFeesStandardConfiguration tbFeesStandardConfiguration);
     @SelectProvider(value = TbFeesStandardConfigurationSqlProvider.class,method = "getByCondition")
     List<TbFeesStandardConfiguration> getTbFeesStandardConfiguration(TbFeesStandardConfiguration tbFeesStandardConfiguration);
