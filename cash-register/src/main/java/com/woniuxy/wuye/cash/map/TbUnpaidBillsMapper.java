@@ -52,8 +52,8 @@ public interface TbUnpaidBillsMapper {
      * 查询所有未支付账单
      * @return
      */
-    @Select("select * from tb_unpaid_bills where is_delete=0 and status=0")
-    List<TbUnpaidBills> getAll();
+    @SelectProvider(value = TbUnpaidBillsProvider.class,method ="getByCondition")
+    List<TbUnpaidBills> getByCondition(TbUnpaidBills tbUnpaidBills);
 
     /**
      * 根据id查询未支付账单

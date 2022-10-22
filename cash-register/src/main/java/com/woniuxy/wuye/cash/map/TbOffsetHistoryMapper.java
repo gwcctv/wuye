@@ -2,10 +2,7 @@ package com.woniuxy.wuye.cash.map;
 
 import com.woniuxy.wuye.common.entity.TbDepositedFees;
 import com.woniuxy.wuye.common.entity.TbOffsetHistory;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -32,8 +29,8 @@ public interface TbOffsetHistoryMapper {
      * 0表示不删除1表示删除
      * @param id
      */
-    @Update("update tb_offset_history set is_delete=1 where id=#{id}")
-    void isDelete(Integer id,Integer isDelete);
+    @Update("update tb_offset_history set is_delete=#{isDelete} where id=#{id}")
+    void isDelete(@Param("id") Integer id,@Param("isDelete") Integer isDelete);
     //改
 
     /**
@@ -43,7 +40,7 @@ public interface TbOffsetHistoryMapper {
      * @param status
      */
     @Update("update tb_offset_history set status=#{status} where id=#{id}")
-    void updateStatus(Integer id,String status);
+    void updateStatus(@Param("id") Integer id,@Param("status") String status);
     //查
 
     /**
