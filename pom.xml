@@ -20,6 +20,7 @@
 <module>order-server</module>
 <module>project-manager</module>
         <module>building-manager</module>
+        <module>house-manager</module>
     </modules>
 
     <properties>

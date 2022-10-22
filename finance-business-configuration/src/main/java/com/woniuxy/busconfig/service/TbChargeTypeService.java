@@ -9,4 +9,5 @@ import java.util.List;
 public interface TbChargeTypeService {
     void addChargeType(TbChargeType tbChargeType);
      List<TbChargeType> getChargeType(String name);
+    List<TbChargeType> getAll();
 }
