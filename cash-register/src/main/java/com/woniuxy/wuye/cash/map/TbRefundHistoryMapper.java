@@ -11,6 +11,12 @@ import org.apache.ibatis.annotations.Update;
  **/
 public interface TbRefundHistoryMapper {
     //增
+
+    /**
+     * 新增退款记录
+     * @param tbDepositedFees
+     * @return
+     */
     @Insert("insert into tb_refund_history(refund_number,refund_fees,paid_bills_num,refund_user,refund_time,refund_reason,is_delete) " +
             "values(#{refundNumber},#{refundFees},#{paidBillsNum},#{refundUser},#{refundTime},#{refundReason},#{isDelete})")
     int add(TbDepositedFees tbDepositedFees);

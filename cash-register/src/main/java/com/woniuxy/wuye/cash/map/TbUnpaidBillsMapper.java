@@ -3,10 +3,9 @@ package com.woniuxy.wuye.cash.map;
 import com.woniuxy.wuye.cash.map.provider.TbUnpaidBillsProvider;
 import com.woniuxy.wuye.common.entity.TbDepositedFees;
 import com.woniuxy.wuye.common.entity.TbUnpaidBills;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
  * @Description:    未支付账单操作
@@ -41,8 +40,25 @@ public interface TbUnpaidBillsMapper {
      */
     @Update("update tb_unpaid_bills set status=#{status} where id=#{id}")
     void update(@Param("id") Integer id, @Param("status") Integer status);
-    //查
+
+    /**
+     * 条件更新未支付账单数据
+     * @param tbUnpaidBills
+     */
     @UpdateProvider(value = TbUnpaidBillsProvider.class,method = "updateByCondition")
     void updateByCondition(TbUnpaidBills tbUnpaidBills);
-    void getById();
+
+    /**
+     * 查询所有未支付账单
+     * @return
+     */
+    @SelectProvider(value = TbUnpaidBillsProvider.class,method ="getByCondition")
+    List<TbUnpaidBills> getByCondition(TbUnpaidBills tbUnpaidBills);
+
+    /**
+     * 根据id查询未支付账单
+     * @param id
+     */
+    @Select("select * from tb_unpaid_bills where is_delete=0")
+    TbUnpaidBills getById(Integer id);
 }

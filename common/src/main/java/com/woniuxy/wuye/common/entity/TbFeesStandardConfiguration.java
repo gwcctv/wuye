@@ -51,8 +51,7 @@ public class TbFeesStandardConfiguration  {
      *
      * * */
    // @TableField(value = "project", condition = SqlCondition.EQUAL)
-    private List<String> projectNameList;
-
+    private List<Integer> projectNameList;
     private String projectName;
     /**
      * 状态

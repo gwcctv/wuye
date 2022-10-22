@@ -15,13 +15,13 @@ public class TbMeasureSqlProvider {
             return  new SQL(){
                 {
                     SELECT("*");
-                    FROM("(SELECT a.*,b.building_id,b.unit,b.layer,b.house_number FROM (SELECT tm.*,tbp.project_name  tbp_project_name FROM tb_measure tm LEFT JOIN tb_project  tbp ON tm.project_name= tbp.project_id) a LEFT JOIN tb_house b ON a.relevant_house=b.house_id) hhh");}
+                    FROM("(SELECT a.*,b.building_id,b.unit,b.layer,b.house_number FROM (SELECT*FROM (SELECT tm.*,tbp.project_name  tbp_project_name FROM tb_measure tm LEFT JOIN tb_project  tbp ON tm.project_name= tbp.project_id) c LEFT JOIN tb_measurehou d ON c.id=d.measure_id) a LEFT JOIN tb_house b ON a.house_id=b.house_id) hhh");}
             }.toString();
         }else {
             return new SQL() {
                 {
                     SELECT("*");
-                    FROM("(SELECT a.*,b.building_id,b.unit,b.layer,b.house_number FROM (SELECT tm.*,tbp.project_name  this_project_name FROM tb_measure tm LEFT JOIN tb_project  tbp ON tm.project_name= tbp.project_id) a LEFT JOIN tb_house b ON a.relevant_house=b.house_id) hhh");
+                    FROM("(SELECT a.*,b.building_id,b.unit,b.layer,b.house_number FROM (SELECT*FROM (SELECT tm.*,tbp.project_name  tbp_project_name FROM tb_measure tm LEFT JOIN tb_project  tbp ON tm.project_name= tbp.project_id) c LEFT JOIN tb_measurehou d ON c.id=d.measure_id) a LEFT JOIN tb_house b ON a.house_id=b.house_id) hhh");
                     if (TbMeasure.getMeasureName()!= null && !"".equals(TbMeasure.getMeasureName())) {
                         WHERE("measure_name like concat('%',#{measureName},'%')");
                     }

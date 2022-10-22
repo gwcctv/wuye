@@ -27,4 +27,14 @@ public class TbUnpaidBillsProvider {
             WHERE("id=#{id}");
         }}.toString();
     }
+    public String getByCondition(TbUnpaidBills tbUnpaidBills){
+//            @Select("select * from tb_unpaid_bills where is_delete=0 and status=0")
+        return new SQL(){{
+            SELECT("*");
+            FROM("tb_unpaid_bills");
+            WHERE("is_delete=0 and status=0");
+
+        }}.toString();
+
+    }
 }

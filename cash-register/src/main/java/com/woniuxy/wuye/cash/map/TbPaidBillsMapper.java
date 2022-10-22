@@ -3,10 +3,7 @@ package com.woniuxy.wuye.cash.map;
 import com.woniuxy.wuye.cash.map.provider.TbPaidBillsProvider;
 import com.woniuxy.wuye.common.entity.TbDepositedFees;
 import com.woniuxy.wuye.common.entity.TbPaidBills;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -30,7 +27,7 @@ public interface TbPaidBillsMapper {
     void delete(Integer id);
     //改
     @Update("update tb_paid_bills set pay_status=#{payStatus} where id=#{id}")
-    void updatePayStatus(Integer id,String payStatus);
+    void updatePayStatus(@Param("id") Integer id, @Param("payStatus") String payStatus);
     //查
     /**
      * 根据id查找收款单
