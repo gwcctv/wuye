@@ -1,5 +1,6 @@
 package com.woniuxy.wuye.cash.map.provider;
 
+import com.woniuxy.wuye.cash.utils.ConditionVo;
 import com.woniuxy.wuye.common.entity.TbUnpaidBills;
 import org.apache.ibatis.jdbc.SQL;
 
@@ -27,9 +28,10 @@ public class TbUnpaidBillsProvider {
             WHERE("id=#{id}");
         }}.toString();
     }
-    public String getByCondition(TbUnpaidBills tbUnpaidBills){
+    public String getByCondition(ConditionVo conditionVo){
 //            @Select("select * from tb_unpaid_bills where is_delete=0 and status=0")
         return new SQL(){{
+
             SELECT("*");
             FROM("tb_unpaid_bills");
             WHERE("is_delete=0 and status=0");

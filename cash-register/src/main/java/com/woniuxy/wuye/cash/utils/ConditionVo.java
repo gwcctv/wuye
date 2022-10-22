@@ -17,4 +17,8 @@ public class ConditionVo {
     private String startTime;
     //结束时间
     private String endTime;
+    //收费项目
+    private String feesItem;
+    //应收日期
+    private String shouldGetTime;
 }

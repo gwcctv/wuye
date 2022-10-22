@@ -22,33 +22,36 @@ import java.util.List;
  **/
 @Service
 public class CashRegisterServiceImpl implements CashRegisterService {
-    @Autowired
+    @Autowired(required = false)
     TbUnpaidBillsMapper tbUnpaidBillsMapper;
     @Override
     public PageBean<TbUnpaidBills> selectUnpaidBillsPageByCondition(Integer pageNum, Integer pageSize, ConditionVo conditionVo) {
-//        Page<Object> page = PageHelper.startPage(pageNum, pageSize);
-//        List<TbUnpaidBills> list = tbUnpaidBillsMapper.getByCondition();
-//
-//        PageBean<TbUnpaidBills> pageBean = PageBeanUtil.getPageBean(page, list);
-//        return pageBean;
-    return null;
+        //获取封装查询条件
+
+        Page<Object> page = PageHelper.startPage(pageNum, pageSize);
+        List<TbUnpaidBills> list = tbUnpaidBillsMapper.getByCondition(conditionVo);
+
+        PageBean<TbUnpaidBills> pageBean = PageBeanUtil.getPageBean(page, list);
+        return pageBean;
     }
 
 
-    @Autowired
+    @Autowired(required = false)
     private TbDepositedFeesMapper tbDepositedFeesMapper;
+
+    /**
+     * 分页查出预存列表
+     * @param pageNum
+     * @param pageSize
+     * @param conditionVo
+     * @return
+     */
     @Override
     public PageBean<TbDepositedFees> selectDepositedFeesPageByCondition(Integer pageNum, Integer pageSize, ConditionVo conditionVo) {
         //分页查出预存总表记录
-        Page<Object> objects = PageHelper.startPage(pageNum, pageSize);
+        Page<Object> page = PageHelper.startPage(pageNum, pageSize);
         List<TbDepositedFees> list = tbDepositedFeesMapper.getByCondition(conditionVo);
-        //再将房产查出放入其中,根据项目id，用户id
-        for (TbDepositedFees tbDepositedFees : list) {
-            Integer clientId = tbDepositedFees.getDepositedUser().getClientId();
-            Integer projectId = tbDepositedFees.getProject().getProjectId();
-
-        }
-        return null;
+        return PageBeanUtil.getPageBean(page,list);
     }
 
 
