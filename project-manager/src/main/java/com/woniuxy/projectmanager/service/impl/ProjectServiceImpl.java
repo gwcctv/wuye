@@ -51,7 +51,7 @@ public class ProjectServiceImpl implements ProjectService {
         PageBean<TbProject> pageBean=new PageBean();
         pageBean.setPageSzie(pageSize);
         pageBean.setCurrPage(page);
-        Page<TbProject> p = PageHelper.startPage(pageSize, page);
+        Page<TbProject> p = PageHelper.startPage(page,pageSize);
         List<TbProject> list = projectMapper.getAll();
         pageBean.setData(list);
         pageBean.setTotalNums((int)p.getTotal());
@@ -65,12 +65,17 @@ public class ProjectServiceImpl implements ProjectService {
         PageBean<TbProject> pageBean=new PageBean();
         pageBean.setPageSzie(pageSize);
         pageBean.setCurrPage(page);
-        Page<TbProject> p = PageHelper.startPage(pageSize, page);
+        Page<TbProject> p = PageHelper.startPage( page,pageSize);
         List<TbProject> list = projectMapper.getByCondition(tbProject);
         pageBean.setData(list);
         pageBean.setTotalNums((int)p.getTotal());
         pageBean.setTotalPage(p.getPages());
         pageBean.setCurrpageSzie(pageBean.getData().size());
         return pageBean;
+    }
+
+    @Override
+    public int getByName(String name) {
+        return projectMapper.getByName(name);
     }
 }
