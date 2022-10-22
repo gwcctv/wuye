@@ -1,0 +1,15 @@
+server:
+  port: 8091
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///z-wuye?serverTimezone=UTC  #192.168.12.42/z-wuye?serverTimezone=UTC
+    username: root
+    password: 123456
+mybatis:
+  # spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+      com.woniuxy.wuye.cash.map : debug

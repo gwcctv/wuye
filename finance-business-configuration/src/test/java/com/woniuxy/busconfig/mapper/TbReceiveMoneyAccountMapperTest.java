@@ -1,5 +1,6 @@
 package com.woniuxy.busconfig.mapper;
 
+import com.woniuxy.wuye.common.entity.AccountAndProject;
 import com.woniuxy.wuye.common.entity.TbReceiveMoneyAccount;
 import com.woniuxy.wuye.common.utils.ChuLIjiHe;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,20 @@ public class TbReceiveMoneyAccountMapperTest {
         System.out.println("111");
 
     }
+    @Test
+    public void testAddMiddle(){
+        AccountAndProject accountAndProject=new AccountAndProject();
+        accountAndProject.setAccountId(1);
+        accountAndProject.setProjectId(1);
+        tbReceiveMoneyAccountMapper.addAccountAndProject(accountAndProject);
+    }
+@Test
+public void testDeleteMiddle(){
+    AccountAndProject accountAndProject=new AccountAndProject();
+    accountAndProject.setAccountId(1);
+    accountAndProject.setProjectId(1);
+    tbReceiveMoneyAccountMapper.deleteBangDingProjects(accountAndProject);
+}
 /**/
 /**
  * 此方法针对界面展示一个类型展示多个项目

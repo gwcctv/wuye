@@ -93,4 +93,16 @@ public class TbCheckReduce implements Serializable {
  * 减免类型 物业费减免 水电费减免等
  * */
     private String deductionName;
+    /**
+     * 状态 大于0 还剩余几次使用  用于周期性减免
+     *      0 使用完了
+     *      生成账单时会把状态更改为1
+     *      帐单作废或者账单退款 会把状态改为0
+     * */
+    private String status;
+    /**
+     * 判断是账单减免还是滞纳金减免
+     * 1为滞纳金 0为账单减免
+     * */
+    String judge;
 }

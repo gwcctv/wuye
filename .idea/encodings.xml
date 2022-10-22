@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/batchservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/batchservice/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/building-manager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/building-manager/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cash-register/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cash-register/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client-manager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client-manager/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/equipment-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/equipment-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finance-business-configuration/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/finance-business-configuration/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/house-manager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/house-manager/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/order-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/order-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/project-manager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/project-manager/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

@@ -21,7 +21,7 @@ public class TbcycleProvider {
                     WHERE("produce_status=#{produceStatus}");
                 }
                 if(tbCycle.getStartYear()!=null  && !tbCycle.getStartYear().equals("")){
-                    WHERE("start_year=#{startYear}");
+                    WHERE("start_year  <= #{startYear}");
                 }   if(tbCycle.getStartMonth()!=null  && !tbCycle.getStartMonth().equals("")){
                 WHERE("start_month=#{startMonth}");
             }   if(tbCycle.getStartDay()!=null  && !tbCycle.getStartDay().equals("")){
@@ -42,6 +42,7 @@ public class TbcycleProvider {
                 if(tbCycle.getProduceTime()!=null  && !tbCycle.getProduceTime().equals("")){
                     WHERE("produce_time=#{produceTime}");
                 }
+                WHERE("feecycle>0");
             }
 
         }.toString();

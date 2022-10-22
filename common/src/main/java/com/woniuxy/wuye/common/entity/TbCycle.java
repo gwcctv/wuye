@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 循环周期业务实体类
@@ -150,4 +151,14 @@ public class TbCycle implements Serializable {
      * */
     @TableField(exist = false)
     private String  buildingNumber;
+    /**
+     * 周期业务对应的减免账单
+     * */
+    @TableField(exist = false)
+    private List<TbCheckReduce> tbCheckReduceList;
+    /**
+     * 周期业务对应的减免滞纳金减免
+     * */
+    @TableField(exist = false)
+    private List<TbCheckReduce> tbCheckReduceListForLateMoney;
 }
