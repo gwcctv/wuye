@@ -45,7 +45,7 @@ public class BuildingServiceImpl implements BuildingService {
         PageBean<TbBuilding> pageBean=new PageBean<>();
         pageBean.setPageSzie(pageSize);
         pageBean.setCurrPage(page);
-        Page p = PageHelper.startPage(pageSize,page);
+        Page p = PageHelper.startPage(page,pageSize);
         List<TbBuilding> list = buildingMapper.getAll();//根据条件
         pageBean.setTotalNums((int) p.getTotal());//设置总数量
         pageBean.setTotalPage(p.getPages());
@@ -59,7 +59,7 @@ public class BuildingServiceImpl implements BuildingService {
         PageBean<TbBuilding> pageBean=new PageBean<>();
         pageBean.setPageSzie(pageSize);
         pageBean.setCurrPage(page);
-        Page p = PageHelper.startPage(pageSize,page);
+        Page p = PageHelper.startPage(page,pageSize);
         List<TbBuilding> list = buildingMapper.getByCondition(tbBuilding);//根据条件
         pageBean.setTotalNums((int) p.getTotal());//设置总数量
         pageBean.setTotalPage(p.getPages());

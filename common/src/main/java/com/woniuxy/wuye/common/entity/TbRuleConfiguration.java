@@ -3,6 +3,8 @@ package com.woniuxy.wuye.common.entity;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 规则配置表
  * @author 魏锦鹏
@@ -32,5 +34,7 @@ public class TbRuleConfiguration {
     private String ruleSituation;
 
     private String projectName;
+    @TableField(exist = false)
+    private List<Integer> projectIds;
 }
 

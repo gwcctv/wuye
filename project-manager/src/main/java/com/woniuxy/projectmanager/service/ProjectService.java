@@ -63,4 +63,6 @@ public interface ProjectService {
      * @return
      */
     PageBean<TbProject> getByCondition(TbProject tbProject,Integer pageSize,Integer page);
+
+    int getByName(String name);
 }

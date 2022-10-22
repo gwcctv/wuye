@@ -44,7 +44,7 @@ public class HouseServiceImpl implements HouseService {
         PageBean<TbHouse> pageBean=new PageBean<>();
         pageBean.setPageSzie(pageSize);
         pageBean.setCurrPage(page);
-        Page p = PageHelper.startPage(pageSize,page);
+        Page p = PageHelper.startPage(page,pageSize);
         List<TbHouse> list = houseMapper.getAll();//根据条件
         pageBean.setTotalNums((int) p.getTotal());//设置总数量
         pageBean.setTotalPage(p.getPages());
@@ -58,7 +58,7 @@ public class HouseServiceImpl implements HouseService {
         PageBean<TbHouse> pageBean=new PageBean<>();
         pageBean.setPageSzie(pageSize);
         pageBean.setCurrPage(page);
-        Page p = PageHelper.startPage(pageSize,page);
+        Page p = PageHelper.startPage(page,pageSize);
         List<TbHouse> list = houseMapper.getByCondition(tbHouse);//根据条件
         pageBean.setTotalNums((int) p.getTotal());//设置总数量
         pageBean.setTotalPage(p.getPages());

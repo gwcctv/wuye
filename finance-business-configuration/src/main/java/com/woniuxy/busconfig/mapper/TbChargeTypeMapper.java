@@ -22,4 +22,6 @@ public interface TbChargeTypeMapper {
      */
     @Select("select * from tb_charge_type where name like CONCAT('%', #{name}, '%')")
     List<TbChargeType> getChargeType(String name);
+    @Select("select * from tb_charge_type")
+    List<TbChargeType> getAll();
 }

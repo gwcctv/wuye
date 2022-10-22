@@ -25,4 +25,9 @@ private   TbChargeTypeMapper tbChargeTypeMapper;
     public List<TbChargeType> getChargeType(String name) {
         return tbChargeTypeMapper.getChargeType(name);
     }
+
+    @Override
+    public List<TbChargeType> getAll() {
+        return tbChargeTypeMapper.getAll();
+    }
 }
