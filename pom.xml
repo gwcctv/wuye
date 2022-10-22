@@ -15,9 +15,13 @@
         <module>batchservice</module>
         <module>finance-business-configuration</module>
         <module>equipment-server</module>
-<module>order-server</module>
-        <module>project-manager</module>
+
+        <module>order-server</module>
         <module>building-manager</module>
+<module>order-server</module>
+<module>project-manager</module>
+        <module>building-manager</module>
+        <module>house-manager</module>
     </modules>
 
     <properties>

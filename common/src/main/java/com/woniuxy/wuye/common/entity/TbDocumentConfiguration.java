@@ -6,6 +6,9 @@ package com.woniuxy.wuye.common.entity;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import javax.print.DocFlavor;
+import java.util.List;
+
 @Data
 @TableName("tb_document_configuration")
 public class TbDocumentConfiguration  {
