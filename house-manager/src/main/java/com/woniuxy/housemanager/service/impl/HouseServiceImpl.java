@@ -1,5 +1,6 @@
 package com.woniuxy.housemanager.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.woniuxy.housemanager.mapper.HouseMapper;
@@ -8,15 +9,16 @@ import com.woniuxy.wuye.common.entity.TbBuilding;
 import com.woniuxy.wuye.common.entity.TbHouse;
 import com.woniuxy.wuye.common.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-public class HouseServiceImpl implements HouseService {
+@Service
+public class HouseServiceImpl extends ServiceImpl<HouseMapper,TbHouse> implements  HouseService {
     @Autowired
     HouseMapper houseMapper;
     @Override
-    public void insert(TbHouse tbHouse) {
-        houseMapper.insert(tbHouse);
+    public void add(TbHouse tbHouse) {
+        houseMapper.add(tbHouse);
     }
 
     @Override

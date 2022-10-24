@@ -1,5 +1,8 @@
-spring:
+server:
   port: 8858
+
+spring:
+
   application:
     name: finance-business-configuration
   datasource:

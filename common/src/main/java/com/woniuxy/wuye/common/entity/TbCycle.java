@@ -144,6 +144,11 @@ public class TbCycle implements Serializable {
  * */
 @TableField(exist = false)
     private String projectName;
+    /**
+     * 项目Id
+     * */
+    @TableField(exist = false)
+    private Integer projectId;
 
 
     /**
@@ -167,4 +172,6 @@ public class TbCycle implements Serializable {
      * */
     @TableField(exist = false)
     Integer clientId;
+
+
 }

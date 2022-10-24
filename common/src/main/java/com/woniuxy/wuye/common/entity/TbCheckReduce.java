@@ -3,6 +3,7 @@ package com.woniuxy.wuye.common.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.Date;
  * 批量减免实体类
  */
 @Data
+@TableName("tb_check_reduce")
 public class TbCheckReduce implements Serializable {
 
 
@@ -81,17 +83,20 @@ public class TbCheckReduce implements Serializable {
 /**
  * 项目名
  * */
+@TableField(exist = false)
     private String projectName;
 
 
     /**
      * 收费项目名称
      * */
+    @TableField(exist = false)
     private String itemName;
 
 /**
  * 减免类型 物业费减免 水电费减免等
  * */
+@TableField(exist = false)
     private String deductionName;
     /**
      * 状态 大于0 还剩余几次使用  用于周期性减免

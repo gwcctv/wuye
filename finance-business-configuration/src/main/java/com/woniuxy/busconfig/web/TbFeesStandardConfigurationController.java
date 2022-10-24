@@ -40,6 +40,10 @@ public class TbFeesStandardConfigurationController {
         PageBean<TbFeesStandardConfiguration> pageDate = tbFeesStandardConfigurationService.getByPage(tbFeesStandardConfigurationVo.getTbFeesStandardConfiguration()==null?new TbFeesStandardConfiguration():tbFeesStandardConfigurationVo.getTbFeesStandardConfiguration(), tbFeesStandardConfigurationVo.getPage()==null?1:tbFeesStandardConfigurationVo.getPage());
         return new ResponseEntity("200","ok",pageDate);
     }
-
+    @RequestMapping("/getByCondition")
+    public  PageBean<TbFeesStandardConfiguration> getByCondition(@RequestBody TbFeesStandardConfigurationVo tbFeesStandardConfigurationVo){
+        PageBean<TbFeesStandardConfiguration> pageDate = tbFeesStandardConfigurationService.getByPage(tbFeesStandardConfigurationVo.getTbFeesStandardConfiguration()==null?new TbFeesStandardConfiguration():tbFeesStandardConfigurationVo.getTbFeesStandardConfiguration(), tbFeesStandardConfigurationVo.getPage()==null?1:tbFeesStandardConfigurationVo.getPage());
+        return pageDate;
+    }
 
 }

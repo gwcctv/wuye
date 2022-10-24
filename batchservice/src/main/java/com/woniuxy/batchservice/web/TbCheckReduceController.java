@@ -62,4 +62,28 @@ public class TbCheckReduceController {
         }
         return ResponseEntity.SUCCESS;
     }
+    /**
+     * 账单生成时减免申请的使用次数减1
+     * */
+    @RequestMapping("reduceStatus")
+    public ResponseEntity reduceStatus(Integer id){
+      TbCheckReduce tbCheckReduce=  tbCheckReduceService.getById(id);
+        int satus=Integer.parseInt(tbCheckReduce.getStatus());
+        satus=satus-1;
+        tbCheckReduce.setStatus(""+satus);
+        tbCheckReduceService.updateById(tbCheckReduce);
+        return ResponseEntity.SUCCESS;
+    }
+    /**
+     * 账单作废时减免申请的使用次数加1
+     * */
+    @RequestMapping("addStatus")
+    public ResponseEntity addStatus(Integer id){
+        TbCheckReduce tbCheckReduce=  tbCheckReduceService.getById(id);
+        int satus=Integer.parseInt(tbCheckReduce.getStatus());
+        satus=satus+1;
+        tbCheckReduce.setStatus(""+satus);
+        tbCheckReduceService.updateById(tbCheckReduce);
+        return ResponseEntity.SUCCESS;
+    }
 }
