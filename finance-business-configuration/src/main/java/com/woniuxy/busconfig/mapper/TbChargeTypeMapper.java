@@ -2,6 +2,8 @@ package com.woniuxy.busconfig.mapper;
 
 import com.woniuxy.wuye.common.entity.TbChargeType;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,12 @@ public interface TbChargeTypeMapper {
     @Select("select * from tb_charge_type where name like CONCAT('%', #{name}, '%')")
     List<TbChargeType> getChargeType(String name);
     @Select("select * from tb_charge_type")
+@Results( {
+        @Result(column = "id",property = "id",id = true),
+        @Result(column = "name",property = "name"),
+        @Result(column = "father",property = "father")
+})
     List<TbChargeType> getAll();
+
+
 }
