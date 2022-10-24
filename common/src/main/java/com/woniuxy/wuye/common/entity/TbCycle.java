@@ -161,4 +161,10 @@ public class TbCycle implements Serializable {
      * */
     @TableField(exist = false)
     private List<TbCheckReduce> tbCheckReduceListForLateMoney;
+
+    /**
+     * 客户Id
+     * */
+    @TableField(exist = false)
+    Integer clientId;
 }

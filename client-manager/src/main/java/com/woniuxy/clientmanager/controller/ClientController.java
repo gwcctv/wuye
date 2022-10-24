@@ -120,4 +120,14 @@ public class ClientController {
         }
         return responseEntity;
     }
+
+    /**
+     * 通过客户名查客户id
+     * @param clientName
+     * @return
+     */
+    @RequestMapping("/name")
+    public int getByname(@RequestParam String clientName){
+        return clientService.getByName(clientName);
+    }
 }

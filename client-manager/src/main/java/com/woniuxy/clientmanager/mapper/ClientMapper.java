@@ -33,6 +33,13 @@ public interface ClientMapper extends BaseMapper {
             "relationship=#{relationship},client_state=#{clientState} where client_id = #{clientId}")
     boolean updateById(TbClient tbClient);
 
+    /**
+     * 通过客户名查客户id
+     * @param clientName
+     * @return
+     */
+    @Select("select client_id from tb_client where client_name=#{name}")
+    int getByName(String clientName);
 
 
 }

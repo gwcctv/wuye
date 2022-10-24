@@ -2,18 +2,21 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.12.42/z-wuye?serverTimezone=UTC
+    #url: jdbc:mysql:///z-wuye?serverTimezone=UTC
     username: root
+    #password: 199702
     password: 123456
   application:
-    name:building-manager
+    name: building-manager
   web:
     resources:
       static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${oa.empphoto}
 server:
   port: 8081
-  servelt:
-    context-path: /
+#  servelt:
+#    context-path: /
 
 debug: false
-
-
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -46,5 +46,13 @@ public interface BuildingService {
      */
     PageBean<TbBuilding> getByCondition(TbBuilding tbBuilding,Integer pageSize, Integer page);
 
+    /**
+     * 根据楼栋编号查楼栋id
+     * @param buildingNumber
+     * @return
+     */
+    int getByBuildingNumber(int buildingNumber);
+
+
 
 }

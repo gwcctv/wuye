@@ -55,10 +55,22 @@ public class HouseProvider {
      * @return
      */
     public String select(TbHouse tbHouse){
+        if(tbHouse==null){
+            return new SQL(){
+                {
+                    SELECT("h.*,p.project_name projectName,b.building_number buildingNumber,c.client_name clientName");
+                    FROM("tb_house h,tb_project p,tb_client c,tb_building b");
+                    WHERE("h.client_id=c.client_id AND h.building_id=b.building_id AND h.project_id=p.project_id");
+                }
+            }.toString();
+        }
         return new SQL(){
             {
                 SELECT("h.*,p.project_name projectName,b.building_number buildingNumber,c.client_name clientName");
                 FROM("tb_house h,tb_project p,tb_client c,tb_building b");
+                if(tbHouse.getHouseId()!=null && !"".equals(tbHouse.getHouseId())){
+                    WHERE("h.house_id=#{houseId}");
+                }
                 if(tbHouse.getProjectName()!=null&&!"".equals(tbHouse.getProjectName())){
                     //这里需要通过输入项目名，就可以找出属于该项目的房产
                     //tb.project_id IN (SELECT tp.project_id FROM tb_project WHERE tp.project_name=#{projectName})
@@ -76,6 +88,14 @@ public class HouseProvider {
                 }
                 if(tbHouse.getStayState()!=null && !"".equals(tbHouse.getStayState())){
                     WHERE("stay_state=#{stayState}");
+                }
+                if(tbHouse.getProjectId()!=null && !"".equals(tbHouse.getProjectId())){
+                    //这里通过项目id找房产
+                    WHERE("h.project_id=#{projectId}");
+                }
+                if(tbHouse.getClientId()!=null && !"".equals(tbHouse.getClientId())){
+                    //这里通过客户id找房产
+                    WHERE("h.client_id=#{clientId}");
                 }
                 WHERE("h.client_id=c.client_id AND h.building_id=b.building_id AND h.project_id=p.project_id");
             }
