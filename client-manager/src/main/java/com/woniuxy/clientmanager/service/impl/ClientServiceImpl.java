@@ -73,5 +73,20 @@ public class ClientServiceImpl implements ClientService {
         return clientMapper.findClientByCondition(tbClient);
     }
 
+    @Override
+    public int deleteById(int id) {
+       return clientMapper.deleteById(id);
+    }
+
+    @Override
+    public boolean update(TbClient tbClient) {
+        return clientMapper.update(tbClient);
+    }
+
+    @Override
+    public boolean insertClient(TbClient tbClient) {
+        return clientMapper.insertClient(tbClient);
+    }
+
 
 }

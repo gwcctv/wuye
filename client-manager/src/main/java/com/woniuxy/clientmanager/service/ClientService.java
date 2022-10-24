@@ -22,4 +22,16 @@ public interface ClientService {
      *  根据条件查询客户
      */
     List<TbClient> findClientByCondition(TbClient tbClient);
+
+    /**
+     *  根据id删除客户
+     */
+    int deleteById(int id);
+
+    /**
+     *  根据id更新客户
+     */
+    boolean update(TbClient tbClient);
+
+    boolean insertClient(TbClient tbClient);
 }

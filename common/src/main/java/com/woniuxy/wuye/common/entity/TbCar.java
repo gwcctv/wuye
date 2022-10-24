@@ -1,16 +1,20 @@
 package com.woniuxy.wuye.common.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 物业车辆实体类
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TbCar {
     /**
      * 主键id
      */
-    private  Integer id;
+    private  Integer carId;
     /**
      *车辆编号
      */
@@ -32,5 +36,13 @@ public class TbCar {
      */
     private  Integer clientId;
 
+    /**
+     * 所属客户名
+     */
+    private String ClientName;
 
+    /**
+     * 所属车位
+     */
+    private int parkingNumber;
 }
