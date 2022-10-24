@@ -83,5 +83,10 @@ public class ClientServiceImpl implements ClientService {
         return clientMapper.updateById(tbClient);
     }
 
+    @Override
+    public int getByName(String clientName) {
+        return clientMapper.getByName(clientName);
+    }
+
 
 }

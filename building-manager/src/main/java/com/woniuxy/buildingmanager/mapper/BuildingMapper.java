@@ -62,6 +62,14 @@ public interface BuildingMapper {
     @SelectProvider(value = BuildingProvider.class,method ="select")
     @ResultMap("result")
     List<TbBuilding> getByCondition(TbBuilding tbBuilding);
+
+    /**
+     * 根据楼栋编号查楼栋id
+     * @param buildingNumber
+     * @return
+     */
+    @Select("select building_id from tb_building where building_number=#{buildingNumber}")
+    int getByBuildingNumber(int buildingNumber);
     /**
      * 多条件查询
      * @param tbBuilding
