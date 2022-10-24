@@ -84,6 +84,11 @@ public class TbPaidBills implements Serializable {
     private String isWipeZero;
 
     /**
+     * 是否抹零
+     */
+    private String wipeZeroFees;
+
+    /**
      * 实际总收金额
      */
     private String realSumFees;
@@ -142,5 +147,9 @@ public class TbPaidBills implements Serializable {
      * 是否删除，默认0未删除，1已删除
      */
     private Integer isDelete;
+    /**
+     *
+     */
+    private Integer[] unPaidBillIds;
 
 }

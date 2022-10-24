@@ -33,9 +33,9 @@ public class TbOffsetHistory implements Serializable {
     private String status;
 
     /**
-     * 外键关联收款单的id
+     * 外键关联未收款单的id
      */
-    private Integer tbPaidBillsId;
+    private Integer tbUnPaidBillsId;
 
     /**
      * 冲抵金额

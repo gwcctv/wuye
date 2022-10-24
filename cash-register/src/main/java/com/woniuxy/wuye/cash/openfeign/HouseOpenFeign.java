@@ -13,7 +13,6 @@ import java.math.BigDecimal;
  * @Author: baobo
  * @Date: 2022/10/22
  **/
-@Component
 @FeignClient("house-manager")
 public interface HouseOpenFeign {
     /**

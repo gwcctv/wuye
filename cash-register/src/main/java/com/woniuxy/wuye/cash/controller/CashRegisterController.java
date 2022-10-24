@@ -4,12 +4,11 @@ import com.woniuxy.wuye.cash.map.TbDepositedFeesMapper;
 import com.woniuxy.wuye.cash.openfeign.HouseOpenFeign;
 import com.woniuxy.wuye.cash.service.CashRegisterService;
 import com.woniuxy.wuye.cash.utils.ConditionVo;
-import com.woniuxy.wuye.common.entity.TbDepositedFees;
-import com.woniuxy.wuye.common.entity.TbHouse;
-import com.woniuxy.wuye.common.entity.TbUnpaidBills;
+import com.woniuxy.wuye.common.entity.*;
 import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,47 +22,81 @@ import java.util.List;
 @RestController
 @RequestMapping("/cashregister")
 public class CashRegisterController {
+    @Value("${web.pageSize}")
+    private Integer pageSize;
     @Autowired
     private CashRegisterService cashRegisterService;
-//    @Autowired
-//    private HouseOpenFeign  houseOpenFeign;
+
     /**
-     * 多条件分页查询所有
+     * 多条件分页查询所有,不带条件初始化查询，带条件多条件查询
      * @param pageNum
-     * @param pageSize
+     * @param conditionVo
      * @return
      */
     @RequestMapping("/unpaidbills/querypagecondition")
-    public ResponseEntity queryUnpaidBillsPageCondition(Integer pageNum,Integer pageSize,ConditionVo conditionVo){
+    public ResponseEntity queryUnpaidBillsPageCondition(Integer pageNum,ConditionVo conditionVo){
         PageBean<TbUnpaidBills> pageBean = cashRegisterService.selectUnpaidBillsPageByCondition(pageNum, pageSize,conditionVo);
         return new ResponseEntity("200","ok",pageBean);
     }
 
+    /**
+     * 新增未支付账单返回主键
+     * @param tbUnpaidBills
+     * @return
+     */
+    @RequestMapping("/unpaidbills/addunpaidbills")
+    public ResponseEntity addUnpaidBills(TbUnpaidBills tbUnpaidBills){
+        Integer id = cashRegisterService.addUnpaidBills(tbUnpaidBills);
+        return new ResponseEntity("200","ok",id);
+    }
+
+    /**
+     * 作废未支付账单
+     * @param id
+     * @return
+     */
+    @RequestMapping("/unpaidbills/invalidunpaidbills")
+    public ResponseEntity invalidUnpaidBills(Integer id){
+
+       cashRegisterService.invalidUnpaidBills(id);
+        return ResponseEntity.SUCCESS;
+    }
+
+    /**
+     * 减免未支付账单，
+     * 前端带来未支付账单的id，和一个减免的详细账单
+     * @param id
+     * @return
+     */
+    @RequestMapping("/unpaidbills/billsreduce")
+    public ResponseEntity billsReduce(Integer id,TbCheckReduce TbCheckReduce){
+        //将数据传输到业务层；
+       cashRegisterService.billsReduce(id,TbCheckReduce);
+       //减免成功刷新前端
+        return ResponseEntity.SUCCESS;
+    }
+
+    /**
+     * 收款，前端传入收款单数据，创建收款单初始状态为支付失败
+     * @return 收款单的id
+     */
+    @RequestMapping("/unpaidbills/crediting")
+    public ResponseEntity crediting(TbPaidBills tbPaidBills){
+        String payBillId = cashRegisterService.crediting(tbPaidBills);
+        return new ResponseEntity("200","ok",payBillId);
+    }
 
     /**
      * 分页查询预存表数据
      * @param pageNum
-     * @param pageSize
      * @param conditionVo
      * @return
      */
     @RequestMapping("/depositedfees/querypagecondition")
-    public ResponseEntity queryDepositedFeesPageByCondition(Integer pageNum, Integer pageSize,ConditionVo conditionVo){
-//        PageBean<TbDepositedFees> tbDepositedFeesPageBean = cashRegisterService.selectDepositedFeesPageByCondition(pageNum, pageSize, conditionVo);
-//        //得到我的数据，通过项目id和用户id调用房产的微服务，得到数据添加进数据中
-//        for (TbDepositedFees tbDepositedFees : tbDepositedFeesPageBean.getData()) {
-//            Integer clientId = tbDepositedFees.getDepositedUser().getClientId();
-//            Integer projectId = tbDepositedFees.getProject().getProjectId();
-//            //调用房产的服务
-//            String getNames="";
-//            ResponseEntity objects = houseOpenFeign.getHouseNames(clientId, projectId);
-//            List<TbHouse> houseNames = (List<TbHouse>)objects.getData();
-//            for (TbHouse house : houseNames) {
-//                getNames+=house.getBuildingNumber()+"幢"+house.getUnit()+house.getLayer()+house.getHouseNumber()+",";
-//            }
-//            //设置相关房产名
-//            tbDepositedFees.setHouseNames(getNames.substring(0,getNames.length()-2));
-//        }
+    public ResponseEntity queryDepositedFeesPageByCondition(Integer pageNum,ConditionVo conditionVo){
+        PageBean<TbDepositedFees> tbDepositedFeesPageBean = cashRegisterService.selectDepositedFeesPageByCondition(pageNum, pageSize, conditionVo);
+
         return new ResponseEntity("200","ok",null);
     }
+
 }

@@ -19,8 +19,8 @@ public interface TbOffsetHistoryMapper {
      * @param tbOffsetHistory
      * @return
      */
-    @Insert("inset into tb_offset_history(offset_number,status,tb_paid_bills_id,offset_fees,offset_time,is_delete) " +
-            "values(#{offsetNumber},#{status},#{tbPaidBillsId},#{offsetFees},#{offsetTime},#{isDelete})")
+    @Insert("inset into tb_offset_history(offset_number,status,tb_unpaid_bills_id,offset_fees,offset_time,is_delete) " +
+            "values(#{offsetNumber},#{status},#{tbUnPaidBillsId},#{offsetFees},#{offsetTime},#{isDelete})")
     int add(TbOffsetHistory tbOffsetHistory);
     //删
 

@@ -71,10 +71,17 @@ public interface TbDepositedFeesMapper {
      */
     @Select("select * from tb_deposited_fees where id=#{id} and is_delete=0")
     TbDepositedFees getById(Integer id);
+    /**
+     * 根据id查单个预存列表
+     * @param id
+     * @return
+     */
+    @Select("select * from tb_deposited_fees where id=#{id} and project_name=#{pid} and is_delete=0")
+    TbDepositedFees getByUidAndPid(Integer id,String pid);
 
     /**
      * 多条件查询
-     * @param tbDepositedFees
+     * @param   conditionVo
      * @return
      */
 

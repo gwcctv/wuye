@@ -6,13 +6,19 @@ package com.woniuxy.wuye.common.entity;
  * @Date: 2022/10/19
  **/
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 /**
  * 未支付的账单
  */
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class TbUnpaidBills implements Serializable {
 
@@ -32,7 +38,10 @@ public class TbUnpaidBills implements Serializable {
      * 房产名称
      */
     private String houseName;
-
+    /**
+     * 项目名
+     */
+    private String projectName;
     /**
      * 外键关联客户
      */

@@ -5,13 +5,19 @@ package com.woniuxy.wuye.common.entity;
  * @Author: baobo
  * @Date: 2022/10/19
  **/
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 /**
  * 预存金额总表
  */
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class TbDepositedFees implements Serializable {
 
@@ -26,7 +32,11 @@ public class TbDepositedFees implements Serializable {
      * 关联用户表
      */
     private TbClient depositedUser;
-
+    /**
+     * 项目id
+     *
+     */
+    private TbProject project;
     /**
      * 预存总金额
      */
@@ -61,5 +71,8 @@ public class TbDepositedFees implements Serializable {
      * 是否删除，默认0未删除，1已删除
      */
     private Integer isDelete;
-
+    /**
+     * 房产名
+     */
+    private String houseNames;
 }

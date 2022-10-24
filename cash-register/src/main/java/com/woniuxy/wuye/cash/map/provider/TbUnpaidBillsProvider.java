@@ -32,10 +32,26 @@ public class TbUnpaidBillsProvider {
 //            @Select("select * from tb_unpaid_bills where is_delete=0 and status=0")
         return new SQL(){{
 
-            SELECT("*");
-            FROM("tb_unpaid_bills");
-            WHERE("is_delete=0 and status=0");
-
+            SELECT("tb_unpaid_bills.*,tb_client.client_name");
+            FROM("tb_unpaid_bills,tb_client");
+            WHERE("is_delete=0 and status=0 AND house_owner=client_id");
+            if(conditionVo.getProjectName()!=null){
+                WHERE("project_name like concat('%',#{projectName},'%')");
+            }if(conditionVo.getClientName()!=null){
+                WHERE("client_name like concat('%',#{clientName},'%')");
+            }if(conditionVo.getHouseName()!=null){
+                WHERE("house_name like concat('%',#{houseName},'%')");
+            }if(conditionVo.getFeesItem()!=null){
+                WHERE("fees_item like concat('%',#{feesItem},'%')");
+            }if(conditionVo.getStartTime()!=null){
+                WHERE("bill_start_time >= #{startTime}");
+            }if(conditionVo.getEndTime()!=null){
+                WHERE("bill_end_time <= #{endTime}");
+            }if(conditionVo.getShouldGetTimeStart()!=null){
+                WHERE("should_received_time >= #{shouldGetTimeStart}");
+            }if(conditionVo.getShouldGetTimeEnd()!=null){
+                WHERE("should_received_time <= #{shouldGetTimeEnd}");
+            }
         }}.toString();
 
     }

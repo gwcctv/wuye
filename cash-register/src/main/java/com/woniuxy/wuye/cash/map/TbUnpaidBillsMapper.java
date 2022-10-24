@@ -21,8 +21,9 @@ public interface TbUnpaidBillsMapper {
      * @return
      */
     //增
-    @Insert("insert into tb_unpaid_bills(num,house_name,house_owner,fees_item,fees_standard,bill_start_time,bill_end_time,number,price,received,relief,offset,not_received,late_fees,late_fees_relief,should_received_time,status,tb_paid_bills_id,is_delete) " +
-            "values(#{num},#{houseName},#{houseOwner.clientId},#{feesItem},#{feesStandard},#{billStartTime},#{billEndTime},#{number},#{price},#{received},#{relief},#{offset},#{notReceived},#{lateFees},#{lateFeesRelief},#{shouldReceivedTime},#{status},#{tbPaidBillsId},#{isDelete})")
+    @Insert("insert into tb_unpaid_bills(num,house_name,project_name,house_owner,fees_item,fees_standard,bill_start_time,bill_end_time,number,price,received,relief,offset,not_received,late_fees,late_fees_relief,should_received_time,status,tb_paid_bills_id,is_delete) " +
+            "values(#{num},#{houseName},#{projectName},#{houseOwner.clientId},#{feesItem},#{feesStandard},#{billStartTime},#{billEndTime},#{number},#{price},#{received},#{relief},#{offset},#{notReceived},#{lateFees},#{lateFeesRelief},#{shouldReceivedTime},#{status},#{tbPaidBillsId},#{isDelete})")
+    @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     int add(TbUnpaidBills tbUnpaidBills);
     //删
 
@@ -36,6 +37,7 @@ public interface TbUnpaidBillsMapper {
 
     /**
      *根据id修改为收款单的状态
+     * 0表示不作废,1表示作废，2表示已交
      * @param id
      * @param status
      */
@@ -53,6 +55,9 @@ public interface TbUnpaidBillsMapper {
      * 查询所有未支付账单
      * @return
      */
+    @Results(id = "tbUnpaidBillsMapping",value = {
+            @Result(property = "houseOwner.clientName",column = "client_name"),
+    })
     @SelectProvider(value = TbUnpaidBillsProvider.class,method ="getByCondition")
     List<TbUnpaidBills> getByCondition(ConditionVo conditionVo);
 
@@ -60,6 +65,13 @@ public interface TbUnpaidBillsMapper {
      * 根据id查询未支付账单
      * @param id
      */
-    @Select("select * from tb_unpaid_bills where is_delete=0")
+    @ResultMap("tbUnpaidBillsMapping")
+    @Select("select * from tb_unpaid_bills where is_delete=0 and id=#{id}")
     TbUnpaidBills getById(Integer id);
+    /**
+     * 根据id更新收款单id
+     * @param id
+     */
+    @Update("update tb_unpaid_bills set tb_paid_bills_id=#{pid} where id=#{id}")
+    TbUnpaidBills updatePayBillId(@Param("id") Integer id,@Param("pid") Integer pid);
 }
