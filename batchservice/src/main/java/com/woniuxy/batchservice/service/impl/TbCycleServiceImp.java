@@ -26,7 +26,7 @@ public class TbCycleServiceImp extends ServiceImpl<TbCycleMapper, TbCycle> imple
     public PageBean<TbCycle> getByConditionByPage(TbCycle tbCycle,int page) {
 
         PageBean<TbCycle> pageBean = new PageBean<>();
-        pageBean.setPageSzie(4);//分页大小
+        pageBean.setPageSzie(20);//分页大小
         pageBean.setCurrPage(page);    //设置当前页数
         Page p = PageHelper.startPage(pageBean.getCurrPage(), pageBean.getPageSzie());
         List<TbCycle> list = tbCycleMapper.getByCondition(tbCycle);

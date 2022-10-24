@@ -30,13 +30,7 @@ public interface BuildingMapper {
     @UpdateProvider(value = BuildingProvider.class,method = "update")
     void update(TbBuilding tbBuilding);
 
-    /**
-     * 多条件查询
-     * @param tbBuilding
-     * @return
-     */
-    @SelectProvider(value = BuildingProvider.class,method ="select")
-    List<TbBuilding> getByCondition(TbBuilding tbBuilding);
+
 
     /**
      * 查询全部楼栋(并带出项目名)
@@ -55,7 +49,37 @@ public interface BuildingMapper {
 //
 //    })
     @Select("SELECT tb.* ,tp.project_name projectName FROM tb_building tb,tb_project tp WHERE tb.project_id=tp.project_id")
+    @Results(id = "result",value = {
+            @Result(column = "building_id",property = "buildingId",id = true),
+           @Result(column = "projectName",property = "projectName")
+    })
     List<TbBuilding> getAll();
+    /**
+     * 多条件查询
+     * @param tbBuilding
+     * @return
+     */
+    @SelectProvider(value = BuildingProvider.class,method ="select")
+    @ResultMap("result")
+    List<TbBuilding> getByCondition(TbBuilding tbBuilding);
+
+    /**
+     * 根据楼栋编号查楼栋id
+     * @param buildingNumber
+     * @return
+     */
+    @Select("select building_id from tb_building where building_number=#{buildingNumber}")
+    int getByBuildingNumber(int buildingNumber);
+    /**
+     * 多条件查询
+     * @param tbBuilding
+     * @return
+     */
+//    @Select("SELECT tb.* ,tp.project_name projectName FROM tb_building tb,tb_project tp WHERE tb.project_id=tp.project_id\n" +
+//            "and tb.building_type=#{buildingType} and tb.building_number=#{buildingNumber} \n" +
+//            "and tb.project_id IN ( SELECT project_id FROM tb_project WHERE project_name=#{projectName})")
+//
+//    List<TbBuilding> getByCondition(TbBuilding tbBuilding);
 
 
 }

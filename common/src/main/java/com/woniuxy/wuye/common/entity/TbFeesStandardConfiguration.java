@@ -51,13 +51,13 @@ public class TbFeesStandardConfiguration  {
      *
      * * */
    // @TableField(value = "project", condition = SqlCondition.EQUAL)
-    private List<String> projectNameList;
-
+    private List<Integer> projectNameList;
     private String projectName;
     /**
      * 状态
      */
    // @TableField(value = "situation", condition = SqlCondition.EQUAL)
     private String situation;
-
+    @TableField(exist = false)
+    private Integer projectId;
 }

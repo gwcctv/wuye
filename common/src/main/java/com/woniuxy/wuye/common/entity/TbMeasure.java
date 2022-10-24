@@ -3,6 +3,8 @@ package com.woniuxy.wuye.common.entity;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 计量表
  * @author 魏锦鹏
@@ -64,8 +66,9 @@ public class TbMeasure  {
     /**
      * 关联房产
      */
-    @TableField(value = "relevant_house", condition = SqlCondition.EQUAL)
-    private Integer relevantHouse;
+   // @TableField(value = "relevant_house", condition = SqlCondition.EQUAL)
+            @TableField(exist = false)
+    private List<Integer> relevantHouse;
 
     /**
      * 状态
@@ -83,5 +86,7 @@ public class TbMeasure  {
     private String unit;
     private String layer;
     private String houseNumber;
+    @TableField(exist = false)
+    private String allName=buildingId+"栋"+unit+"单元"+layer+"层"+houseNumber;
 
 }

@@ -10,7 +10,7 @@ public class TbcycleProvider {
         String sql=new SQL(){
             {
                 SELECT("*");
-                FROM("(SELECT e.*,f.number building_number FROM (SELECT c.*,d.project_name FROM (SELECT a.*,b.project_id,b.building_id,b.unit,b.layer,b.house_number FROM   (SELECT c.*,i.item_name FROM tb_cycle c LEFT JOIN tb_chargeable_items i ON c.feetype_id=i.id) a LEFT JOIN tb_house b ON a.house_id=b.house_id) c LEFT JOIN tb_project d ON c.project_id=d.project_id) e LEFT JOIN tb_building f ON e.building_id=f.building_id) g");
+                FROM("(SELECT e.*,f.number building_number FROM (SELECT c.*,d.project_name FROM (SELECT a.*,b.project_id,b.building_id,b.unit,b.layer,b.house_number,b.client_id FROM   (SELECT c.*,i.item_name FROM tb_cycle c LEFT JOIN tb_chargeable_items i ON c.feetype_id=i.id) a LEFT JOIN tb_house b ON a.house_id=b.house_id) c LEFT JOIN tb_project d ON c.project_id=d.project_id) e LEFT JOIN tb_building f ON e.building_id=f.building_id) g");
                 if(tbCycle.getProjectName()!=null && !tbCycle.getProjectName().equals("")){
                     WHERE("project_name=#{projectName}");
                 }
@@ -21,7 +21,7 @@ public class TbcycleProvider {
                     WHERE("produce_status=#{produceStatus}");
                 }
                 if(tbCycle.getStartYear()!=null  && !tbCycle.getStartYear().equals("")){
-                    WHERE("start_year=#{startYear}");
+                    WHERE("start_year  <= #{startYear}");
                 }   if(tbCycle.getStartMonth()!=null  && !tbCycle.getStartMonth().equals("")){
                 WHERE("start_month=#{startMonth}");
             }   if(tbCycle.getStartDay()!=null  && !tbCycle.getStartDay().equals("")){
@@ -42,6 +42,7 @@ public class TbcycleProvider {
                 if(tbCycle.getProduceTime()!=null  && !tbCycle.getProduceTime().equals("")){
                     WHERE("produce_time=#{produceTime}");
                 }
+                WHERE("feecycle>0");
             }
 
         }.toString();

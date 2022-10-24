@@ -5,8 +5,10 @@ import com.woniuxy.wuye.common.entity.TbClient;
 import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -131,5 +133,53 @@ public class ClientController {
             responseEntity.setMsg("添加成功");
         }
         return responseEntity;
+    }
+    /**
+     * 根据id删除客户
+     * @param id
+     * @return
+     */
+    @GetMapping("/deleteById/{id}")
+    public ResponseEntity deleteById(@PathVariable int id) {
+        int i = clientService.deleteById(id);
+        ResponseEntity responseEntity = new ResponseEntity<>();
+        if(i==0){
+            responseEntity.setCode("201");
+            responseEntity.setMsg("删除失败");
+        }else {
+            responseEntity.setCode("200");
+            responseEntity.setData(i);
+            responseEntity.setMsg("删除成功");
+        }
+        return responseEntity;
+    }
+
+    /**
+     * 修改客户信息
+     * @param tbClient
+     * @return
+     */
+    @PutMapping("/updateById")
+    public ResponseEntity updateById(@RequestBody TbClient tbClient) {
+        Boolean flag = clientService.updateById(tbClient);
+        ResponseEntity responseEntity = new ResponseEntity<>();
+        if(flag=false){
+            responseEntity.setCode("201");
+            responseEntity.setMsg("修改失败");
+        }else {
+            responseEntity.setCode("200");
+            responseEntity.setMsg("修改成功");
+        }
+        return responseEntity;
+    }
+
+    /**
+     * 通过客户名查客户id
+     * @param clientName
+     * @return
+     */
+    @RequestMapping("/name")
+    public int getByname(@RequestParam String clientName){
+        return clientService.getByName(clientName);
     }
 }

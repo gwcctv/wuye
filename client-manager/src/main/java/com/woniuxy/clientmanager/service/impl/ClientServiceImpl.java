@@ -88,5 +88,20 @@ public class ClientServiceImpl implements ClientService {
         return clientMapper.insertClient(tbClient);
     }
 
+    @Override
+    public int deleteById(int id) {
+       return clientMapper.deleteById(id);
+    }
+
+    @Override
+    public boolean updateById(TbClient tbClient) {
+        return clientMapper.updateById(tbClient);
+    }
+
+    @Override
+    public int getByName(String clientName) {
+        return clientMapper.getByName(clientName);
+    }
+
 
 }

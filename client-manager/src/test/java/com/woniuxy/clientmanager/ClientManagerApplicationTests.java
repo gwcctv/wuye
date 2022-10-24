@@ -24,6 +24,7 @@ class ClientManagerApplicationTests {
         tbClient.setClientId(3);
         tbClient.setClientName("lee");
         System.out.println(clientMapper.update(tbClient));
+
     }
 
 }

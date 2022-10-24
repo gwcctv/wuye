@@ -46,4 +46,6 @@ public interface ProjectMapper {
      */
     @Select("select * from tb_project where project_id=#{id}")
     TbProject getById(Integer id);
+    @Select("select project_id from tb_project where project_name=#{name}")
+    int getByName(String name);
 }

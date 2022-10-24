@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.woniuxy.clientmanager.provider.ClientProvider;
 import com.woniuxy.wuye.common.entity.TbClient;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -35,5 +36,19 @@ public interface ClientMapper extends BaseMapper {
     @Insert("insert into tb_client (number,client_name,sex,card,phone,email,work_address,description,relationship,client_state,house_id) values " +
             "(#{number},#{clientName},#{sex},#{card},#{phone},#{email},#{workAddress},#{description},#{relationship},#{clientState},#{houseId})")
     boolean insertClient(TbClient tbClient);
+
+    @Update("update tb_client set number=#{number},client_name=#{clientName},sex=#{sex},card=#{card},\n" +
+            "phone=#{phone},email=#{email},work_address=#{workAddress},description=#{description},\n" +
+            "relationship=#{relationship},client_state=#{clientState} where client_id = #{clientId}")
+    boolean updateById(TbClient tbClient);
+
+    /**
+     * 通过客户名查客户id
+     * @param clientName
+     * @return
+     */
+    @Select("select client_id from tb_client where client_name=#{name}")
+    int getByName(String clientName);
+
 
 }

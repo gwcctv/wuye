@@ -11,7 +11,7 @@ public class TbCheckReduceProvider {
         String sql=new SQL(){
             {
                 SELECT("*");
-                FROM("(SELECT g.*,h.deduction_name FROM  (SELECT e.*,f.item_name FROM (SELECT c.*,d.project_name FROM  (SELECT a.*,b.project_id FROM tb_check_reduce a LEFT JOIN tb_house b ON a.house_id=b.house_id) c LEFT JOIN tb_project d ON c.project_id=d.project_id) e LEFT JOIN tb_chargeable_items f ON e.feetype_id=f.id) g LEFT JOIN tb_money_deduction h ON g.reduce_type=h.id) z");
+                FROM("(SELECT g.*,h.deduction_name FROM  (SELECT e.*,f.item_name FROM (SELECT c.*,d.project_name FROM  (SELECT a.*,b.project_id FROM tb_check_reduce a LEFT JOIN tb_house b ON a.house_id=b.house_id) c LEFT JOIN tb_project d ON c.project_id=d.project_id) e LEFT JOIN tb_chargeable_items f ON e.feetype_id=f.id) g LEFT JOIN tb_money_deduction h ON g.reduce_type_id=h.id) z");
                 if(tbCheckReduce.getProjectName()!=null && !tbCheckReduce.getProjectName().equals("")){
                     WHERE("project_name=#{projectName}");
                 }
@@ -34,6 +34,16 @@ public class TbCheckReduceProvider {
                 if(tbCheckReduce.getProduceTime()!=null  && !tbCheckReduce.getProduceTime().equals("")){
                     WHERE("produce_time=#{produceTime}");
                 }
+                if(tbCheckReduce.getHouseId()!=null  && tbCheckReduce.getHouseId()!=0){
+                    WHERE("house_id=#{houseId}");
+                }
+                if(tbCheckReduce.getFeetypeId()!=null  && tbCheckReduce.getFeetypeId()!=0){
+                    WHERE("feetype_id=#{feetypeId}");
+                }
+                if(tbCheckReduce.getJudge()!=null  && !tbCheckReduce.getJudge().equals("")){
+                    WHERE("judge=#{judge}");
+                }
+                WHERE("status!=0");
             }
 
         }.toString();
