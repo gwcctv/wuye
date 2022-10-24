@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: batch-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost/z-wuye?serverTimezone=UTC
@@ -6,6 +8,8 @@ spring:
     password: 123456
   cloud:
     nacos:
+      discovery:
+
       server-addr: http://localhost:8848  #nacos的服务地址
 mybatis-plus:
   global-config:

@@ -1,7 +1,10 @@
 package com.woniuxy.batchservice.web;
 
+import com.woniuxy.batchservice.feign.CashRegister;
 import com.woniuxy.batchservice.service.TbCheckReduceService;
 import com.woniuxy.wuye.common.entity.TbCheckReduce;
+import com.woniuxy.wuye.common.entity.TbClient;
+import com.woniuxy.wuye.common.entity.TbUnpaidBills;
 import com.woniuxy.wuye.common.exceptions.NoIdInSqlException;
 import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
@@ -19,6 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class TbCheckReduceController {
     @Autowired
     TbCheckReduceService tbCheckReduceService;
+    @Autowired
+    CashRegister cashRegister;
+
+
+
     @RequestMapping("getByPage")
     public PageBean<TbCheckReduce> getByCondition(@RequestBody TbCheckReduce tbCheckReduce, int page){
 

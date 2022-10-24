@@ -9,6 +9,7 @@ import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,7 +46,7 @@ public class CashRegisterController {
      * @return
      */
     @RequestMapping("/unpaidbills/addunpaidbills")
-    public ResponseEntity addUnpaidBills(TbUnpaidBills tbUnpaidBills){
+    public ResponseEntity addUnpaidBills(@RequestBody TbUnpaidBills tbUnpaidBills){
         Integer id = cashRegisterService.addUnpaidBills(tbUnpaidBills);
         return new ResponseEntity("200","ok",id);
     }
