@@ -1,36 +1,32 @@
-package com.woniuxy.batchservice;
+package com.woniuxy.batchservice.automake;
 
 import com.woniuxy.batchservice.dao.TbCheckReduceMapper;
 import com.woniuxy.batchservice.dao.TbCycleMapper;
 import com.woniuxy.batchservice.service.TbCycleService;
 import com.woniuxy.wuye.common.entity.TbCheckReduce;
 import com.woniuxy.wuye.common.entity.TbCycle;
-import com.woniuxy.wuye.common.utils.PageBean;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-@SpringBootTest
-public class AutoMake {
+@Component
+public class AutoMakeUtils {
     @Autowired
     TbCycleService tbCycleService;
     @Autowired
     TbCycleMapper tbCycleMapper;
     @Autowired
     TbCheckReduceMapper tbCheckReduceMapper;
-
-
     /**
      * 通过筛选出来的周期业务找出对应的减免账单
      */
-@Test
-    public void getReduceByList() {
+
+    public List<TbCycle>  getReduceByList() {
         List<TbCycle> tbCycles = selectInListByCondition();
         Iterator<TbCycle> tbCycleIterator = tbCycles.iterator();
         TbCheckReduce tbCheckReduce = new TbCheckReduce();
@@ -51,8 +47,8 @@ public class AutoMake {
                 tbCycle.setTbCheckReduceListForLateMoney(tbCheckReduceListForLateMoney);
             }
         }
-    System.out.println();
-//        return tbCycles;
+
+        return tbCycles;
     }
 
 

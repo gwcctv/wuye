@@ -32,4 +32,6 @@ public interface ClientService {
      *  根据id更新客户
      */
     boolean updateById(TbClient tbClient);
+
+    int getByName(String clientName);
 }

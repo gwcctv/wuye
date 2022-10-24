@@ -7,10 +7,7 @@ import com.woniuxy.wuye.common.entity.TbBuilding;
 import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -85,6 +82,16 @@ public class BuildingController {
         //这里注意修改的buidlingId
         buildingService.update(tbBuilding);
         return ResponseEntity.SUCCESS;
+    }
+
+    /**
+     * 根据楼栋编号查楼栋id
+     * @param buildingNumber
+     * @return
+     */
+    @RequestMapping("/number")
+    public  int getByNumber(@RequestParam int buildingNumber){
+        return  buildingService.getByBuildingNumber(buildingNumber);
     }
 
 }
