@@ -58,5 +58,6 @@ public class TbFeesStandardConfiguration  {
      */
    // @TableField(value = "situation", condition = SqlCondition.EQUAL)
     private String situation;
-
+    @TableField(exist = false)
+    private Integer projectId;
 }

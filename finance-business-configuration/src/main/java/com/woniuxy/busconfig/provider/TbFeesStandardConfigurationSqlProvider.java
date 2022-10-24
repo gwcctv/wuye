@@ -59,6 +59,12 @@ public class TbFeesStandardConfigurationSqlProvider {
 					if (tbFeesStandardConfiguration.getProjectName()!= null) {
 						WHERE("project_name=#{projectName}");
 					}
+					if (tbFeesStandardConfiguration.getProjectId()!= null) {
+						WHERE("project_id=#{projectId}");
+					}
+					if (tbFeesStandardConfiguration.getFeesItem()!= null) {
+						WHERE("fees_item=#{feesItem}");
+					}
 				}
 			}.toString();
 		}
