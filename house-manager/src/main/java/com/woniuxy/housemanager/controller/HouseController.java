@@ -6,6 +6,7 @@ import com.woniuxy.wuye.common.entity.TbBuilding;
 import com.woniuxy.wuye.common.entity.TbHouse;
 import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,12 @@ import java.util.List;
 public class HouseController {
     @Autowired
     HouseService houseService;
+    @Autowired
+    BuildingFeign buildingFeign;
+    @Autowired
+    ProjectFeign projectFeign;
+    @Autowired
+    ClientFeign clientFeign;
 
     /**
      * 根据客户id和项目id查房产
@@ -26,7 +33,7 @@ public class HouseController {
      * @param clientId
      * @return
      */
-    @RequestMapping("/pcid")
+    @RequestMapping("/pcid/{projectId}/{clientId}")
     public  ResponseEntity ByProAndClient(@PathVariable("projectId") Integer projectId,@PathVariable("clientId") Integer clientId){
         TbHouse tbHouse=new TbHouse();
         tbHouse.setClientId(clientId);
@@ -46,11 +53,19 @@ public class HouseController {
                 = houseService.getByCondition(houseVo.getTbHouse(), houseVo.getPageSize(), houseVo.getPage());
         return new ResponseEntity("200","ok",byCondition);
     }
-    //增加房产 同时也需要增加房产所属项目，所属楼栋，所属客户
-    //管理员在增加房产，需要填写项目名，楼栋号，客户名字
-//    public ResponseEntity add(@RequestBody TbHouse tbHouse){
-//        houseService.insert(tbHouse);
-//    }
+//    增加房产 同时也需要增加房产所属项目，所属楼栋，所属客户
+//    管理员在增加房产，需要填写项目名，楼栋号，客户名字
+    @RequestMapping("/add")
+    public ResponseEntity add(@RequestBody TbHouse tbHouse){
+        int clientId = clientFeign.getByname(tbHouse.getClientName());//通过客户名得到客户id
+        int projectId = projectFeign.getByName(tbHouse.getProjectName());//通过项目名得到项目id
+        int buildingId = buildingFeign.getByNumber(tbHouse.getBuildingNumber());//通过楼栋号得到楼栋id
+        tbHouse.setProjectId(projectId);
+        tbHouse.setClientId(clientId);
+        tbHouse.setBuildingId(buildingId);
+        houseService.insert(tbHouse);
+        return ResponseEntity.SUCCESS;
+    }
 
     /**
      * 通过id删除房产

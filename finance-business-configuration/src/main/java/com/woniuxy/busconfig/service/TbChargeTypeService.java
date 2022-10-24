@@ -10,4 +10,7 @@ public interface TbChargeTypeService {
     void addChargeType(TbChargeType tbChargeType);
      List<TbChargeType> getChargeType(String name);
     List<TbChargeType> getAll();
+
+    void updateChargeType(TbChargeType tbChargeType);
+    void deleteChargeType(Integer id);
 }

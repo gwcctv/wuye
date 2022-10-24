@@ -55,4 +55,19 @@ public interface CashRegisterService {
      * @return
      */
     String crediting(TbPaidBills tbPaidBills);
+
+    /**
+     * 多条件分页查询收款单
+     * @param pageNum
+     * @param pageSize
+     * @param conditionVo
+     * @return
+     */
+    PageBean<TbPaidBills> selectPaidBillsPageByCondition(Integer pageNum, Integer pageSize, ConditionVo conditionVo);
+
+    /**
+     * 退款
+     * @param tbRefundHistory
+     */
+    void paidBillsRefund(TbRefundHistory tbRefundHistory);
 }

@@ -16,8 +16,8 @@ spring:
       server-addr: http://localhost:8848  #nacos的服务地址
 server:
   port: 8082
-  servelt:
-    context-path: /
+#  servelt:
+#    context-path: /
 
 debug: false
 

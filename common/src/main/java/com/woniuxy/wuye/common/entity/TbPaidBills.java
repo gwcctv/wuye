@@ -6,13 +6,19 @@ package com.woniuxy.wuye.common.entity;
  * @Date: 2022/10/19
  **/
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 /**
  * 收款的账单
  */
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class TbPaidBills implements Serializable {
 

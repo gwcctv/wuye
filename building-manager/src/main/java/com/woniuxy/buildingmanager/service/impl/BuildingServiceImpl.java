@@ -68,4 +68,9 @@ public class BuildingServiceImpl implements BuildingService {
         return pageBean;
     }
 
+    @Override
+    public int getByBuildingNumber(int buildingNumber) {
+        return buildingMapper.getByBuildingNumber(buildingNumber);
+    }
+
 }

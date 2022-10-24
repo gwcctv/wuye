@@ -50,8 +50,9 @@ public class BuildingProvider {
         if(tbBuilding==null){
             return new SQL(){
                 {
-                    SELECT("*");
-                    FROM("tb_building");
+                    SELECT("tb.* ,tp.project_name projectName");
+                    FROM("tb_building tb,tb_project tp");
+                    WHERE("tb.project_id=tp.project_id");
                 }
             }.toString();
         }else{
