@@ -10,9 +10,9 @@ import java.time.format.DateTimeFormatter;
  **/
 public class WoNiuTimeUtil {
     public static String getNowTimeNumber(){
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyymmddHHMMss"));
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
     }
     public static String getNowTime(){
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-mm-dd HH-MM-ss"));
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 }

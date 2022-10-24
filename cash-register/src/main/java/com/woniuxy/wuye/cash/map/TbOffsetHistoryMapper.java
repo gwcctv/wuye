@@ -50,4 +50,12 @@ public interface TbOffsetHistoryMapper {
      */
     @Select("select * from tb_offset_history where tb_deposited_fees_id=#{tbDepositedFeesId}")
     List<TbOffsetHistory> getByTbDepositedFeesId(Integer tbDepositedFeesId);
+
+    /**
+     * 根据未收款单id查下冲抵记录
+     * @param tbUnPaidBillsId
+     * @return
+     */
+    @Select("select * from tb_offset_history where tb_unpaid_bills_id=#{tbUnPaidBillsId}")
+    TbOffsetHistory getByTbUnPaidBillsId(Integer tbUnPaidBillsId);
 }

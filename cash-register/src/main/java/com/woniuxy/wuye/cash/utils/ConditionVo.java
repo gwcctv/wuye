@@ -25,4 +25,12 @@ public class ConditionVo {
     private String shouldGetTimeEnd;
     //房产名
     private String houseName;
+    //收款单据号
+    private String num;
+    //收款方式
+    private String style;
+    //支付状态
+    private String status;
+    //收款人
+    private String acceptUser;
 }

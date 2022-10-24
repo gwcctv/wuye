@@ -1,6 +1,7 @@
 package com.woniuxy.wuye.cash.map;
 
 import com.woniuxy.wuye.common.entity.TbDepositedFees;
+import com.woniuxy.wuye.common.entity.TbRefundHistory;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Update;
 
@@ -14,12 +15,12 @@ public interface TbRefundHistoryMapper {
 
     /**
      * 新增退款记录
-     * @param tbDepositedFees
+     * @param
      * @return
      */
     @Insert("insert into tb_refund_history(refund_number,refund_fees,paid_bills_num,refund_user,refund_time,refund_reason,is_delete) " +
             "values(#{refundNumber},#{refundFees},#{paidBillsNum},#{refundUser},#{refundTime},#{refundReason},#{isDelete})")
-    int add(TbDepositedFees tbDepositedFees);
+    int add(TbRefundHistory tbRefundHistory);
     //删
 
     /**
