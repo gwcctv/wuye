@@ -26,6 +26,9 @@ public class AutoMake {
     TbCheckReduceMapper tbCheckReduceMapper;
 
 
+
+
+
     /**
      * 通过筛选出来的周期业务找出对应的减免账单
      */
