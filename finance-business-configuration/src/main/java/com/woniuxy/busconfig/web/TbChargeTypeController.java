@@ -26,7 +26,7 @@ public class TbChargeTypeController {
         //筛选出父类型
         List<TbChargeType> fatherList = listAll.stream().filter(e -> e.getFather() == null).collect(Collectors.toList());
        //筛选出子类型
-        List<TbChargeType> childList = listAll.stream().filter(e -> e.getFather() == null).collect(Collectors.toList());
+        List<TbChargeType> childList = listAll.stream().filter(e -> e.getFather() != null).collect(Collectors.toList());
       //将子类型放在他的父中
         for (int i = 0; i < fatherList.size(); i++) {
             int finalI = i;
