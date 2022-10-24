@@ -19,6 +19,10 @@ public class ConditionVo {
     private String endTime;
     //收费项目
     private String feesItem;
-    //应收日期
-    private String shouldGetTime;
+    //应收日期开始
+    private String shouldGetTimeStart;
+    //应收日期开始结束
+    private String shouldGetTimeEnd;
+    //房产名
+    private String houseName;
 }

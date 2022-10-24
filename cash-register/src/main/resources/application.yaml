@@ -19,3 +19,7 @@ mybatis:
 logging:
   level:
       com.woniuxy.wuye.cash.map : debug
+
+
+web:
+  pageSize: 1 #自定义配置查询的每页条数

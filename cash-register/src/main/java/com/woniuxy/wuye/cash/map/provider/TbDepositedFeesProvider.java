@@ -43,10 +43,10 @@ public class TbDepositedFeesProvider {
             FROM("tb_deposited_fees,tb_client,tb_project");
             WHERE("tb_client.client_id=tb_deposited_fees.deposited_user AND tb_project.project_id=tb_deposited_fees.project_id");
             if(conditionVo.getProjectName()!=null){
-                WHERE("project_name like concat(#{projectName},'%')");
+                WHERE("project_name like concat('%',#{projectName},'%')");
             }
             if(conditionVo.getClientName()!=null){
-                WHERE("client_name like concat(#{clientName},'%')");
+                WHERE("client_name like concat('%',#{clientName},'%')");
             }
             if(conditionVo.getStartTime()!=null){
                 WHERE("recent_deposited_time >= #{startTime}");
