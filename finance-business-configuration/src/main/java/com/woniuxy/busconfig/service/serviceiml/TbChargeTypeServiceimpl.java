@@ -30,4 +30,15 @@ private   TbChargeTypeMapper tbChargeTypeMapper;
     public List<TbChargeType> getAll() {
         return tbChargeTypeMapper.getAll();
     }
+
+    @Override
+    public void updateChargeType(TbChargeType tbChargeType) {
+        tbChargeTypeMapper.updateChargeType(tbChargeType);
+    }
+
+    @Override
+    public void deleteChargeType(Integer id) {
+        tbChargeTypeMapper.deleteChargeType(id);
+        tbChargeTypeMapper.deleteByFather(id);
+    }
 }
