@@ -145,7 +145,7 @@ public class Automake {
             tbUnpaidBills.setRelief(total1.toString());
 //应收金额
 
-            BigDecimal received = feesStandard.getPrice().multiply(new BigDecimal(tbUnpaidBills.getNumber())).subtract(total1);
+            BigDecimal received = feesStandard.getPrice().multiply(new BigDecimal(tbUnpaidBills.getNumber()));
             if (received.compareTo(new BigDecimal(0)) == -1) {
                 tbUnpaidBills.setReceived("0");
             } else {
