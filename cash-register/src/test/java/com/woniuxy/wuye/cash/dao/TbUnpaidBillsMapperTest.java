@@ -1,5 +1,6 @@
 package com.woniuxy.wuye.cash.dao;
 
+import com.alibaba.fastjson.JSON;
 import com.woniuxy.wuye.cash.map.TbDepositedFeesMapper;
 import com.woniuxy.wuye.cash.map.TbPaidBillsMapper;
 import com.woniuxy.wuye.cash.map.TbUnpaidBillsMapper;
@@ -94,6 +95,8 @@ public class TbUnpaidBillsMapperTest {
 
 
     public static void main(String[] args) {
+        TbCheckReduce tbCheckReduce=new TbCheckReduce();
+        String s = JSON.toJSONString(tbCheckReduce);
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyymmddHHMMss")));
     }
 }

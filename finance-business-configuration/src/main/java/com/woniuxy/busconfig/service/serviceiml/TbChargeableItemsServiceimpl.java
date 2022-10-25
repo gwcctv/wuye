@@ -23,6 +23,7 @@ public class TbChargeableItemsServiceimpl extends ServiceImpl<TbChargeableItemsM
     @Override
     public void addTbChargeableItem(TbChargeableItems tbChargeableItems) {
 tbChargeableItemsMapper.addTbChargeableItem(tbChargeableItems);
+
     }
 
     @Override
@@ -39,7 +40,8 @@ tbChargeableItemsMapper.deleteTbChargeableItem(id);
     public PageBean<TbChargeableItems> getByPage(TbChargeableItems tbChargeableItems, int page) {
         //根据条件页码分页大小将PageBean中的属性一次设置
         PageBean<TbChargeableItems> pageBean = new PageBean<>();
-        pageBean.setPageSzie(4);//分页大小
+        pageBean.setPageSzie(10000000);//分页大小
+
         pageBean.setCurrPage(page);    //设置当前页数
         Page p = PageHelper.startPage(pageBean.getCurrPage(), pageBean.getPageSzie());
         List<TbChargeableItems> list = tbChargeableItemsMapper.getTbChargeableItemByCondition(tbChargeableItems);

@@ -43,7 +43,7 @@ public interface TbPaidBillsMapper {
 
     /**
      * 多条件查询收款单
-     * @param 
+     * @param
      * @return
      */
     @SelectProvider(value = TbPaidBillsProvider.class,method = "getByCondition")
