@@ -1,13 +1,23 @@
 package com.woniuxy.wuye.common.entity;
 
+import com.baomidou.mybatisplus.annotation.SqlCondition;
+import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 抄表实体类
  */
+
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class TbClock implements Serializable {
 
     /**
@@ -51,6 +61,11 @@ public class TbClock implements Serializable {
     private String number;
 
     /**
+     * 房子Id
+     * */
+    Integer houseId;
+
+    /**
      * 表ID
      */
     private String clockId;
@@ -65,6 +80,11 @@ public class TbClock implements Serializable {
      */
     private String thisRecordTime;
 
+    /**
+     * 收费项目ID
+     */
+
+    private Integer feetypeId;
     /**
      * 项目名
      */
@@ -90,4 +110,37 @@ public class TbClock implements Serializable {
      */
     private String clientName;
 
+    /**
+     * 单元号
+     * */
+    @TableField(exist = false)
+    private String unit;
+
+    /**
+     * 楼层
+     * */
+    @TableField(exist = false)
+    private String layer;
+
+    /**
+     * 房号
+     * */
+    @TableField(exist = false)
+    private String houseNumber;
+    /**
+     * 楼栋号
+     * */
+    @TableField(exist = false)
+    private String  buildingNumber;
+
+    /**
+     * 周期业务对应的减免账单
+     * */
+    @TableField(exist = false)
+    private List<TbCheckReduce> tbCheckReduceList;
+    /**
+     * 周期业务对应的减免滞纳金减免
+     * */
+    @TableField(exist = false)
+    private List<TbCheckReduce> tbCheckReduceListForLateMoney;
 }

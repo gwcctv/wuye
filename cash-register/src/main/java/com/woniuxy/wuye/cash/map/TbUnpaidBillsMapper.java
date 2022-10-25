@@ -74,4 +74,8 @@ public interface TbUnpaidBillsMapper {
      */
     @Update("update tb_unpaid_bills set tb_paid_bills_id=#{pid} where id=#{id}")
     TbUnpaidBills updatePayBillId(@Param("id") Integer id,@Param("pid") Integer pid);
+
+    @ResultMap("tbUnpaidBillsMapping")
+    @Select("select * from tb_unpaid_bills where is_delete=0 and tb_paid_bills_id=#{id}")
+    List<TbUnpaidBills> getByPayBillId(Integer id);
 }

@@ -36,4 +36,5 @@ public class TbCycleServiceImp extends ServiceImpl<TbCycleMapper, TbCycle> imple
         pageBean.setCurrpageSzie(pageBean.getData().size());//当前页数据数量
          return pageBean;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.woniuxy.housemanager.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.woniuxy.housemanager.provider.HouseProvider;
 import com.woniuxy.wuye.common.entity.TbHouse;
 import org.apache.ibatis.annotations.*;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * 房产mapper
  */
-public interface HouseMapper {
+public interface HouseMapper extends BaseMapper<TbHouse> {
     /**
      * 增加房
      * @param tbHouse
@@ -17,7 +18,7 @@ public interface HouseMapper {
     @Insert("insert into tb_house (client_id,building_id,project_id,unit,layer,house_number,house_type,area,pay_time,stay_state,sell_state,fitment_state,lease_state,towards," +
             "handover_date,property_number,description)values (#{clientId},#{buildingId},#{projectId},#{unit},#{layer},#{houseNumber},#{houseType},#{area},#{payTime},#{stayState}," +
             "#{sellState},#{fitmentState},#{leaseState},#{towards},#{handoverDate},#{propertyNumber},#{description})")
-    void insert(TbHouse tbHouse);
+    void add(TbHouse tbHouse);
 
     /**
      * 删除房
