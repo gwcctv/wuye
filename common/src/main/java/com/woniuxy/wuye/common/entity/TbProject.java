@@ -36,7 +36,7 @@ public class TbProject implements Serializable {
     /**
      * 建设日期
      */
-    private Date constructionDate;
+    private String constructionDate;
 
     /**
      * 建筑面积
@@ -61,7 +61,7 @@ public class TbProject implements Serializable {
     /**
      * 接盘日期
      */
-    private Date takeoverDate;
+    private String takeoverDate;
 
     /**
      * 状态

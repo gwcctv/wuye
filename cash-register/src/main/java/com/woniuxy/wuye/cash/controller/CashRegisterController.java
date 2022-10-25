@@ -73,9 +73,9 @@ public class CashRegisterController {
      * @return
      */
     @RequestMapping("/unpaidbills/billsreduce")
-    public ResponseEntity billsReduce(Integer id, TbCheckReduce TbCheckReduce) {
+    public ResponseEntity billsReduce(Integer id, TbCheckReduce tbCheckReduce) {
         //将数据传输到业务层；
-        cashRegisterService.billsReduce(id, TbCheckReduce);
+        cashRegisterService.billsReduce(id, tbCheckReduce);
         //减免成功刷新前端
         return ResponseEntity.SUCCESS;
     }
@@ -153,7 +153,7 @@ public class CashRegisterController {
     public ResponseEntity queryDepositedFeesPageByCondition(Integer pageNum, ConditionVo conditionVo) {
         PageBean<TbDepositedFees> tbDepositedFeesPageBean = cashRegisterService.selectDepositedFeesPageByCondition(pageNum, pageSize, conditionVo);
 
-        return new ResponseEntity("200", "ok", null);
+        return new ResponseEntity("200", "ok", tbDepositedFeesPageBean);
     }
 
 }

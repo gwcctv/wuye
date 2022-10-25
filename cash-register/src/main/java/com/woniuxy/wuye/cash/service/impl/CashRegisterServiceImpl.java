@@ -1,8 +1,10 @@
 package com.woniuxy.wuye.cash.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.woniuxy.wuye.cash.map.*;
+import com.woniuxy.wuye.cash.openfeign.BatchServiceOpenFeign;
 import com.woniuxy.wuye.cash.openfeign.HouseOpenFeign;
 import com.woniuxy.wuye.cash.service.CashRegisterService;
 import com.woniuxy.wuye.cash.utils.ConditionVo;
@@ -14,6 +16,7 @@ import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import sun.util.calendar.BaseCalendar;
 
 import javax.xml.crypto.Data;
@@ -34,6 +37,8 @@ public class CashRegisterServiceImpl implements CashRegisterService {
     TbUnpaidBillsMapper tbUnpaidBillsMapper;
     @Autowired(required = false)
     private HouseOpenFeign houseOpenFeign;
+    @Autowired(required = false)
+    private BatchServiceOpenFeign batchServiceOpenFeign;
 
     @Override
     public PageBean<TbUnpaidBills> selectUnpaidBillsPageByCondition(Integer pageNum, Integer pageSize, ConditionVo conditionVo) {
@@ -70,8 +75,8 @@ public class CashRegisterServiceImpl implements CashRegisterService {
             Integer projectId = tbDepositedFees.getProject().getProjectId();
             //调用房产的服务
             String getNames = "";
-            ResponseEntity objects = houseOpenFeign.getHouseNames(clientId, projectId);
-            List<TbHouse> houseNames = (List<TbHouse>) objects.getData();
+            ResponseEntity<List<TbHouse>> objects = houseOpenFeign.getHouseNames(clientId, projectId);
+            List<TbHouse> houseNames = objects.getData();
             for (TbHouse house : houseNames) {
                 getNames += house.getBuildingNumber() + "幢" + house.getUnit() + house.getLayer() + house.getHouseNumber() + ",";
             }
@@ -112,8 +117,12 @@ public class CashRegisterServiceImpl implements CashRegisterService {
     @Override
     public void billsReduce(Integer id, TbCheckReduce tbCheckReduce) {
         //根据减免账单修改未支付账单的数据
-        //todo
+        TbUnpaidBills tbUnpaidBills = tbUnpaidBillsMapper.getById(id);
+        tbUnpaidBills.setRelief(tbCheckReduce.getReducePrice());
+        tbUnpaidBillsMapper.updateByCondition(tbUnpaidBills);
         //调用减免账单服务的接口新增一个减免账单
+        batchServiceOpenFeign.add(tbCheckReduce);
+
     }
 
     @Autowired(required = false)
