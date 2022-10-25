@@ -47,6 +47,7 @@ public class PayController {
      */
     @RequestMapping(value = "/alipay/fail")
     public String fail(String no){
+        //新增队列任务30分钟后死信
         return "fail";
     }
 }

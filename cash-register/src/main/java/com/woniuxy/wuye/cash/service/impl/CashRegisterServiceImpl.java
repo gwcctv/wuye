@@ -1,11 +1,10 @@
 package com.woniuxy.wuye.cash.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.woniuxy.wuye.cash.map.TbDepositedFeesMapper;
-import com.woniuxy.wuye.cash.map.TbOffsetHistoryMapper;
-import com.woniuxy.wuye.cash.map.TbPaidBillsMapper;
-import com.woniuxy.wuye.cash.map.TbUnpaidBillsMapper;
+import com.woniuxy.wuye.cash.map.*;
+import com.woniuxy.wuye.cash.openfeign.BatchServiceOpenFeign;
 import com.woniuxy.wuye.cash.openfeign.HouseOpenFeign;
 import com.woniuxy.wuye.cash.service.CashRegisterService;
 import com.woniuxy.wuye.cash.utils.ConditionVo;
@@ -17,6 +16,7 @@ import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import sun.util.calendar.BaseCalendar;
 
 import javax.xml.crypto.Data;
@@ -37,6 +37,8 @@ public class CashRegisterServiceImpl implements CashRegisterService {
     TbUnpaidBillsMapper tbUnpaidBillsMapper;
     @Autowired(required = false)
     private HouseOpenFeign houseOpenFeign;
+    @Autowired(required = false)
+    private BatchServiceOpenFeign batchServiceOpenFeign;
 
     @Override
     public PageBean<TbUnpaidBills> selectUnpaidBillsPageByCondition(Integer pageNum, Integer pageSize, ConditionVo conditionVo) {
@@ -73,8 +75,8 @@ public class CashRegisterServiceImpl implements CashRegisterService {
             Integer projectId = tbDepositedFees.getProject().getProjectId();
             //调用房产的服务
             String getNames = "";
-            ResponseEntity objects = houseOpenFeign.getHouseNames(clientId, projectId);
-            List<TbHouse> houseNames = (List<TbHouse>) objects.getData();
+            ResponseEntity<List<TbHouse>> objects = houseOpenFeign.getHouseNames(clientId, projectId);
+            List<TbHouse> houseNames = objects.getData();
             for (TbHouse house : houseNames) {
                 getNames += house.getBuildingNumber() + "幢" + house.getUnit() + house.getLayer() + house.getHouseNumber() + ",";
             }
@@ -115,8 +117,12 @@ public class CashRegisterServiceImpl implements CashRegisterService {
     @Override
     public void billsReduce(Integer id, TbCheckReduce tbCheckReduce) {
         //根据减免账单修改未支付账单的数据
-        //todo
+        TbUnpaidBills tbUnpaidBills = tbUnpaidBillsMapper.getById(id);
+        tbUnpaidBills.setRelief(tbCheckReduce.getReducePrice());
+        tbUnpaidBillsMapper.updateByCondition(tbUnpaidBills);
         //调用减免账单服务的接口新增一个减免账单
+        batchServiceOpenFeign.add(tbCheckReduce);
+
     }
 
     @Autowired(required = false)
@@ -134,24 +140,24 @@ public class CashRegisterServiceImpl implements CashRegisterService {
     public String crediting(TbPaidBills tbPaidBills) {
         try {
             //应收金额
-            BigDecimal receivedTotal=new BigDecimal("0");
+            BigDecimal receivedTotal = new BigDecimal("0");
             //减免金额
-            BigDecimal reliefTotal=new BigDecimal("0");
+            BigDecimal reliefTotal = new BigDecimal("0");
             //滞纳金
-            BigDecimal lateFeesTotal=new BigDecimal("0");
+            BigDecimal lateFeesTotal = new BigDecimal("0");
             //滞纳金减免金额
-            BigDecimal lateFeesReliefTotal=new BigDecimal("0");
+            BigDecimal lateFeesReliefTotal = new BigDecimal("0");
             //冲抵金额
-            BigDecimal chongdiTotal=new BigDecimal("0");
+            BigDecimal chongdiTotal = new BigDecimal("0");
             //建议收款总金额
-            BigDecimal adviceSumFeesTotal=new BigDecimal("0");
+            BigDecimal adviceSumFeesTotal = new BigDecimal("0");
             //查询出未收款单
             Integer[] unPaidBillIds = tbPaidBills.getUnPaidBillIds();
             for (Integer unPaidBillId : unPaidBillIds) {
                 TbUnpaidBills unpaidBill = tbUnpaidBillsMapper.getById(unPaidBillId);
                 //应收金额
                 BigDecimal received = new BigDecimal(unpaidBill.getReceived());
-                receivedTotal=receivedTotal.add(received);//
+                receivedTotal = receivedTotal.add(received);//
                 //减免
                 BigDecimal relief = new BigDecimal(unpaidBill.getRelief());
 
@@ -159,26 +165,26 @@ public class CashRegisterServiceImpl implements CashRegisterService {
                 if (Integer.parseInt(unpaidBill.getRelief()) < 1) {
                     //比例减免
                     received = received.multiply(new BigDecimal("1").subtract(relief));
-                    reliefTotal= reliefTotal.add(received.multiply(relief));//
+                    reliefTotal = reliefTotal.add(received.multiply(relief));//
                 } else if (Integer.parseInt(unpaidBill.getRelief()) >= 1) {
                     //金额减免
                     received = received.subtract(relief);
-                    reliefTotal=reliefTotal.add(relief);//
+                    reliefTotal = reliefTotal.add(relief);//
                 }
                 //滞纳金
                 BigDecimal lateFees = new BigDecimal(unpaidBill.getLateFees());
-                lateFeesTotal=lateFeesTotal.add(lateFees);//
+                lateFeesTotal = lateFeesTotal.add(lateFees);//
                 //滞纳金减免
                 BigDecimal lateFeesRelief = new BigDecimal(unpaidBill.getLateFeesRelief());
                 //减免滞纳金
                 if (Integer.parseInt(unpaidBill.getLateFeesRelief()) < 1) {
                     //比例
                     lateFees = lateFees.multiply(new BigDecimal("1").subtract(lateFeesRelief));
-                    lateFeesReliefTotal=lateFeesReliefTotal.add(lateFees.multiply(lateFeesRelief));//
+                    lateFeesReliefTotal = lateFeesReliefTotal.add(lateFees.multiply(lateFeesRelief));//
                 } else if (Integer.parseInt(unpaidBill.getLateFeesRelief()) >= 1) {
                     //固定金额
                     lateFees = lateFees.subtract(lateFeesRelief);
-                    lateFeesReliefTotal=lateFeesReliefTotal.add(lateFeesRelief);//
+                    lateFeesReliefTotal = lateFeesReliefTotal.add(lateFeesRelief);//
                 }
                 //得到了冲抵抵消钱的应收金额
                 BigDecimal totalFirst = new BigDecimal(unpaidBill.getLateFeesRelief());
@@ -201,7 +207,7 @@ public class CashRegisterServiceImpl implements CashRegisterService {
                             //比例冲抵
                             //判断剩余金额是否满足冲抵金额
                             BigDecimal chongdi = totalFirst.multiply(offset);
-                            chongdiTotal=chongdiTotal.add(chongdi);//
+                            chongdiTotal = chongdiTotal.add(chongdi);//
                             if (remainderDeposited.compareTo(chongdi) > -1) {
                                 //冲抵金额小于剩余金额,总额减去冲抵金额chongdiTotal
                                 totalFirst = totalFirst.subtract(chongdi);
@@ -236,7 +242,7 @@ public class CashRegisterServiceImpl implements CashRegisterService {
                             if (Integer.parseInt(unpaidBill.getOffset()) < 1) {
                                 //判断剩余金额是否满足固定金额冲抵
                                 BigDecimal chongdi = offset;
-                                chongdiTotal=chongdiTotal.add(offset);//
+                                chongdiTotal = chongdiTotal.add(offset);//
                                 if (remainderDeposited.compareTo(chongdi) > -1) {
                                     //冲抵金额小于剩余金额,总额减去冲抵金额
                                     totalFirst = totalFirst.subtract(chongdi);
@@ -273,7 +279,7 @@ public class CashRegisterServiceImpl implements CashRegisterService {
                     //更新未收款单关联得收款单外键
                     tbUnpaidBillsMapper.updateByCondition(unpaidBill);
                 }
-                adviceSumFeesTotal=totalFirst;//
+                adviceSumFeesTotal = totalFirst;//
                 //判断是否抹零
                 if ("y".equals(tbPaidBills.getIsWipeZero())) {
                     totalFirst = totalFirst.subtract(new BigDecimal(tbPaidBills.getWipeZeroFees()));
@@ -286,8 +292,8 @@ public class CashRegisterServiceImpl implements CashRegisterService {
                 //减免金额
                 tbPaidBills.setReliefFees(reliefTotal.toString());
                 //未收金额
-                BigDecimal notFeesTotal=receivedTotal.subtract(reliefTotal);
-               tbPaidBills.setNotFees(notFeesTotal.toString());
+                BigDecimal notFeesTotal = receivedTotal.subtract(reliefTotal);
+                tbPaidBills.setNotFees(notFeesTotal.toString());
                 //滞纳金
                 tbPaidBills.setLateFees(lateFeesTotal.toString());
                 //滞纳金减免金额
@@ -304,6 +310,8 @@ public class CashRegisterServiceImpl implements CashRegisterService {
                 int newId = tbPaidBillsMapper.add(tbPaidBills);
                 for (Integer unPaidBill : unPaidBillIds) {
                     tbUnpaidBillsMapper.updatePayBillId(unPaidBill, newId);
+                    //将未收款单状态改为已交
+                    tbUnpaidBillsMapper.update(unPaidBill, 2);
                 }
                 return tbPaidBills.getNum();
             }
@@ -311,6 +319,52 @@ public class CashRegisterServiceImpl implements CashRegisterService {
             throw new RuntimeException("收钱失败");
         }
         return null;
+    }
+
+    @Override
+    public PageBean<TbPaidBills> selectPaidBillsPageByCondition(Integer pageNum, Integer pageSize, ConditionVo conditionVo) {
+        Page<Object> objects = PageHelper.startPage(pageNum, pageSize);
+        List<TbPaidBills> list = tbPaidBillsMapper.getByCondition(conditionVo);
+        PageBean<TbPaidBills> pageBean = PageBeanUtil.getPageBean(objects, list);
+        return pageBean;
+    }
+
+    @Autowired(required = false)
+    private TbRefundHistoryMapper tbRefundHistoryMapper;
+
+    @Override
+    public void paidBillsRefund(TbRefundHistory tbRefundHistory) {
+        //根据收款单号查收款单，得到收款金额
+        TbPaidBills paidBills = tbPaidBillsMapper.getByNum(tbRefundHistory.getPaidBillsNum());
+        //将当前收款单删除
+        tbPaidBillsMapper.delete(paidBills.getId());
+        //新增退款记录
+        tbRefundHistoryMapper.add(tbRefundHistory);
+        //改变收款单关联的未收款单的状态为未收款,并更新其他
+        List<TbUnpaidBills> list = tbUnpaidBillsMapper.getByPayBillId(paidBills.getId());
+        for (TbUnpaidBills tbUnpaidBills : list) {
+            //恢复未支付账单状态为正常
+            tbUnpaidBillsMapper.update(tbUnpaidBills.getId(), 0);
+            //根据在减免账单表中未付款单的id查询并修改减免账单状态；
+
+            //查询修改滞纳金减免账单
+
+            //查询修改冲抵记录
+            TbOffsetHistory historyList = tbOffsetHistoryMapper.getByTbUnPaidBillsId(tbUnpaidBills.getId());
+            tbOffsetHistoryMapper.updateStatus(historyList.getId(), "核销成功");
+            //查询修改预存金额表
+            TbDepositedFees tbDepositedFees = tbDepositedFeesMapper.getById(historyList.getTbDepositedFeesId().getId());
+            //记录中用于冲抵的金额
+            BigDecimal offsetFees = new BigDecimal(historyList.getOffsetFees());
+            //已抵扣金额减少
+            BigDecimal alreadyOffsetFees = new BigDecimal(tbDepositedFees.getAlreadyOffsetFees());
+            tbDepositedFees.setAlreadyOffsetFees(alreadyOffsetFees.subtract(offsetFees).toString());
+            //剩余预存金额增加
+            BigDecimal remainderDeposited = new BigDecimal(tbDepositedFees.getRemainderDeposited());
+            tbDepositedFees.setRemainderDeposited(remainderDeposited.add(offsetFees).toString());
+            //更新
+            tbDepositedFeesMapper.updateByCondition(tbDepositedFees);
+        }
     }
 
 

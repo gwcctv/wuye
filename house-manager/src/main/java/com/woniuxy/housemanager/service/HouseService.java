@@ -1,17 +1,18 @@
 package com.woniuxy.housemanager.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.woniuxy.wuye.common.entity.TbBuilding;
 import com.woniuxy.wuye.common.entity.TbHouse;
 import com.woniuxy.wuye.common.utils.PageBean;
 
 import java.util.List;
 
-public interface HouseService {
+public interface HouseService extends IService<TbHouse> {
     /**
      * 增加房
      * @param tbHouse
      */
-    void insert(TbHouse tbHouse);
+    void add(TbHouse tbHouse);
 
     /**
      * 删除房屋

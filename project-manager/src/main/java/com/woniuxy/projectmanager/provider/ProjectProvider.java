@@ -41,7 +41,7 @@ public class ProjectProvider {
                     SET("head_phone=#{headPhone}");
                 }
                 if(tbProject.getTakeoverDate()!=null){
-                    SET("takeover_data=#{takeoverDate}");
+                    SET("takeover_date=#{takeoverDate}");
                 }
                 if(tbProject.getState()!=null){
                     SET("state=#{state}");

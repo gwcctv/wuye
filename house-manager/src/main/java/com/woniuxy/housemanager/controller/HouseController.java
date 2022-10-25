@@ -103,4 +103,13 @@ public class HouseController {
         houseService.update(tbHouse);
         return ResponseEntity.SUCCESS;
     }
+
+    @RequestMapping("/getById")
+    public  TbHouse getById(@RequestBody Integer id){
+        TbHouse tbHouse=new TbHouse();
+        tbHouse.setHouseId(id);
+ tbHouse=houseService.getByCondition(tbHouse).get(0);
+        return   tbHouse;
+
+    }
 }
