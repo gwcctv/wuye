@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,13 +43,14 @@ public class TbChargeTypeController {
            // String sList = JSONObject.toJSON(listAll).toString();
             listOps.leftPushAll("tbChargeTypeList",listAll);
             //listOps.append("tbChargeTypeList",sList);
-        }else {
+        }
             //存在的条件下从redis里哪数据
             listAll  = (List<TbChargeType>) redisTemplate.opsForList().range("tbChargeTypeList",0,-1);
            log.debug("tbChargeTypeList:这个东西已经有了，进redis喽");
-        }
+
         //筛选出父类型
-        List<TbChargeType> fatherList = listAll.stream().filter(e -> e.getFather() == null).collect(Collectors.toList());
+        List<TbChargeType> fatherList = listAll;
+
        //筛选出子类型
         List<TbChargeType> childList = listAll.stream().filter(e -> e.getFather() != null).collect(Collectors.toList());
       //将子类型放在他的父中
@@ -56,23 +59,52 @@ public class TbChargeTypeController {
             List<TbChargeType> thisChildMenus= childList.stream().filter(e->e.getFather()==fatherList.get(finalI).getId()).collect(Collectors.toList());
             fatherList.get(i).setSubMenus(thisChildMenus);
         }
-
-        return new ResponseEntity<>("200","ok",fatherList);
+        List<TbChargeType> collect = listAll.stream().filter(e -> e.getFather() == null&&e.getSubMenus()!=null).collect(Collectors.toList());
+        return new ResponseEntity<>("200","ok",collect);
     }
     @RequestMapping("/update")
     public ResponseEntity updateTbChargeType(@RequestBody TbChargeType tbChargeType){
         tbChargeTypeService.updateChargeType(tbChargeType);
+        List<TbChargeType>    list  = (List<TbChargeType>) redisTemplate.opsForList().range("tbChargeTypeList",0,-1);
+       int index = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getId()==tbChargeType.getId()){
+                index=i;
+            }
+        }
+        redisTemplate.opsForList().set("tbChargeTypeList",index,tbChargeType);
         return ResponseEntity.SUCCESS;
     }
     @RequestMapping("add")
     public ResponseEntity addTbChargeType(@RequestBody TbChargeType tbChargeType){
-
         tbChargeTypeService.addChargeType(tbChargeType);
         redisTemplate.opsForList().leftPush("tbChargeTypeList",tbChargeType);
         return ResponseEntity.SUCCESS;
     }
     @RequestMapping("delete")
     public ResponseEntity deleteTbChargeType(Integer id){
+
+        //获取redis里的集合数据
+        List<TbChargeType>    list  = (List<TbChargeType>) redisTemplate.opsForList().range("tbChargeTypeList",0,-1);
+        int index = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getId()==id){
+                index=i;
+            }
+        }
+        //对集合数据进行处理
+        Iterator<TbChargeType> iterator = list.iterator();
+        while(iterator.hasNext()){
+            TbChargeType tbChargeType=iterator.next();
+            if(tbChargeType.getFather()==id||tbChargeType.getId()==id){
+                iterator.remove();
+            }
+        }
+        //删除原来的
+        redisTemplate.delete("tbChargeTypeList");
+        //放入筛选过后的
+        redisTemplate.opsForList().leftPushAll("tbChargeTypeList",list);
         tbChargeTypeService.deleteChargeType(id);
         return ResponseEntity.SUCCESS;
     }
@@ -80,5 +112,9 @@ public class TbChargeTypeController {
     public ResponseEntity addList(){
         List<TbChargeType> list= (List<TbChargeType>) redisTemplate.opsForList().range("tbChargeTypeList",0,-1);
         return new ResponseEntity("200","ok",list);
+    }
+    @RequestMapping("getById")
+    public ResponseEntity addList(Integer id){
+        return new ResponseEntity("200","ok",tbChargeTypeService.getById(id));
     }
 }
