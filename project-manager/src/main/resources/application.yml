@@ -12,7 +12,7 @@ spring:
     resources:
       static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${oa.empphoto}
 server:
-  port: 8080
+  port: 8001
 #  servelt:
 #    context-path: /
 

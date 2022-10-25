@@ -26,7 +26,18 @@ public class TbCycleController {
  * */
     @RequestMapping("getByPage")
     public PageBean<TbCycle> getByConditionByPage(@RequestBody TbCycle tbCycle, int page) {
-
+if(tbCycle.getStartTime()!=null&&!tbCycle.getStartTime().equals("")){
+    String[] time=tbCycle.getStartTime().split("-");
+    tbCycle.setStartYear(time[0]);
+    tbCycle.setStartMonth(time[1]);
+    tbCycle.setStartDay(time[2]);
+}
+        if(tbCycle.getEndTime()!=null&&!tbCycle.getEndTime().equals("")){
+            String[] time=tbCycle.getEndTime().split("-");
+            tbCycle.setEndYear(time[0]);
+            tbCycle.setEndMonth(time[1]);
+            tbCycle.setEndDay(time[2]);
+        }
         return tbCycleService.getByConditionByPage(tbCycle, page);
     }
 /**
