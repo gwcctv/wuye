@@ -17,7 +17,7 @@ public interface TbChargeTypeMapper {
     /**
      *增加类型
      */
-    @Insert("insert into tb_charge_type(name) values (#{name})")
+    @Insert("insert into tb_charge_type(name,father) values (#{name},#{father})")
     void addChargeType(TbChargeType tbChargeType);
     /**
      * 查找类型
