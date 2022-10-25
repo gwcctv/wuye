@@ -9,6 +9,11 @@ spring:
   web:
     resources:
       static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${oa.empphoto}
+  cloud:
+    nacos:
+      discovery:
+
+      server-addr: http://localhost:8848  #nacos的服务地址
 server:
   port: 8082
 #  servelt:

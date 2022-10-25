@@ -1,5 +1,6 @@
 package com.woniuxy.wuye.common.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -104,14 +105,17 @@ public class TbHouse implements Serializable {
     /**
      * 项目名
      */
+    @TableField(exist = false)
     private String projectName;
     /**
      * 楼栋号
      */
+    @TableField(exist = false)
     private Integer buildingNumber;
     /**
      * 客户名
      */
+    @TableField(exist = false)
     private String clientName;
 
 
