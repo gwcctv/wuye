@@ -49,5 +49,7 @@ public class ClientProvider {
                 WHERE("client_id=#{clientId}");
             }
         }.toString();
+
+
     }
 }

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>client-manager</artifactId>
+    <artifactId>car-manager</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>

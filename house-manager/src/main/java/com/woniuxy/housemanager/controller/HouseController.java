@@ -2,6 +2,7 @@ package com.woniuxy.housemanager.controller;
 
 import com.woniuxy.housemanager.service.HouseService;
 import com.woniuxy.housemanager.vo.HouseVo;
+import com.woniuxy.wuye.common.annotation.AutoLog;
 import com.woniuxy.wuye.common.entity.TbBuilding;
 import com.woniuxy.wuye.common.entity.TbHouse;
 import com.woniuxy.wuye.common.utils.PageBean;

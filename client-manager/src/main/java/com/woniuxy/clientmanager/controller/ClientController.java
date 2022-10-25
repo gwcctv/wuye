@@ -1,14 +1,14 @@
 package com.woniuxy.clientmanager.controller;
 
 import com.woniuxy.clientmanager.service.ClientService;
+import com.woniuxy.clientmanager.vo.ClientVo;
+import com.woniuxy.wuye.common.annotation.AutoLog;
 import com.woniuxy.wuye.common.entity.TbClient;
 import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,16 +20,16 @@ import java.util.List;
 public class ClientController {
     @Autowired
     private ClientService clientService;
-
     /**
      * 查询所有
-     * @param currentPage
-     * @param pageSize
+     * @param page
+     * @param size
      * @return
      */
-    @GetMapping("/all/{currentPage}/{pageSize}")
-    public ResponseEntity findAll(@PathVariable int currentPage,@PathVariable int pageSize) {
-        PageBean<TbClient> all = clientService.findAll(currentPage,pageSize);
+    @AutoLog("value=查询所有客户")
+    @GetMapping("/all/{page}/{size}")
+    public ResponseEntity findAll(@PathVariable int page,@PathVariable int size) {
+        PageBean<TbClient> all = clientService.findAll(page,size);
         ResponseEntity responseEntity = new ResponseEntity<>();
         if(all==null){
            responseEntity.setCode("201");
@@ -43,13 +43,13 @@ public class ClientController {
     }
     /**
      * 查询所有客户及楼栋单元
-     * @param currentPage
-     * @param pageSize
+     * @param page
+     * @param size
      * @return
      */
-    @GetMapping("/clients/{currentPage}/{pageSize}")
-    public ResponseEntity findClient(@PathVariable int currentPage,@PathVariable int pageSize) {
-        PageBean<TbClient> all = clientService.findClient(currentPage,pageSize);
+    @GetMapping("/clients/{page}/{size}")
+    public ResponseEntity findClient(@PathVariable int page,@PathVariable int size) {
+        PageBean<TbClient> all = clientService.myClient(page,size);
         ResponseEntity responseEntity = new ResponseEntity<>();
         if(all==null){
             responseEntity.setCode("201");
@@ -134,25 +134,6 @@ public class ClientController {
         }
         return responseEntity;
     }
-    /**
-     * 根据id删除客户
-     * @param id
-     * @return
-     */
-    @GetMapping("/deleteById/{id}")
-    public ResponseEntity deleteById(@PathVariable int id) {
-        int i = clientService.deleteById(id);
-        ResponseEntity responseEntity = new ResponseEntity<>();
-        if(i==0){
-            responseEntity.setCode("201");
-            responseEntity.setMsg("删除失败");
-        }else {
-            responseEntity.setCode("200");
-            responseEntity.setData(i);
-            responseEntity.setMsg("删除成功");
-        }
-        return responseEntity;
-    }
 
     /**
      * 修改客户信息
@@ -181,5 +162,22 @@ public class ClientController {
     @RequestMapping("/name")
     public int getByname(@RequestParam String clientName){
         return clientService.getByName(clientName);
+    }
+    /**
+     * 通过客户名字查询ClientVo
+     */
+    @PostMapping("/findClientVoByName/{clientName}")
+    public ResponseEntity findClientVoByName(@PathVariable String clientName){
+        ResponseEntity responseEntity = new ResponseEntity<>();
+        ClientVo clientVo = clientService.findClientVoByName(clientName);
+        if(clientVo==null){
+            responseEntity.setCode("201");
+            responseEntity.setMsg("查询失败");
+        }else{
+            responseEntity.setCode("200");
+            responseEntity.setMsg("查询成功");
+            responseEntity.setData(clientVo);
+        }
+        return responseEntity;
     }
 }

@@ -104,4 +104,7 @@ public class TbClient implements Serializable {
      */
     private String houseNumber;
 
+    public TbClient(String number, String clientName, String sex, String card, String phone, String email, String workAddress, String description, String relationship, Integer houseId, String clientState, String layer, String unit) {
+
+    }
 }

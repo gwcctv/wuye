@@ -1,6 +1,8 @@
 package com.woniuxy.wuye.common.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * 车位表
  */
 @Data
+@AllArgsConstructor
 public class TbParking implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,7 +23,7 @@ public class TbParking implements Serializable {
     /**
      * 车位编号
      */
-    private String number;
+    private String parkingNumber;
 
     /**
      * 车位性质
@@ -55,6 +58,12 @@ public class TbParking implements Serializable {
     /**
      *  项目id
      */
-    private int projectId;
+    private int clientId;
 
+    public TbParking() {
+    }
+
+    public TbParking(String parkingNumber, String parkingQuality, String parkingState, double parkingSize, String parkingUse, String parkingCard, int houseId, int clientId) {
+
+    }
 }

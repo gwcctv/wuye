@@ -30,7 +30,12 @@ public interface CarMapper extends BaseMapper<TbCar> {
     @Select("select c.* , p.parking_number , h.layer,h.unit, cl.client_name ,pt.project_name  from tb_car c , tb_parking p \n" +
             ", tb_client cl ,tb_house h,tb_project pt")
     List<TbCar> findCarAndHouse();
-
+//    @Select("SELECT c.*,ct.client_name,p.parking_number,h.house_number\n" +
+//            "FROM tb_car c,tb_client ct,tb_parking p,tb_house h\n" +
+//            "WHERE c.client_id = ct.client_id\n" +
+//            "AND c.parking_id = p.parking_id \n" +
+//            "AND h.house_id=ct.client_id")
+//    List<TbCar> findCarAndHouse();
     /**
      * 条件查询车辆
      * @param tbCar
@@ -38,7 +43,7 @@ public interface CarMapper extends BaseMapper<TbCar> {
      */
     @Select("select c.* , p.parking_number ,  from tb_car c , tb_parking p , tb_house h where car_number = #{carNumber} and car_type = #{carType} and house_name=#{houseName}" +
             "parking_number = #{parkingNumber} and car_state = #{carState}")
-    List<TbCar> selectCarByCondition(TbCar tbCar);
+    TbCar selectCarByCondition(TbCar tbCar);
 
     /**
      * 更新
@@ -46,4 +51,9 @@ public interface CarMapper extends BaseMapper<TbCar> {
      */
     @UpdateProvider(value = CarProvider.class,method = "update")
     int update(TbCar tbCar);
+    /**
+     * 根据id删除
+     */
+    @Delete("delete from tb_car where car_id=#{carId}")
+    int deleteById(int id);
 }

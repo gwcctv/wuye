@@ -14,10 +14,7 @@ class CarManagerApplicationTests {
     private CarMapper carMapper;
     @Test
     void contextLoads() {
-        TbCar tbCar = new TbCar();
-        tbCar.setCarId(1);
-        tbCar.setCarNumber("川A123");
-        System.out.println(carMapper.update(tbCar));
+        System.out.println(carMapper.deleteById(1));
     }
 
 }

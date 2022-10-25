@@ -2,6 +2,7 @@ package com.woniuxy.clientmanager.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.woniuxy.clientmanager.provider.ClientProvider;
+import com.woniuxy.clientmanager.vo.ClientVo;
 import com.woniuxy.wuye.common.entity.TbClient;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
@@ -16,12 +17,20 @@ public interface ClientMapper extends BaseMapper {
     @Delete("delete from tb_client where client_id = #{id}")
     int deleteById(int id);
 
-    @Select("SELECT c.*,h.unit,h.layer , b.building_number,project_name \n" +
-            "FROM tb_house h,tb_building b,tb_project p,tb_client c\n" +
-            "WHERE h.building_id = b.building_id \n" +
-            "AND h.project_id = p.project_id\n" +
-            "AND c.house_id = h.house_id ")
-    List<TbClient> findClient();
+    @Select("SELECT h.house_id,h.house_number,h.unit,h.layer,b.building_number,p.project_name\n" +
+            "FROM tb_client c,tb_house h,tb_building b,tb_project p\n" +
+            "WHERE c.client_name=#{clientName}\n" +
+            "AND c.house_id = h.house_id\n" +
+            "AND b.building_id=h.building_id\n" +
+            "AND p.project_id=b.project_id")
+    ClientVo findClientVoByName(String clientName);
+
+    @Select("SELECT cl.*,h.unit,h.layer , b.building_number,project_name \n" +
+            "            FROM tb_house h,tb_building b,tb_project p,tb_client cl\n" +
+            "            WHERE h.building_id = b.building_id \n" +
+            "            AND h.project_id = p.project_id\n" +
+            "            AND cl.house_id = h.house_id ")
+    List<TbClient> myClient();
 
     @Select("SELECT c.*, p.project_name,h.house_number FROM tb_client c, tb_project p, tb_house h \n" +
             "WHERE phone = #{phone} AND \n" +

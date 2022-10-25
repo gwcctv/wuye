@@ -45,4 +45,8 @@ public class TbCar {
      * 所属车位
      */
     private int parkingNumber;
+
+    public TbCar( String carNumber, String carType, String carState, Integer parkingId, Integer clientId, String clientName, int parkingNumber) {
+
+    }
 }

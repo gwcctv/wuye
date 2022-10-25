@@ -20,11 +20,7 @@ class ClientManagerApplicationTests {
     private ClientMapper clientMapper;
     @Test
     void contextLoads() {
-        TbClient tbClient = new TbClient();
-        tbClient.setClientId(3);
-        tbClient.setClientName("lee");
-        System.out.println(clientMapper.update(tbClient));
-
+        System.out.println(clientMapper.findClientVoByName("lee"));
     }
 
 }
