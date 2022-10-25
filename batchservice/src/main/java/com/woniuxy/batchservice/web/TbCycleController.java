@@ -68,4 +68,14 @@ public class TbCycleController {
         return ResponseEntity.SUCCESS;
     }
 
+    @RequestMapping("addCycle")
+    public ResponseEntity addCycle(Integer id){
+           TbCycle tbCycle=   tbCycleService.getById(id);
+          int feecycle= tbCycle.getFeecycle();
+          feecycle=feecycle+1;
+          tbCycle.setFeecycle(feecycle);
+          tbCycleService.updateById(tbCycle);
+          return ResponseEntity.SUCCESS;
+
+    }
 }

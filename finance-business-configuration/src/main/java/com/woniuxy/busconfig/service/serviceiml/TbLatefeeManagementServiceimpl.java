@@ -10,9 +10,10 @@ import com.woniuxy.wuye.common.entity.TbLatefeeManagement;
 import com.woniuxy.wuye.common.entity.TbMeasure;
 import com.woniuxy.wuye.common.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class TbLatefeeManagementServiceimpl extends ServiceImpl<TbLatefeeManagementMapper, TbLatefeeManagement> implements TbLatefeeManagementService {
    @Autowired
  private    TbLatefeeManagementMapper tbLatefeeManagementMapper;

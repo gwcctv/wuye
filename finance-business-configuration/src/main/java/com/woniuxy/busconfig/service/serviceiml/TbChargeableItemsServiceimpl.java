@@ -1,5 +1,6 @@
 package com.woniuxy.busconfig.service.serviceiml;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.woniuxy.busconfig.mapper.TbChargeableItemsMapper;
@@ -16,7 +17,7 @@ import java.util.List;
  * @魏锦鹏
  */
 @Service
-public class TbChargeableItemsServiceimpl implements TbChargeableItemsService {
+public class TbChargeableItemsServiceimpl extends ServiceImpl<TbChargeableItemsMapper,TbChargeableItems> implements TbChargeableItemsService {
     @Autowired
    private TbChargeableItemsMapper tbChargeableItemsMapper;
     @Override

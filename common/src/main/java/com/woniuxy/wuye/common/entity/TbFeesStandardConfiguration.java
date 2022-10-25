@@ -1,7 +1,10 @@
 package com.woniuxy.wuye.common.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -11,6 +14,9 @@ import java.util.List;
  * @author 魏锦鹏
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 //@TableName("tb_fees_standard_configuration")
 public class TbFeesStandardConfiguration  {
 //@TableId(value = "id",type = IdType.AUTO)

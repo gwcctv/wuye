@@ -41,4 +41,11 @@ public class TbChargeableItemsController {
         tbChargeableItemsService.deleteTbChargeableItem(id);
         return  ResponseEntity.SUCCESS;
     }
+
+
+    @RequestMapping("/getById")
+    public TbChargeableItems getById(Integer id){
+        return    tbChargeableItemsService.getById(id);
+
+    }
 }
