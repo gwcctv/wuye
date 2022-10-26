@@ -63,7 +63,7 @@ public class HouseController {
         tbHouse.setProjectId(projectId);
         tbHouse.setClientId(clientId);
         tbHouse.setBuildingId(buildingId);
-        houseService.insert(tbHouse);
+        houseService.add(tbHouse);
         return ResponseEntity.SUCCESS;
     }
 
