@@ -60,6 +60,11 @@ public class TbClient implements Serializable {
     private String workAddress;
 
     /**
+     * 项目及房产信息
+     */
+    private String address;
+
+    /**
      * 备注
      */
     private String description;

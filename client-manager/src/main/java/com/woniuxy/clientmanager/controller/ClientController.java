@@ -6,6 +6,7 @@ import com.woniuxy.wuye.common.annotation.AutoLog;
 import com.woniuxy.wuye.common.entity.TbClient;
 import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @author li
  * @data 2022/10/19{} 14:05
  */
+@Slf4j
 @RestController
 @RequestMapping("/client")
 public class ClientController {
@@ -107,7 +109,7 @@ public class ClientController {
      * @param tbClient
      * @return
      */
-    @PutMapping("/update")
+    @PostMapping("/update")
     public ResponseEntity update(@RequestBody TbClient tbClient) {
         Boolean flag = clientService.update(tbClient);
         ResponseEntity responseEntity = new ResponseEntity<>();
@@ -123,9 +125,9 @@ public class ClientController {
 
     @PostMapping("/insertClient")
     public ResponseEntity insertClient(@RequestBody TbClient tbClient) {
-        Boolean flag = clientService.insertClient(tbClient);
+        Boolean f = clientService.insertClient(tbClient);
         ResponseEntity responseEntity = new ResponseEntity<>();
-        if(flag=false){
+        if(f=false){
             responseEntity.setCode("201");
             responseEntity.setMsg("添加失败");
         }else {
@@ -140,7 +142,7 @@ public class ClientController {
      * @param tbClient
      * @return
      */
-    @PutMapping("/updateById")
+    @PostMapping("/updateById")
     public ResponseEntity updateById(@RequestBody TbClient tbClient) {
         Boolean flag = clientService.updateById(tbClient);
         ResponseEntity responseEntity = new ResponseEntity<>();
@@ -177,6 +179,23 @@ public class ClientController {
             responseEntity.setCode("200");
             responseEntity.setMsg("查询成功");
             responseEntity.setData(clientVo);
+        }
+        return responseEntity;
+    }
+    /**
+     * 根据id查询客户
+     */
+    @GetMapping("/selectById/{id}")
+    public ResponseEntity selectById(@PathVariable int id){
+        ResponseEntity responseEntity = new ResponseEntity<>();
+        TbClient tbClient = clientService.selectById(id);
+        if(tbClient==null){
+            responseEntity.setCode("201");
+            responseEntity.setMsg("查询失败");
+        }else{
+            responseEntity.setCode("200");
+            responseEntity.setMsg("查询成功");
+            responseEntity.setData(tbClient);
         }
         return responseEntity;
     }

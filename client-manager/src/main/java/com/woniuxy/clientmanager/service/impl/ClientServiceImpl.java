@@ -8,6 +8,7 @@ import com.woniuxy.clientmanager.service.ClientService;
 import com.woniuxy.clientmanager.vo.ClientVo;
 import com.woniuxy.wuye.common.entity.TbClient;
 import com.woniuxy.wuye.common.utils.PageBean;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.List;
  * @data 2022/10/19{} 10:57
  */
 @Service
+@Slf4j
 public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientMapper clientMapper;
@@ -53,8 +55,8 @@ public class ClientServiceImpl implements ClientService {
     public PageBean<TbClient> myClient(int page, int size) {
         //设置分页
         PageBean<TbClient> pageBean = new PageBean<>();
-        pageBean.setPageSzie(page); //分页大小
-        pageBean.setCurrPage(size); //当前页码
+        pageBean.setPageSzie(size); //分页大小
+        pageBean.setCurrPage(page); //当前页码
         Page<TbClient> pages = PageHelper.startPage(pageBean.getCurrPage(), pageBean.getPageSzie());
         List<TbClient> client = clientMapper.myClient();
         pageBean.setTotalNums((int) pages.getTotal()); //总条数
@@ -102,6 +104,11 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientVo findClientVoByName(String clientName) {
         return clientMapper.findClientVoByName(clientName);
+    }
+
+    @Override
+    public TbClient selectById(int id) {
+        return clientMapper.selectById(id);
     }
 
 

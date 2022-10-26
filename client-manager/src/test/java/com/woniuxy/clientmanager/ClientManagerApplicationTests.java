@@ -20,7 +20,13 @@ class ClientManagerApplicationTests {
     private ClientMapper clientMapper;
     @Test
     void contextLoads() {
-        System.out.println(clientMapper.findClientVoByName("lee"));
+        TbClient tbClient = new TbClient();
+        tbClient.setHouseNumber("No200001");
+        tbClient.setClientName("lee");
+        tbClient.setWorkAddress("成都市高新区孵化园");
+        tbClient.setPhone("13185236456");
+        tbClient.setCard("511920199923468546");
+        clientMapper.insertClient(tbClient);
     }
 
 }
