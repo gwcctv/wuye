@@ -11,10 +11,10 @@ public class TbChargeTypeSqlProvider {
             {
                 UPDATE("tb_charge_type");
                 if(tbChargeType.getName()!=null){
-                    SET("name=#{Name}");
+                    SET("name=#{name}");
                 }
                 if(tbChargeType.getFather()!=null){
-                    SET("farther=#{farther}");
+                    SET("father=#{father}");
                 }
                 WHERE("id=#{id}");
             }

@@ -9,6 +9,8 @@ import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,5 +94,9 @@ public class ProjectController {
     public int name(@RequestParam String name){
         int byName = projectService.getByName(name);
         return byName;
+    }
+    @RequestMapping("getall")
+    public List<TbProject> getall(){
+        return projectService.getAll();
     }
 }

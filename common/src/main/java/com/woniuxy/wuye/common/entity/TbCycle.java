@@ -172,6 +172,15 @@ public class TbCycle implements Serializable {
      * */
     @TableField(exist = false)
     Integer clientId;
-
+    /**
+     * 开始时间
+     * */
+    @TableField(exist = false)
+    String  startTime;
+    /**
+     * 截止时间
+     * */
+    @TableField(exist = false)
+    String endTime;
 
 }

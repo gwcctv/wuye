@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.print.DocFlavor;
+import java.util.List;
 
 @RestController
 @RequestMapping("sfxm")
@@ -47,5 +48,9 @@ public class TbChargeableItemsController {
     public TbChargeableItems getById(Integer id){
         return    tbChargeableItemsService.getById(id);
 
+    }
+    @RequestMapping("getAll")
+    public List<TbChargeableItems> getAll(){
+        return tbChargeableItemsService.getByPage(null,1).getData();
     }
 }
