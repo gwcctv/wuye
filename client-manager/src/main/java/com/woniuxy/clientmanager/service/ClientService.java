@@ -55,4 +55,11 @@ public interface ClientService {
      * 根据id查询客户
      */
     TbClient selectById(int id);
+
+    /**
+     * 根据客户名查询ClientVo
+     * @param clientName
+     * @return
+     */
+    ClientVo findClientVoByName(String clientName);
 }

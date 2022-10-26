@@ -41,6 +41,11 @@
         </exclusions>
     </dependency>
     <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>5.8.5</version>
+    </dependency>
+    <dependency>
         <groupId>com.github.pagehelper</groupId>
         <artifactId>pagehelper-spring-boot-starter</artifactId>
         <version>1.4.3</version>
@@ -55,6 +60,16 @@
         <groupId>com.alibaba.cloud</groupId>
         <artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
         <version>2.2.0.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+<!--    一个json转换的工具，本打算转换redis呢，但是没用到-->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>1.2.79</version>
     </dependency>
 </dependencies>
     <properties>

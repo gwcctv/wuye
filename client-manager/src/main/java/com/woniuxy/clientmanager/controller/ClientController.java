@@ -109,6 +109,39 @@ public class ClientController {
      * @param tbClient
      * @return
      */
+    @PutMapping("/update")
+    public ResponseEntity update(@RequestBody TbClient tbClient) {
+        Boolean flag = clientService.update(tbClient);
+        ResponseEntity responseEntity = new ResponseEntity<>();
+        if(flag=false){
+            responseEntity.setCode("201");
+            responseEntity.setMsg("修改失败");
+        }else {
+            responseEntity.setCode("200");
+            responseEntity.setMsg("修改成功");
+        }
+        return responseEntity;
+    }
+
+    @PostMapping("/insertClient")
+    public ResponseEntity insertClient(@RequestBody TbClient tbClient) {
+        Boolean flag = clientService.insertClient(tbClient);
+        ResponseEntity responseEntity = new ResponseEntity<>();
+        if(flag=false){
+            responseEntity.setCode("201");
+            responseEntity.setMsg("添加失败");
+        }else {
+            responseEntity.setCode("200");
+            responseEntity.setMsg("添加成功");
+        }
+        return responseEntity;
+    }
+
+    /**
+     * 修改客户信息
+     * @param tbClient
+     * @return
+     */
     @PostMapping("/update")
     public ResponseEntity update(@RequestBody TbClient tbClient) {
         Boolean flag = clientService.update(tbClient);
@@ -196,6 +229,23 @@ public class ClientController {
             responseEntity.setCode("200");
             responseEntity.setMsg("查询成功");
             responseEntity.setData(tbClient);
+        }
+        return responseEntity;
+    }
+    /**
+     * 通过客户名字查询ClientVo
+     */
+    @PostMapping("/findClientVoByName/{clientName}")
+    public ResponseEntity findClientVoByName(@PathVariable String clientName){
+        ResponseEntity responseEntity = new ResponseEntity<>();
+        ClientVo clientVo = clientService.findClientVoByName(clientName);
+        if(clientVo==null){
+            responseEntity.setCode("201");
+            responseEntity.setMsg("查询失败");
+        }else{
+            responseEntity.setCode("200");
+            responseEntity.setMsg("查询成功");
+            responseEntity.setData(clientVo);
         }
         return responseEntity;
     }

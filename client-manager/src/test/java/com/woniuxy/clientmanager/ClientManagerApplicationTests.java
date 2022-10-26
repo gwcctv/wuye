@@ -27,6 +27,7 @@ class ClientManagerApplicationTests {
         tbClient.setPhone("13185236456");
         tbClient.setCard("511920199923468546");
         clientMapper.insertClient(tbClient);
+        System.out.println(clientMapper.findClientVoByName("lee"));
     }
 
 }

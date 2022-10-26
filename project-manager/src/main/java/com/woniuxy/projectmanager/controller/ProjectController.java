@@ -9,6 +9,11 @@ import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/project")
 public class ProjectController {
@@ -20,11 +25,26 @@ public class ProjectController {
      * @param projectVo
      * @return
      */
-    @RequestMapping("/list")
+    //@CrossOrigin
+    @PostMapping("/list")
     public ResponseEntity list(@RequestBody ProjectVo projectVo){
         PageBean<TbProject> byCondition =
                 projectService.getByCondition(projectVo.getTbProject(), projectVo.getPageSize(),projectVo.getPage());
         return new ResponseEntity("200","ok",byCondition);
+    }
+
+    /**
+     * 得到所有项目名
+     * @return
+     */
+    @RequestMapping("/getName")
+    public ResponseEntity projectName(){
+        List<TbProject> all = projectService.getAll();
+//        List<String> projectNames=new ArrayList<>();
+//        for(TbProject p:all){
+//         projectNames.add(p.getProjectName());
+//        }
+        return new ResponseEntity("200","ok",all);
     }
 
     /**
@@ -74,5 +94,9 @@ public class ProjectController {
     public int name(@RequestParam String name){
         int byName = projectService.getByName(name);
         return byName;
+    }
+    @RequestMapping("getall")
+    public List<TbProject> getall(){
+        return projectService.getAll();
     }
 }

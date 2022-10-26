@@ -13,16 +13,16 @@ public class TbUnpaidBillsProvider {
     public String updateByCondition(TbUnpaidBills tbUnpaidBills){
         return new SQL(){{
             UPDATE("tb_unpaid_bills");
-            if(tbUnpaidBills.getRelief()!=null){
+            if(tbUnpaidBills.getRelief()!=null&&tbUnpaidBills.getRelief()!=""){
                 SET("relief=#{relief}");
             }
-            if(tbUnpaidBills.getOffset()!=null){
+            if(tbUnpaidBills.getOffset()!=null&&tbUnpaidBills.getOffset()!=""){
                 SET("offset=#{offset}");
             }
-            if(tbUnpaidBills.getNotReceived()!=null){
+            if(tbUnpaidBills.getNotReceived()!=null&&tbUnpaidBills.getNotReceived()!=""){
                 SET("not_received=#{notReceived}");
             }
-            if(tbUnpaidBills.getLateFees()!=null){
+            if(tbUnpaidBills.getLateFees()!=null&&tbUnpaidBills.getLateFees()!=""){
                 SET("late_fees=#{lateFees}");
             }
             WHERE("id=#{id}");
@@ -35,21 +35,21 @@ public class TbUnpaidBillsProvider {
             SELECT("tb_unpaid_bills.*,tb_client.client_name");
             FROM("tb_unpaid_bills,tb_client");
             WHERE("is_delete=0 and status=0 AND house_owner=client_id");
-            if(conditionVo.getProjectName()!=null){
+            if(conditionVo.getProjectName()!=null&&conditionVo.getProjectName()!=""){
                 WHERE("project_name like concat('%',#{projectName},'%')");
-            }if(conditionVo.getClientName()!=null){
+            }if(conditionVo.getClientName()!=null&&conditionVo.getClientName()!=""){
                 WHERE("client_name like concat('%',#{clientName},'%')");
-            }if(conditionVo.getHouseName()!=null){
+            }if(conditionVo.getHouseName()!=null&&conditionVo.getHouseName()!=""){
                 WHERE("house_name like concat('%',#{houseName},'%')");
-            }if(conditionVo.getFeesItem()!=null){
+            }if(conditionVo.getFeesItem()!=null&&conditionVo.getFeesItem()!=""){
                 WHERE("fees_item like concat('%',#{feesItem},'%')");
-            }if(conditionVo.getStartTime()!=null){
+            }if(conditionVo.getStartTime()!=null&&conditionVo.getStartTime()!=""){
                 WHERE("bill_start_time >= #{startTime}");
-            }if(conditionVo.getEndTime()!=null){
+            }if(conditionVo.getEndTime()!=null&&conditionVo.getEndTime()!=""){
                 WHERE("bill_end_time <= #{endTime}");
-            }if(conditionVo.getShouldGetTimeStart()!=null){
+            }if(conditionVo.getShouldGetTimeStart()!=null&&conditionVo.getShouldGetTimeStart()!=""){
                 WHERE("should_received_time >= #{shouldGetTimeStart}");
-            }if(conditionVo.getShouldGetTimeEnd()!=null){
+            }if(conditionVo.getShouldGetTimeEnd()!=null&&conditionVo.getShouldGetTimeEnd()!=""){
                 WHERE("should_received_time <= #{shouldGetTimeEnd}");
             }
         }}.toString();

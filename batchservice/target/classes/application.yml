@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: batch-service
@@ -15,3 +16,5 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+server:
+  port: 8002
