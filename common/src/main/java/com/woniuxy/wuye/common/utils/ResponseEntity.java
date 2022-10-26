@@ -23,8 +23,9 @@ public static final ResponseEntity SUCCESS=new ResponseEntity("200","OK",null);
  * 数据库操作异常
  * */
 public static final ResponseEntity SQLFAILURE=new ResponseEntity("400","no","sql参数异常");
+    public static final ResponseEntity FAILURE = new ResponseEntity("500","no","");
 
-	private String code;//状态码code:200成功；500失败；400不合法；401无权限
+    private String code;//状态码code:200成功；500失败；400不合法；401无权限
 	private String msg;//说明
 	private T data;
 
