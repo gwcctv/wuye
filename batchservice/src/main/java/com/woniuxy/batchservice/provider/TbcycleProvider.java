@@ -42,6 +42,9 @@ public class TbcycleProvider {
                 if(tbCycle.getProduceTime()!=null  && !tbCycle.getProduceTime().equals("")){
                     WHERE("produce_time=#{produceTime}");
                 }
+                if(tbCycle.getFeetypeId()!=null  && tbCycle.getFeetypeId()!=0){
+                    WHERE("feetype_Id=#{feetypeId}");
+                }
                 WHERE("feecycle>0");
             }
 
