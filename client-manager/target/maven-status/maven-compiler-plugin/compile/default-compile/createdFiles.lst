@@ -1,0 +1,6 @@
+com\woniuxy\clientmanager\nacosdiscovery\NacosDiscoveryConfiguration.class
+com\woniuxy\clientmanager\controller\ClientController.class
+com\woniuxy\clientmanager\ClientManagerApplication.class
+com\woniuxy\clientmanager\service\impl\ClientServiceImpl.class
+com\woniuxy\clientmanager\mapper\ClientMapper.class
+com\woniuxy\clientmanager\service\ClientService.class
