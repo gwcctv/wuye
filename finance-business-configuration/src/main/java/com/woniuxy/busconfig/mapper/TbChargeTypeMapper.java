@@ -17,7 +17,8 @@ public interface TbChargeTypeMapper {
     /**
      *增加类型
      */
-    @Insert("insert into tb_charge_type(name) values (#{name})")
+    @Insert("insert into tb_charge_type(name,father) values (#{name},#{father})")
+    @Options(useGeneratedKeys=true ,keyColumn="id" ,keyProperty="id")
     void addChargeType(TbChargeType tbChargeType);
     /**
      * 查找类型
@@ -36,6 +37,9 @@ public interface TbChargeTypeMapper {
     void updateChargeType(TbChargeType tbChargeType);
 @Delete("delete from tb_charge_type where id = #{id}")
     void deleteChargeType(Integer id);
-@Delete("delete from tb_charge_type where farther = #{id}")
-    TbChargeType deleteByFather(Integer id);
+@Delete("delete from tb_charge_type where father = #{id}")
+    void deleteByFather(Integer id);
+    @Select("select*from tb_charge_type where id = #{id}")
+
+    TbChargeType selectById(Integer id);
 }
