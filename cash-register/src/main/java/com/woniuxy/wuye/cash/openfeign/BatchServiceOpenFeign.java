@@ -1,5 +1,6 @@
 package com.woniuxy.wuye.cash.openfeign;
 
+import com.woniuxy.wuye.cash.fallback.BatchServiceFallback;
 import com.woniuxy.wuye.common.entity.TbCheckReduce;
 import com.woniuxy.wuye.common.entity.TbHouse;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
@@ -17,7 +18,7 @@ import java.util.List;
  * @Date: 2022/10/22
  **/
 @RequestMapping
-@FeignClient("batch-service")
+@FeignClient(value = "batch-service",fallback = BatchServiceFallback.class)
 public interface BatchServiceOpenFeign {
     /**
      * 通过用户id和项目id查房产

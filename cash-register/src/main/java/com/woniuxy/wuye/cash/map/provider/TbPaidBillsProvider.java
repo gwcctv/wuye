@@ -30,23 +30,23 @@ public class TbPaidBillsProvider {
             FROM("tb_paid_bills,tb_client");
             /*if(conditionVo.getProjectName()!=null){
                 WHERE("project_name like concat('%',#{projectName},'%')");
-            }*/if(conditionVo.getClientName()!=null){
+            }*/if(conditionVo.getClientName()!=null&&conditionVo.getClientName()!=""){
                 WHERE("client_name  like concat('%',#{clientName},'%')");
-            }if(conditionVo.getHouseName()!=null){
+            }if(conditionVo.getHouseName()!=null&&conditionVo.getHouseName()!=""){
                 WHERE("house_name like concat('%',#{houseName},'%')");
-            }if(conditionVo.getFeesItem()!=null){
+            }if(conditionVo.getFeesItem()!=null&&conditionVo.getFeesItem()!=""){
                 WHERE("fees_items=#{feesItem}");
-            }if(conditionVo.getNum()!=null){
+            }if(conditionVo.getNum()!=null&&conditionVo.getNum()!=""){
                 WHERE("num  like concat('%',#{num},'%')");
-            }if(conditionVo.getAcceptUser()!=null){
+            }if(conditionVo.getAcceptUser()!=null&&conditionVo.getAcceptUser()!=""){
                 WHERE("accept_user  like concat('%',#{acceptUser},'%')");
-            }if(conditionVo.getStyle()!=null){
+            }if(conditionVo.getStyle()!=null&&conditionVo.getStyle()!=""){
                 WHERE("get_fees_style=#{style}");
-            }if(conditionVo.getStatus()!=null){
+            }if(conditionVo.getStatus()!=null&&conditionVo.getStatus()!=""){
                 WHERE("pay_status=#{status}");
-            }if(conditionVo.getStartTime()!=null){
+            }if(conditionVo.getStartTime()!=null&&conditionVo.getStartTime()!=""){
                 WHERE("accept_time >= #{startTime}");
-            }if(conditionVo.getEndTime()!=null){
+            }if(conditionVo.getEndTime()!=null&&conditionVo.getEndTime()!=""){
                 WHERE("accept_time <= #{endTime}");
             }
             WHERE("is_delete=0 AND house_owner=client_id");

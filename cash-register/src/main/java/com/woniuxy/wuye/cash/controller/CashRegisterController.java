@@ -9,6 +9,7 @@ import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,13 +31,12 @@ public class CashRegisterController {
     /**
      * 多条件分页查询所有,不带条件初始化查询，带条件多条件查询
      *
-     * @param pageNum
      * @param conditionVo
      * @return
      */
     @RequestMapping("/unpaidbills/querypagecondition")
-    public ResponseEntity queryUnpaidBillsPageCondition(Integer pageNum, ConditionVo conditionVo) {
-        PageBean<TbUnpaidBills> pageBean = cashRegisterService.selectUnpaidBillsPageByCondition(pageNum, pageSize, conditionVo);
+    public ResponseEntity queryUnpaidBillsPageCondition(@RequestBody ConditionVo conditionVo) {
+        PageBean<TbUnpaidBills> pageBean = cashRegisterService.selectUnpaidBillsPageByCondition(conditionVo.getPageNum(), pageSize, conditionVo);
         return new ResponseEntity("200", "ok", pageBean);
     }
 
