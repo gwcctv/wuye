@@ -79,7 +79,7 @@ public class BuildingProvider {
                         WHERE("unit=#{unit}");
                     }
                     if(tbBuilding.getDescription()!=null){
-                        WHERE("description=#{description}");
+                        WHERE("description like concat('%',#{description},'%')");
                     }
                     if(tbBuilding.getProjectName()!=null && ! "".equals(tbBuilding.getProjectName())){
                         //这里表示通过输入项目名，然后就可以查出该项目下的楼栋

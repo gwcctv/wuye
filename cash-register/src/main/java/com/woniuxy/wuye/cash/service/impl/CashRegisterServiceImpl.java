@@ -122,7 +122,6 @@ public class CashRegisterServiceImpl implements CashRegisterService {
         tbUnpaidBillsMapper.updateByCondition(tbUnpaidBills);
         //调用减免账单服务的接口新增一个减免账单
         batchServiceOpenFeign.add(tbCheckReduce);
-
     }
 
     @Autowired(required = false)
@@ -332,6 +331,10 @@ public class CashRegisterServiceImpl implements CashRegisterService {
     @Autowired(required = false)
     private TbRefundHistoryMapper tbRefundHistoryMapper;
 
+    /**
+     * 取消和退款都调用这个方法
+     * @param tbRefundHistory
+     */
     @Override
     public void paidBillsRefund(TbRefundHistory tbRefundHistory) {
         //根据收款单号查收款单，得到收款金额
@@ -346,7 +349,7 @@ public class CashRegisterServiceImpl implements CashRegisterService {
             //恢复未支付账单状态为正常
             tbUnpaidBillsMapper.update(tbUnpaidBills.getId(), 0);
             //根据在减免账单表中未付款单的id查询并修改减免账单状态；
-
+            //todo
             //查询修改滞纳金减免账单
 
             //查询修改冲抵记录

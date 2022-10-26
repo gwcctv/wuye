@@ -9,6 +9,8 @@ import lombok.Data;
  **/
 @Data
 public class ConditionVo {
+    //页码
+    private Integer pageNum=1;
     //项目名
     private String projectName;
     //用户名

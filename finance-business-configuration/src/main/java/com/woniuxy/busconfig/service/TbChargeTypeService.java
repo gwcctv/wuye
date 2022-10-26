@@ -13,4 +13,5 @@ public interface TbChargeTypeService {
 
     void updateChargeType(TbChargeType tbChargeType);
     void deleteChargeType(Integer id);
+    TbChargeType getById(Integer id);
 }
