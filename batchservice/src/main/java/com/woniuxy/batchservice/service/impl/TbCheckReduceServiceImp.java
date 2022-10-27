@@ -22,7 +22,7 @@ public class TbCheckReduceServiceImp extends ServiceImpl<TbCheckReduceMapper, Tb
         PageBean<TbCheckReduce> pageBean = new PageBean<>();
         pageBean.setPageSzie(4);//分页大小
         pageBean.setCurrPage(page);    //设置当前页数
-        Page p = PageHelper.startPage(pageBean.getCurrPage(), pageBean.getPageSzie());
+        Page p = PageHelper.startPage(pageBean.getCurrPage(), pageBean.getPageSzie(),"id desc");
         List<TbCheckReduce> list = tbCheckReduceMapper.getByCondition(tbCheckReduce);
         pageBean.setTotalNums((int) p.getTotal());//设置总数量
         pageBean.setTotalPage(p.getPages());
@@ -30,5 +30,10 @@ public class TbCheckReduceServiceImp extends ServiceImpl<TbCheckReduceMapper, Tb
         pageBean.setCurrpageSzie(pageBean.getData().size());//当前页数据数量
          return pageBean;
 
+    }
+
+    @Override
+    public Integer getShouFeiLeiXingByJianMianLeiXing(Integer id) {
+        return tbCheckReduceMapper.getShouFeiLeiXingByJianMianLeiXing(id);
     }
 }

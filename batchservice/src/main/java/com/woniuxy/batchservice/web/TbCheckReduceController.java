@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
+
 /**
  * 减免业务申请接口
  * */
@@ -35,6 +38,12 @@ public class TbCheckReduceController {
     }
     @RequestMapping("add")
     public ResponseEntity add(@RequestBody TbCheckReduce tbCheckReduce){
+        tbCheckReduce.setNumber("0111111111111111");
+        tbCheckReduce.setProduceStatus("1");
+        tbCheckReduce.setProduceName("魏锦鹏");
+        tbCheckReduce.setProduceTime(LocalDateTime.now().toString());
+Integer id=tbCheckReduceService.getShouFeiLeiXingByJianMianLeiXing(tbCheckReduce.getReduceTypeId());
+tbCheckReduce.setFeetypeId(1);
         tbCheckReduceService.save(tbCheckReduce);
         return ResponseEntity.SUCCESS;
     }

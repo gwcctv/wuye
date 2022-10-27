@@ -40,7 +40,7 @@ public class TbcycleProvider {
                     WHERE("produce_name=#{produceName}");
                 }
                 if(tbCycle.getProduceTime()!=null  && !tbCycle.getProduceTime().equals("")){
-                    WHERE("produce_time=#{produceTime}");
+                    WHERE("produce_time like concat(#{produceTime},'%')");
                 }
                 if(tbCycle.getFeetypeId()!=null  && tbCycle.getFeetypeId()!=0){
                     WHERE("feetype_Id=#{feetypeId}");
