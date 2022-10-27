@@ -44,6 +44,7 @@ public interface ClientMapper extends BaseMapper {
 
     @Insert("insert into tb_client (number,client_name,sex,card,phone,email,work_address,description,relationship,client_state,house_id) values " +
             "(#{number},#{clientName},#{sex},#{card},#{phone},#{email},#{workAddress},#{description},#{relationship},#{clientState},#{houseId})")
+    @Options(useGeneratedKeys=true, keyProperty="clientId",keyColumn="client_id")
     boolean insertClient(TbClient tbClient);
 
     @Update("update tb_client set number=#{number},client_name=#{clientName},sex=#{sex},card=#{card},\n" +

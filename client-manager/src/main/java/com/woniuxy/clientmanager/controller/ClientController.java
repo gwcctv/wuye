@@ -131,6 +131,7 @@ public class ClientController {
         }else {
             responseEntity.setCode("200");
             responseEntity.setMsg("添加成功");
+            responseEntity.setData(tbClient.getClientId());
         }
         return responseEntity;
     }

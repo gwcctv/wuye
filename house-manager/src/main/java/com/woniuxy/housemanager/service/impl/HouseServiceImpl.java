@@ -68,4 +68,6 @@ public class HouseServiceImpl extends ServiceImpl<HouseMapper,TbHouse> implement
         pageBean.setCurrpageSzie(pageBean.getData().size());//当前页数据数量
         return pageBean;
     }
+
+
 }
