@@ -107,6 +107,20 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public PageBean<TbClient> findClientByPName(String projectName, int page,int size) {
+        PageBean<TbClient> pageBean = new PageBean<>();
+        pageBean.setPageSzie(size); //分页大小
+        pageBean.setCurrPage(page); //当前页码
+        Page<TbClient> pages = PageHelper.startPage(pageBean.getCurrPage(), pageBean.getPageSzie());
+        List<TbClient> client = clientMapper.findClientByPName(projectName);
+        pageBean.setTotalNums((int) pages.getTotal()); //总条数
+        pageBean.setTotalPage(pages.getPages()); //总页数
+        pageBean.setData(client);   //设置数据
+        pageBean.setCurrpageSzie(pageBean.getData().size()); //当前页展示数据条数
+        return pageBean;
+    }
+
+    @Override
     public TbClient selectById(int id) {
         return clientMapper.selectById(id);
     }
