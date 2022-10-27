@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.12.42/z-wuye?serverTimezone=UTC
+    #url: jdbc:mysql:///z-wuye?serverTimezone=UTC
+    username: root
+    password: 123456
+  application:
+    name: house-manager
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${oa.empphoto}
+  cloud:
+    nacos:
+      discovery:
+
+      server-addr: http://localhost:8848  #nacos的服务地址
+server:
+  port: 8003
+#  servelt:
+#    context-path: /
+
+debug: false
+
+
