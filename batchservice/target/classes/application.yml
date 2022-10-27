@@ -4,7 +4,7 @@ spring:
     name: batch-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/z-wuye?serverTimezone=UTC
+    url: jdbc:mysql://192.168.12.42:3306/z-wuye?serverTimezone=UTC
     username: root
     password: 123456
   cloud:

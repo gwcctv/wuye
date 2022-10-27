@@ -2,6 +2,7 @@ package com.woniuxy.housemanager.controller;
 
 import com.woniuxy.housemanager.service.HouseService;
 import com.woniuxy.housemanager.vo.HouseVo;
+import com.woniuxy.wuye.common.annotation.AutoLog;
 import com.woniuxy.wuye.common.entity.TbBuilding;
 import com.woniuxy.wuye.common.entity.TbClient;
 import com.woniuxy.wuye.common.entity.TbHouse;
@@ -9,10 +10,7 @@ import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

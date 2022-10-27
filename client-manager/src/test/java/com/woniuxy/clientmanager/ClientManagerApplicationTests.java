@@ -20,7 +20,7 @@ class ClientManagerApplicationTests {
     private ClientMapper clientMapper;
     @Test
     void contextLoads() {
-        System.out.println(clientMapper.findClientVoByName("lee"));
+        clientMapper.findClientByPName("项目a");
     }
 
 }

@@ -14,6 +14,9 @@ public interface ClientMapper extends BaseMapper {
     @Select("select * from tb_client")
     List<TbClient> findAll();
 
+    @Select("select * from tb_client where client_id = #{id}")
+    TbClient selectById(int id);
+
     @Delete("delete from tb_client where client_id = #{id}")
     int deleteById(int id);
 
@@ -25,12 +28,13 @@ public interface ClientMapper extends BaseMapper {
             "AND p.project_id=b.project_id")
     ClientVo findClientVoByName(String clientName);
 
-    @Select("SELECT cl.*,h.unit,h.layer , b.building_number,project_name \n" +
-            "            FROM tb_house h,tb_building b,tb_project p,tb_client cl\n" +
-            "            WHERE h.building_id = b.building_id \n" +
-            "            AND h.project_id = p.project_id\n" +
-            "            AND cl.house_id = h.house_id ")
+    @Select("SELECT cl.*,CONCAT(p.project_name,\"/\",b.building_number,\"/\",h.unit,\"/\",h.layer,\"/\",h.house_number) AS address\n" +
+            "FROM tb_house h,tb_building b,tb_project p,tb_client cl\n" +
+            "WHERE h.building_id = b.building_id \n" +
+            "AND h.project_id = p.project_id\n" +
+            "AND cl.house_id = h.house_id ")
     List<TbClient> myClient();
+
 
     @Select("SELECT c.*, p.project_name,h.house_number FROM tb_client c, tb_project p, tb_house h \n" +
             "WHERE phone = #{phone} AND \n" +
@@ -60,5 +64,15 @@ public interface ClientMapper extends BaseMapper {
     @Select("select client_id from tb_client where client_name=#{name}")
     int getByName(String clientName);
 
+    /**
+     * 通过项目名字查询房产和客户
+     */
+    @Select("SELECT c.phone,c.client_name, CONCAT(h.house_number,\"/\",h.unit,\"/\",h.layer) AS address\n" +
+            "FROM tb_project p,tb_house h ,tb_building b,tb_client c\n" +
+            "WHERE p.project_name=#{projectName}\n" +
+            "AND c.house_id = h.house_id\n" +
+            "AND h.building_id = b.building_id\n" +
+            "AND b.project_id = p.project_id")
+    List<TbClient> findClientByPName(String projectName);
 
 }
