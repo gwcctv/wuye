@@ -55,6 +55,7 @@ public class TbMeasure  {
      */
     @TableField(value = "project_name", condition = SqlCondition.EQUAL)
     private Integer projectName;
+    @TableField(exist = false)
     private String thisProjectName;
 
     /**
@@ -81,12 +82,15 @@ public class TbMeasure  {
      */
     @TableField(value = "last_read", condition = SqlCondition.EQUAL)
     private String lastRead;
-
+    @TableField(exist = false)
     private String buildingId;
+    @TableField(exist = false)
     private String unit;
+    @TableField(exist = false)
     private String layer;
+    @TableField(exist = false)
     private String houseNumber;
     @TableField(exist = false)
-    private String allName=buildingId+"栋"+unit+"单元"+layer+"层"+houseNumber;
+    private String allName;
 
 }

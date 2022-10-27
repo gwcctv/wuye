@@ -60,11 +60,6 @@ public class TbClient implements Serializable {
     private String workAddress;
 
     /**
-     * 项目及房产信息
-     */
-    private String address;
-
-    /**
      * 备注
      */
     private String description;
@@ -109,7 +104,4 @@ public class TbClient implements Serializable {
      */
     private String houseNumber;
 
-    public TbClient(String number, String clientName, String sex, String card, String phone, String email, String workAddress, String description, String relationship, Integer houseId, String clientState, String layer, String unit) {
-
-    }
 }

@@ -11,6 +11,7 @@ import com.woniuxy.busconfig.mapper.TbMeasureMapper;
 import com.woniuxy.busconfig.service.RuleAndProjectService;
 import com.woniuxy.busconfig.service.TbMeasureService;
 import com.woniuxy.wuye.common.entity.*;
+import com.woniuxy.wuye.common.utils.ChuLIjiHe;
 import com.woniuxy.wuye.common.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,10 +43,22 @@ private TbMeasureHouMapper tbMeasureHouMapper;
     public PageBean<TbMeasure> getByPage(TbMeasure tbMeasure, int page) {
         //根据条件页码分页大小将PageBean中的属性一次设置
         PageBean<TbMeasure> pageBean = new PageBean<>();
-        pageBean.setPageSzie(4);//分页大小
+        pageBean.setPageSzie(10);//分页大小
         pageBean.setCurrPage(page);    //设置当前页数
         Page p = PageHelper.startPage(pageBean.getCurrPage(), pageBean.getPageSzie());
         List<TbMeasure> list =tbMeasureMapper.getTbMeasure(tbMeasure);
+        list.forEach(r->r.setAllName(r.getBuildingId()+"栋"+r.getUnit()+r.getLayer()+r.getHouseNumber()));
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = i+1; j <list().size();j++) {
+                if(j<list.size()&&list.get(i).getId()==list.get(j).getId()){
+                    list.get(i).setAllName(list.get(i).getAllName()+","+list.get(j).getAllName());
+                    list.remove(j);
+j--;
+                }
+
+            }
+        }
+
         pageBean.setTotalNums((int) p.getTotal());//设置总数量
         pageBean.setTotalPage(p.getPages());
         pageBean.setData(list);//设置当前页数的数据

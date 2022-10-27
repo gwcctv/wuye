@@ -13,9 +13,9 @@ public class HouseProvider {
         return new SQL(){
             {
                 UPDATE("tb_house h");
-                if(tbHouse.getClientName()!=null){//表示修改客户名字，改变表中的clientId
-                    SET("h.client_id=(SELECT c.client_id FROM tb_client c WHERE c.client_name=#{clientName})");
-                }
+//                if(tbHouse.getClientName()!=null){//表示修改客户名字，改变表中的clientId
+//                    SET("h.client_id=(SELECT c.client_id FROM tb_client c WHERE c.client_name=#{clientName})");
+//                }
                 if(tbHouse.getBuildingNumber()!=null){//这里表示在后台修改楼栋编号，改变house表总的buildingid
                     SET("h.building_id=(select b.building_id from tb_building b where b.building_number=#{buildingNumber})");
                 }
