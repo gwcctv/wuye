@@ -103,5 +103,9 @@ public class TbClient implements Serializable {
      *  房产编号
      */
     private String houseNumber;
+    /**
+     * 房产具体名字
+     */
+    private String address;
 
 }

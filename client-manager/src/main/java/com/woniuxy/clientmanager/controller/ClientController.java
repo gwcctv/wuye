@@ -2,6 +2,7 @@ package com.woniuxy.clientmanager.controller;
 
 import com.woniuxy.clientmanager.service.ClientService;
 import com.woniuxy.clientmanager.vo.ClientVo;
+import com.woniuxy.clientmanager.vo.Cvo;
 import com.woniuxy.wuye.common.annotation.AutoLog;
 import com.woniuxy.wuye.common.entity.TbClient;
 import com.woniuxy.wuye.common.utils.PageBean;
@@ -205,10 +206,10 @@ public class ClientController {
     /**
      * 根据项目名字查询房产
      */
-    @GetMapping("findClientByPName/{projectName}/{page}/{size}")
-    public ResponseEntity findClientByPName(@PathVariable String projectName,@PathVariable int page,@PathVariable int size){
+    @PostMapping("/findClientByPName")
+    public ResponseEntity findClientByPName(@RequestBody Cvo cvo){
         ResponseEntity responseEntity = new ResponseEntity<>();
-        PageBean<TbClient> clientByPName = clientService.findClientByPName(projectName, page, size);
+        PageBean<TbClient> clientByPName = clientService.findClientByPName(cvo.getProjectName(), cvo.getPage(), cvo.getSize());
         if (clientByPName==null){
             responseEntity.setCode("201");
             responseEntity.setMsg("查询失败");

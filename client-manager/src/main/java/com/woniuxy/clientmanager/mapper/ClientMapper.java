@@ -40,7 +40,7 @@ public interface ClientMapper extends BaseMapper {
             "WHERE phone = #{phone} AND \n" +
             "client_name = #{clientName} AND \n" +
             "project_name = #{projectName} AND \n" +
-            "house_number = #{houseNumber}")
+            "c.address = #{address}")
     List<TbClient> findClientByCondition(TbClient tbClient);
 
     @UpdateProvider(value = ClientProvider.class,method = "update")
