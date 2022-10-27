@@ -45,13 +45,6 @@ public interface ClientService {
     int getByName(String clientName);
 
     /**
-     * 根据客户名查询ClientVo
-     * @param clientName
-     * @return
-     */
-    ClientVo findClientVoByName(String clientName);
-
-    /**
      * 根据id查询客户
      */
     TbClient selectById(int id);
@@ -62,4 +55,9 @@ public interface ClientService {
      * @return
      */
     ClientVo findClientVoByName(String clientName);
+
+    /**
+     * 根据项目名字查询房产
+     */
+    PageBean<TbClient> findClientByPName(String projectName,int page,int size);
 }

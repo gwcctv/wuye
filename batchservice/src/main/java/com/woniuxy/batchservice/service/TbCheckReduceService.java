@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface TbCheckReduceService extends IService<TbCheckReduce> {
     PageBean<TbCheckReduce> getByCondition(TbCheckReduce tbCheckReduce,int page);
+    Integer getShouFeiLeiXingByJianMianLeiXing(Integer id);
 }
