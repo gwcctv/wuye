@@ -172,8 +172,8 @@ public class ClientController {
     /**
      * 根据id查询客户
      */
-    @GetMapping("/selectById/{id}")
-    public ResponseEntity selectById(@PathVariable int id){
+    @GetMapping("/selectById")
+    public ResponseEntity<TbClient> selectById(@RequestParam int id){
         ResponseEntity responseEntity = new ResponseEntity<>();
         TbClient tbClient = clientService.selectById(id);
         if(tbClient==null){

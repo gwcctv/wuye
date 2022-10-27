@@ -111,7 +111,11 @@ public class HouseController {
      */
     @RequestMapping("/doupdate")
     public  ResponseEntity doUpdate(@RequestBody TbHouse tbHouse){
-
+        Integer clientId = tbHouse.getClientId();//先得到传过来的客户id
+        ResponseEntity responseEntity = clientFeign.selectById(clientId);//通过客户id查到该客户信息
+        TbClient tbClient =(TbClient) responseEntity.getData();
+        tbClient.setClientName(tbHouse.getClientName());//把该客户的名字进行更改
+        clientFeign.update(tbClient);
         houseService.update(tbHouse);
         return ResponseEntity.SUCCESS;
     }
