@@ -1,9 +1,12 @@
 package com.woniuxy.busconfig.web;
 
+import com.woniuxy.busconfig.feignclient.FbcFeignClient;
+import com.woniuxy.busconfig.feignclient.HouFeignClient;
 import com.woniuxy.busconfig.service.TbMeasureService;
 import com.woniuxy.busconfig.service.serviceiml.TbMeasureServiceimpl;
 import com.woniuxy.wuye.common.entity.TbFeesStandardConfiguration;
 import com.woniuxy.wuye.common.entity.TbMeasure;
+import com.woniuxy.wuye.common.entity.vo.HouseVo;
 import com.woniuxy.wuye.common.entity.vo.TbFeesStandardConfigurationVo;
 import com.woniuxy.wuye.common.entity.vo.TbMeasureVo;
 import com.woniuxy.wuye.common.utils.PageBean;
@@ -20,6 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class TbMeasureController {
     @Autowired
     private TbMeasureService tbMeasureService;
+    @Autowired
+    private FbcFeignClient fbcFeignClient;
+    @Autowired
+    private HouFeignClient houFeignClient;
     @RequestMapping("add")
     public ResponseEntity add(@RequestBody TbMeasure tbMeasure){
         tbMeasureService.addTbMeasure(tbMeasure);
@@ -39,5 +46,17 @@ public class TbMeasureController {
     public ResponseEntity getByPage(@RequestBody TbMeasureVo tbMeasureVo){
         PageBean<TbMeasure> pageDate = tbMeasureService.getByPage(tbMeasureVo.getTbMeasure()==null?new TbMeasure():tbMeasureVo.getTbMeasure(), tbMeasureVo.getPage()==null?1:tbMeasureVo.getPage());
         return new ResponseEntity("200","ok",pageDate);
+    }
+    @RequestMapping("/getProject")
+    public ResponseEntity getProject(){
+     return    fbcFeignClient.projectName();
+    }
+    @RequestMapping("/getAllMoney")
+    public ResponseEntity getAllMoney(){
+      return new ResponseEntity("200","ok",tbMeasureService.getMoneyFrom());
+    }
+    @RequestMapping("/getAllHouse")
+    public ResponseEntity getAllHouse(@RequestBody HouseVo houseVo){
+        return houFeignClient.getAllHouse(houseVo);
     }
 }

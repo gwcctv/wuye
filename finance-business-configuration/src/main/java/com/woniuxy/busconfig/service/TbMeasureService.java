@@ -12,4 +12,5 @@ public interface TbMeasureService extends IService<TbMeasure> {
     PageBean<TbMeasure> getByPage(TbMeasure TbMeasure, int page);
     void addTbMeasure(TbMeasure TbMeasure);
     void deleteById(Integer id);
+    List<String> getMoneyFrom ();
 }

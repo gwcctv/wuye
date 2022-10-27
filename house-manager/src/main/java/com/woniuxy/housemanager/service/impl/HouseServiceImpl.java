@@ -57,6 +57,12 @@ public class HouseServiceImpl extends ServiceImpl<HouseMapper,TbHouse> implement
 
     @Override
     public PageBean<TbHouse> getByCondition(TbHouse tbHouse, Integer pageSize, Integer page) {
+       if(pageSize==null){
+           pageSize=5;
+       }
+       if(page==null){
+           page=1;
+       }
         PageBean<TbHouse> pageBean=new PageBean<>();
         pageBean.setPageSzie(pageSize);
         pageBean.setCurrPage(page);
