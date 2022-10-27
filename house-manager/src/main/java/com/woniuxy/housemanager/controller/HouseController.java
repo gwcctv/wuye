@@ -4,6 +4,7 @@ import com.woniuxy.housemanager.service.HouseService;
 import com.woniuxy.housemanager.vo.HouseVo;
 import com.woniuxy.wuye.common.annotation.AutoLog;
 import com.woniuxy.wuye.common.entity.TbBuilding;
+import com.woniuxy.wuye.common.entity.TbClient;
 import com.woniuxy.wuye.common.entity.TbHouse;
 import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
@@ -24,6 +25,16 @@ public class HouseController {
     ProjectFeign projectFeign;
     @Autowired
     ClientFeign clientFeign;
+
+    /**
+     * 查出所有房产
+     * @return
+     */
+    @RequestMapping("/all")
+    public  ResponseEntity getAll(){
+        List<TbHouse> all = houseService.getAll();
+        return new ResponseEntity("200","ok",all);
+    }
 
     /**
      * 根据客户id和项目id查房产
@@ -55,7 +66,11 @@ public class HouseController {
 //    管理员在增加房产，需要填写项目名，楼栋号，客户名字
     @RequestMapping("/add")
     public ResponseEntity add(@RequestBody TbHouse tbHouse){
-        int clientId = clientFeign.getByname(tbHouse.getClientName());//通过客户名得到客户id
+        //int clientId = clientFeign.getByname(tbHouse.getClientName());//通过客户名得到客户id
+        TbClient tbClient = tbHouse.getTbClient();
+        ResponseEntity responseEntity= clientFeign.insertClient(tbClient);
+        tbClient.setClientId((Integer) responseEntity.getData());
+        Integer clientId = tbClient.getClientId();//获取客户id
         int projectId = projectFeign.getByName(tbHouse.getProjectName());//通过项目名得到项目id
         int buildingId = buildingFeign.getByNumber(tbHouse.getBuildingNumber());//通过楼栋号得到楼栋id
         tbHouse.setProjectId(projectId);
@@ -96,7 +111,11 @@ public class HouseController {
      */
     @RequestMapping("/doupdate")
     public  ResponseEntity doUpdate(@RequestBody TbHouse tbHouse){
-
+        Integer clientId = tbHouse.getClientId();//先得到传过来的客户id
+        ResponseEntity responseEntity = clientFeign.selectById(clientId);//通过客户id查到该客户信息
+        TbClient tbClient =(TbClient) responseEntity.getData();
+        tbClient.setClientName(tbHouse.getClientName());//把该客户的名字进行更改
+        clientFeign.update(tbClient);
         houseService.update(tbHouse);
         return ResponseEntity.SUCCESS;
     }

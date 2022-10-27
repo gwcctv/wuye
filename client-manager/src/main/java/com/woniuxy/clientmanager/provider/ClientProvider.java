@@ -35,10 +35,10 @@ public class ClientProvider {
                   SET("work_address=#{workAddress}");
               }
               if(tbClient.getDescription()!=null){
-                  SET("description=#{Description}");
+                  SET("description=#{description}");
               }
               if(tbClient.getRelationship()!=null){
-                  SET("relationship=#{Relationship}");
+                  SET("relationship=#{relationship}");
               }
               if(tbClient.getHouseId()!=null){
                   SET("house_id=#{houseId}");

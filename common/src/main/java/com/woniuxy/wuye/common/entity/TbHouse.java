@@ -117,6 +117,10 @@ public class TbHouse implements Serializable {
      */
     @TableField(exist = false)
     private String clientName;
+    /**
+     * 客户类
+     */
+    private TbClient tbClient;
 
 
 }
