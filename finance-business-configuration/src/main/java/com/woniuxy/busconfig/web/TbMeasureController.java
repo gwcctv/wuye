@@ -59,4 +59,12 @@ public class TbMeasureController {
     public ResponseEntity getAllHouse(@RequestBody HouseVo houseVo){
         return houFeignClient.getAllHouse(houseVo);
     }
+//    @RequestMapping("/test")
+//    public void getAllHouse(@RequestBody Integer [] ids){
+//        System.out.println("-----------------------------------------");
+//        for (int i = 0; i < ids.length; i++) {
+//            System.out.println(ids[i]);
+//        }
+//        System.out.println("-----------------------------------------");
+//    }
 }

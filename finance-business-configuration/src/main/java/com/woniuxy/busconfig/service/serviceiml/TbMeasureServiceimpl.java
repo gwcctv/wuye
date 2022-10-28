@@ -29,14 +29,16 @@ public class TbMeasureServiceimpl extends ServiceImpl<TbMeasureMapper, TbMeasure
 private TbMeasureHouMapper tbMeasureHouMapper;
     @Override
     public void addTbMeasure(TbMeasure entity) {
+        entity.setSituation("y");
         tbMeasureMapper.insert(entity);
-        List<Integer> relevantHouse = entity.getRelevantHouse();
-        for (Integer integer : relevantHouse) {
+       Integer[] relevantHouse = entity.getRelevantHouse();
+        for (int i = 0; i < relevantHouse.length; i++) {
             TbMeasureHou tbMeasureHou = new TbMeasureHou();
-            tbMeasureHou.setHouseId(integer);
+            tbMeasureHou.setHouseId(relevantHouse[i]);
             tbMeasureHou.setMeasureId(entity.getId());
             tbMeasureHouMapper.insert(tbMeasureHou);
         }
+
     }
 
     @Override

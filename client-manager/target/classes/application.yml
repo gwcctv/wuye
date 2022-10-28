@@ -11,6 +11,7 @@ spring:
         server-addr: localhost:8848
   datasource:
     url: jdbc:mysql://192.168.12.42:3306/z-wuye?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    #url: jdbc:mysql:///z-wuye?serverTimezone=UTC
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
