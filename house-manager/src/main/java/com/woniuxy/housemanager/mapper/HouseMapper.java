@@ -18,6 +18,7 @@ public interface HouseMapper extends BaseMapper<TbHouse> {
     @Insert("insert into tb_house (client_id,building_id,project_id,unit,layer,house_number,house_type,area,pay_time,stay_state,sell_state,fitment_state,lease_state,towards," +
             "handover_date,property_number,description)values (#{clientId},#{buildingId},#{projectId},#{unit},#{layer},#{houseNumber},#{houseType},#{area},#{payTime},#{stayState}," +
             "#{sellState},#{fitmentState},#{leaseState},#{towards},#{handoverDate},#{propertyNumber},#{description})")
+    @Options(useGeneratedKeys=true, keyProperty="houseId",keyColumn="house_id")
     void add(TbHouse tbHouse);
 
     /**

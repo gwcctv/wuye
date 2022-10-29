@@ -1,5 +1,6 @@
 package com.woniuxy.clientmanager.controller;
 
+import com.woniuxy.clientmanager.feign.HouseFeign;
 import com.woniuxy.clientmanager.service.ClientService;
 import com.woniuxy.clientmanager.vo.ClientVo;
 import com.woniuxy.clientmanager.vo.Cvo;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -23,6 +25,8 @@ import java.util.List;
 public class ClientController {
     @Autowired
     private ClientService clientService;
+    @Resource
+    private HouseFeign houseFeign;
     /**
      * 查询所有
      * @param page
@@ -220,5 +224,14 @@ public class ClientController {
             responseEntity.setData(clientByPName);
         }
         return responseEntity;
+    }
+
+    @PostMapping("/addClientAndHouse")
+    public ResponseEntity addClientAndHouse(@RequestBody TbClient tbClient){
+        ResponseEntity responseEntity = houseFeign.addHouse(tbClient.getTbHouse());
+        int houseId = (Integer)responseEntity.getData();
+        tbClient.setHouseId(houseId);
+        boolean b = clientService.insertClient(tbClient);
+        return  ResponseEntity.SUCCESS;
     }
 }

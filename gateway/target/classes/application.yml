@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: gateway   #项目名、微服务名   很重要
+  cloud:
+    gateway:
+      routes:
+#        - id: auth # 路由名字
+#          uri: lb://auth # 微服务名字 lb loadbalance 负载均衡
+#          predicates: # 路径匹配上之后将uri原样转发、
+#            - Path=/auth/**
+        - id: client-manager # 路由名字
+          uri: lb://client-manager # 微服务名字 lb loadbalance 负载均衡
+          predicates: # 路径匹配上之后将uri原样转发、
+            - Path=/client-manager/**,
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+server:
+  port: 7600
+
+

@@ -75,4 +75,16 @@ public interface ClientMapper extends BaseMapper {
             "AND b.project_id = p.project_id")
     List<TbClient> findClientByPName(String projectName);
 
+    /**
+     * 通过项目Id查询房产和客户
+     */
+    @Select("SELECT c.phone,c.client_name, CONCAT(h.house_number,\"/\",h.unit,\"/\",h.layer) AS address\n" +
+            "FROM tb_project p,tb_house h ,tb_building b,tb_client c\n" +
+            "WHERE p.project_id=#{projectId}\n" +
+            "AND c.house_id = h.house_id\n" +
+            "AND h.building_id = b.building_id\n" +
+            "AND b.project_id = p.project_id")
+    List<TbClient> findClientByPId(int projectId);
+
+
 }
