@@ -7,14 +7,22 @@ spring:
     password: 123456
   application:
     name: house-manager
+
   web:
     resources:
       static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${oa.empphoto}
   cloud:
     nacos:
       discovery:
-
       server-addr: http://localhost:8848  #nacos的服务地址
+
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+service:
+  vgroup_mapping:
+    house-manager-group: default
+
 server:
   port: 8003
 #  servelt:

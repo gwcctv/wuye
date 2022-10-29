@@ -8,8 +8,10 @@ import com.woniuxy.wuye.common.entity.TbClient;
 import com.woniuxy.wuye.common.entity.TbHouse;
 import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -72,6 +74,8 @@ public class HouseController {
 //    增加房产 同时也需要增加房产所属项目，所属楼栋，所属客户
 //    管理员在增加房产，需要填写项目名，楼栋号，客户名字
     @RequestMapping("/add")
+//    @GlobalTransactional
+//    @Transactional
     public ResponseEntity add(@RequestBody TbHouse tbHouse){
         //int clientId = clientFeign.getByname(tbHouse.getClientName());//通过客户名得到客户id
         TbClient tbClient = tbHouse.getTbClient();
