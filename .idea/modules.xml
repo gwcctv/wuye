@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/batchservice/batchservice.iml" filepath="$PROJECT_DIR$/batchservice/batchservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/building-manager/building-manager.iml" filepath="$PROJECT_DIR$/building-manager/building-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car-manager/car-manager.iml" filepath="$PROJECT_DIR$/car-manager/car-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cash-register/cash-register.iml" filepath="$PROJECT_DIR$/cash-register/cash-register.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client-manager/client-manager.iml" filepath="$PROJECT_DIR$/client-manager/client-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/equipment-server/equipment-server.iml" filepath="$PROJECT_DIR$/equipment-server/equipment-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/finance-business-configuration/finance-business-configuration.iml" filepath="$PROJECT_DIR$/finance-business-configuration/finance-business-configuration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/house-manager/house-manager.iml" filepath="$PROJECT_DIR$/house-manager/house-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/order-server/order-server.iml" filepath="$PROJECT_DIR$/order-server/order-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parking-manager/parking-manager.iml" filepath="$PROJECT_DIR$/parking-manager/parking-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project-manager/project-manager.iml" filepath="$PROJECT_DIR$/project-manager/project-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wuye.iml" filepath="$PROJECT_DIR$/wuye.iml" />
+    </modules>
+  </component>
+</project>

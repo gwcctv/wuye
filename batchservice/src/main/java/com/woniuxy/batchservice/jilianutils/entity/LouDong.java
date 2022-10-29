@@ -1,13 +1,18 @@
 package com.woniuxy.batchservice.jilianutils.entity;
 
 import lombok.Data;
+import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Data
 public class LouDong {
     Integer  value;
+
+
+
     String label;
     Set<DanYuanMen> children;
     @Override

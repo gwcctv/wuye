@@ -20,6 +20,13 @@ spring:
   cloud:
     nacos:
       server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      web-context-unify: false #禁用整合，在链路中方法来自的位置可以区分
 logging:
   level:
     com.woniuxy.busconfig: debug
+feign:
+  sentinel:
+    enabled: true

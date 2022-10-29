@@ -34,16 +34,19 @@ public class TbFeesStandardConfigurationServiceimplTest {
         List<String> names =new ArrayList<>();
         TbFeesStandardConfiguration tbFeesStandardConfiguration = new TbFeesStandardConfiguration();
        List<TbFeesStandardConfiguration> pageList = tbFeesStandardConfigurationService.getByPage(tbFeesStandardConfiguration, 1).getData();
-        for (int i = 0; i < pageList.size(); i++) {
-            for (int j = i+1; j < pageList.size(); j++) {
-                if(pageList.get(i).getId()==pageList.get(j).getId()){
-                    pageList.get(i).setProjectName(pageList.get(i).getProjectName()+","+pageList.get(j).getProjectName());
-               pageList.remove(j);
-               j--;
-                }
-            }
-        }
-pageList.forEach(System.out::println);
+        System.out.println("---------------");
+       System.out.println(pageList.getClass().getName());
+        System.out.println("---------------");
+//        for (int i = 0; i < pageList.size(); i++) {
+//            for (int j = i+1; j < pageList.size(); j++) {
+//                if(pageList.get(i).getId()==pageList.get(j).getId()){
+//                    pageList.get(i).setProjectName(pageList.get(i).getProjectName()+","+pageList.get(j).getProjectName());
+//               pageList.remove(j);
+//               j--;
+//                }
+//            }
+//        }
+//pageList.forEach(System.out::println);
     }
     @Test
     public void delete(){

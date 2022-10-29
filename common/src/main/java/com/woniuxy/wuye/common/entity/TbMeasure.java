@@ -69,7 +69,7 @@ public class TbMeasure  {
      */
    // @TableField(value = "relevant_house", condition = SqlCondition.EQUAL)
             @TableField(exist = false)
-    private List<Integer> relevantHouse;
+    private Integer[] relevantHouse;
 
     /**
      * 状态

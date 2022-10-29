@@ -2,6 +2,7 @@ package com.woniuxy.busconfig.service.serviceiml;
 
 import com.woniuxy.busconfig.service.TbMeasureService;
 import com.woniuxy.wuye.common.entity.TbMeasure;
+import com.woniuxy.wuye.common.utils.PageBean;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,5 +39,21 @@ public class TbMeasureServiceTest {
         list.add(2);
         tbMeasure.setRelevantHouse(list);
         tbMeasureService.save(tbMeasure);
+    }
+
+    @Test
+    public void testgetByPage(){
+        PageBean<TbMeasure> pageBean= tbMeasureService.getByPage(new TbMeasure(),1);
+        List<TbMeasure> list =pageBean.getData();
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = i+1;j <list.size();j++) {
+                if(list.get(i).getId()==list.get(j).getId()){
+                    list.get(i).setAllName(list.get(i).getAllName()+","+list.get(j).getAllName());
+                    list.remove(j);
+                    j--;
+                }
+
+            }
+        }
     }
 }

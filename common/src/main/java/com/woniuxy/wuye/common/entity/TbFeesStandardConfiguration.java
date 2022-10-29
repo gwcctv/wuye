@@ -39,7 +39,7 @@ public class TbFeesStandardConfiguration  {
      */
    // @TableField(value = "fees_item", condition = SqlCondition.EQUAL)
     private Integer feesItem;
-
+private String feesItemName;
     /**
      * 计费方式
      */

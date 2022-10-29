@@ -61,12 +61,7 @@ public class JilianServiceImp implements JilianService {
                         FangJianNumber fangJianNumber = new FangJianNumber();
                         fangJianNumber.setLabel(h.getHouseNumber());
                         fangJianNumber.setValue(h.getHouseId());
-                        List<ZhuHu>zhuHus=new ArrayList<>();
-                        ZhuHu zhuHu=new ZhuHu();
-                        zhuHu.setValue(h.getClientId());
-                        zhuHu.setLabel(h.getClientName());
-                        zhuHus.add(zhuHu);
-                        fangJianNumber.setChildren(zhuHus);
+
                         fangJianNumbers.add(fangJianNumber);
                     }
                 });
@@ -75,7 +70,24 @@ public class JilianServiceImp implements JilianService {
 
 
         });
+louDongs.forEach(l->{
+    l.getChildren().forEach(c->{
+        c.getChildren().forEach(n->{
+            List<ZhuHu>zhuHus=new ArrayList<>();
+            houses.forEach(h->{
+                if (h.getUnit().equals(c.getLabel()) && h.getBuildingId() == l.getValue()&&h.getHouseNumber().equals(n.getLabel())) {
+                    ZhuHu zhuHu=new ZhuHu();
+                    zhuHu.setLabel(h.getClientName());
+                    zhuHu.setValue(h.getClientId());
 
+                    zhuHus.add(zhuHu);
+
+                }
+            });
+n.setChildren(zhuHus);
+        });
+    });
+});
 
         return louDongs;
     }
