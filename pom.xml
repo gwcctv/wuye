@@ -19,6 +19,7 @@
         <module>parking-manager</module>
         <module>order-server</module>
         <module>building-manager</module>
+        <module>admin</module>
 <module>order-server</module>
 <module>project-manager</module>
         <module>building-manager</module>

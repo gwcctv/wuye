@@ -8,6 +8,9 @@ spring:
     password: 123456
   application:
     name: building-manager
+  cloud:
+    nacos:
+      server-addr: localhost:8848
   web:
     resources:
       static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${oa.empphoto}
