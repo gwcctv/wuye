@@ -38,6 +38,13 @@ public class HouseController {
         return new ResponseEntity("200","ok",all);
     }
 
+    @RequestMapping("/addHoouse")
+    public ResponseEntity addHouse(TbHouse tbHouse){
+        ResponseEntity responseEntity = new ResponseEntity<>();
+        houseService.add(tbHouse);
+        responseEntity.setData(tbHouse.getHouseId());
+        return  responseEntity;
+    }
     /**
      * 根据客户id和项目id查房产
      * @param projectId

@@ -32,7 +32,7 @@ public class TbCheckReduceProvider {
                     WHERE("produce_name=#{produceName}");
                 }
                 if(tbCheckReduce.getProduceTime()!=null  && !tbCheckReduce.getProduceTime().equals("")){
-                    WHERE("produce_time=#{produceTime}");
+                    WHERE("produce_time like concat(#{produceTime},'%')");
                 }
                 if(tbCheckReduce.getHouseId()!=null  && tbCheckReduce.getHouseId()!=0){
                     WHERE("house_id=#{houseId}");
@@ -42,7 +42,9 @@ public class TbCheckReduceProvider {
                 }
                 if(tbCheckReduce.getJudge()!=null  && !tbCheckReduce.getJudge().equals("")){
                     WHERE("judge=#{judge}");
-                }
+                }if(tbCheckReduce.getReduceTypeId()!=null&&tbCheckReduce.getReduceTypeId()!=0){
+                    WHERE("reduce_type_id=#{reduceTypeId}");
+            }
                 WHERE("status!=0");
             }
 

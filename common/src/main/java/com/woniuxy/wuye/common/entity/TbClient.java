@@ -93,7 +93,10 @@ public class TbClient implements Serializable {
      *  项目名字
      */
     private String projectName;
-
+    /**
+     * 项目id
+     */
+    private int projectId;
     /**
      *  楼栋编号
      */
@@ -103,5 +106,12 @@ public class TbClient implements Serializable {
      *  房产编号
      */
     private String houseNumber;
-
+    /**
+     * 房产具体名字
+     */
+    private String address;
+    /**
+     * house类
+     */
+    private TbHouse tbHouse;
 }

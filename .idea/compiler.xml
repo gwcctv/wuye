@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="building-manager" />
+        <module name="house-manager" />
+        <module name="common" />
+        <module name="finance-business-configuration" />
+        <module name="car-manager" />
+        <module name="client-manager" />
+        <module name="parking-manager" />
+        <module name="project-manager" />
+        <module name="cash-register" />
+        <module name="order-server" />
+        <module name="batchservice" />
+        <module name="equipment-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="batchservice" target="1.8" />
+      <module name="building-manager" target="1.8" />
+      <module name="car-manager" target="1.8" />
+      <module name="cash-register" target="1.8" />
+      <module name="client-manager" target="1.8" />
+      <module name="common" target="1.8" />
+      <module name="equipment-server" target="1.8" />
+      <module name="finance-business-configuration" target="1.8" />
+      <module name="house-manager" target="1.8" />
+      <module name="order-server" target="1.8" />
+      <module name="parking-manager" target="1.8" />
+      <module name="project-manager" target="1.8" />
+      <module name="wuye" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

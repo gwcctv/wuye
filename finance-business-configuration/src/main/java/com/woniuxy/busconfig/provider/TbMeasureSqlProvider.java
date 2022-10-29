@@ -25,46 +25,44 @@ public class TbMeasureSqlProvider {
                     if (TbMeasure.getMeasureName()!= null && !"".equals(TbMeasure.getMeasureName())) {
                         WHERE("measure_name like concat('%',#{measureName},'%')");
                     }
-                    if (TbMeasure.getMeasureNum()!= null) {
+                    if (TbMeasure.getMeasureNum()!= null&& !"".equals(TbMeasure.getMeasureNum())) {
                         WHERE("measure_num=#{measureNum}");
                     }
-                    if (TbMeasure.getMeasureType()!= null) {
+                    if (TbMeasure.getMeasureType()!= null&& !"".equals(TbMeasure.getMeasureType())) {
                         WHERE("measure_type=#{measureType}");
                     }
-                    if(TbMeasure.getMachineType()!= null) {
+                    if(TbMeasure.getMachineType()!= null&& !"".equals(TbMeasure.getMachineType())) {
                     WHERE("machine_type=#{machineType}");
                 }
-                    if(TbMeasure.getMagnification()!= null) {
+                    if(TbMeasure.getMagnification()!= null&& !"".equals(TbMeasure.getMagnification())) {
                         WHERE("magnification=#{magnification}");
                     }
-                    if(TbMeasure.getWastage()!= null) {
+                    if(TbMeasure.getWastage()!= null&& !"".equals(TbMeasure.getWastage())) {
                         WHERE("wastage=#{wastage}");
                     }
-                    if(TbMeasure.getThisProjectName()!= null) {
-                        WHERE("this_project_name=#{thisProjectName}");
-                    }
-                    if(TbMeasure.getMoneyFrom()!= null) {
+
+                    if(TbMeasure.getMoneyFrom()!= null&& !"".equals(TbMeasure.getMoneyFrom())) {
                         WHERE("money_from=#{moneyFrom}");
                     }
-                    if(TbMeasure.getSituation()!= null) {
+                    if(TbMeasure.getSituation()!= null&& !"".equals(TbMeasure.getSituation())) {
                     WHERE("situation=#{situation}");
                 }
-                    if(TbMeasure.getLastRead()!= null) {
+                    if(TbMeasure.getLastRead()!= null&& !"".equals(TbMeasure.getLastRead())) {
                         WHERE("last_read=#{lastRead}");
                     }
-                    if(TbMeasure.getBuildingId()!= null) {
+                    if(TbMeasure.getBuildingId()!= null&& !"".equals(TbMeasure.getBuildingId())) {
                         WHERE("building_id=#{buildingId}");
                     }
-                    if(TbMeasure.getUnit()!= null) {
+                    if(TbMeasure.getUnit()!= null&& !"".equals(TbMeasure.getUnit())) {
                         WHERE("unit=#{unit}");
                     }
-                    if(TbMeasure.getLayer()!= null) {
+                    if(TbMeasure.getLayer()!= null&& !"".equals(TbMeasure.getLayer())) {
                         WHERE("layer=#{layer}");
                     }
-                    if(TbMeasure.getHouseNumber()!= null) {
+                    if(TbMeasure.getHouseNumber()!= null&& !"".equals(TbMeasure.getHouseNumber())) {
                         WHERE("house_number=#{houseNumber}");
                     }
-                    if(TbMeasure.getThisProjectName()!= null) {
+                    if(TbMeasure.getThisProjectName()!= null&& !"".equals(TbMeasure.getThisProjectName())) {
                         WHERE("thisProjectName=#{thisProjectName}");
                     }
                 }

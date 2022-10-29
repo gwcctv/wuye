@@ -18,4 +18,6 @@ public interface TbMeasureMapper extends BaseMapper<TbMeasure> {
 
     @SelectProvider(value = TbMeasureSqlProvider.class,method = "getByCondition")
     List<TbMeasure> getTbMeasure(TbMeasure TbMeasure);
+    @Select("select tm.money_from from tb_measure tm ")
+    List<String> getMoneyFrom();
 }

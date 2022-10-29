@@ -1,7 +1,9 @@
 package com.woniuxy.clientmanager.controller;
 
+import com.woniuxy.clientmanager.feign.HouseFeign;
 import com.woniuxy.clientmanager.service.ClientService;
 import com.woniuxy.clientmanager.vo.ClientVo;
+import com.woniuxy.clientmanager.vo.Cvo;
 import com.woniuxy.wuye.common.annotation.AutoLog;
 import com.woniuxy.wuye.common.entity.TbClient;
 import com.woniuxy.wuye.common.utils.PageBean;
@@ -10,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -22,6 +25,8 @@ import java.util.List;
 public class ClientController {
     @Autowired
     private ClientService clientService;
+    @Resource
+    private HouseFeign houseFeign;
     /**
      * 查询所有
      * @param page
@@ -206,10 +211,10 @@ public class ClientController {
     /**
      * 根据项目名字查询房产
      */
-    @GetMapping("findClientByPName/{projectName}/{page}/{size}")
-    public ResponseEntity findClientByPName(@PathVariable String projectName,@PathVariable int page,@PathVariable int size){
+    @PostMapping("/findClientByPName")
+    public ResponseEntity findClientByPName(@RequestBody Cvo cvo){
         ResponseEntity responseEntity = new ResponseEntity<>();
-        PageBean<TbClient> clientByPName = clientService.findClientByPName(projectName, page, size);
+        PageBean<TbClient> clientByPName = clientService.findClientByPName(cvo.getProjectName(), cvo.getPage(), cvo.getSize());
         if (clientByPName==null){
             responseEntity.setCode("201");
             responseEntity.setMsg("查询失败");
@@ -219,5 +224,14 @@ public class ClientController {
             responseEntity.setData(clientByPName);
         }
         return responseEntity;
+    }
+
+    @PostMapping("/addClientAndHouse")
+    public ResponseEntity addClientAndHouse(@RequestBody TbClient tbClient){
+        ResponseEntity responseEntity = houseFeign.addHouse(tbClient.getTbHouse());
+        int houseId = (Integer)responseEntity.getData();
+        tbClient.setHouseId(houseId);
+        boolean b = clientService.insertClient(tbClient);
+        return  ResponseEntity.SUCCESS;
     }
 }
