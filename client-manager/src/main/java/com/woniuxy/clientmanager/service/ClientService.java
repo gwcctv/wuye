@@ -2,6 +2,7 @@ package com.woniuxy.clientmanager.service;
 
 import com.woniuxy.clientmanager.vo.ClientVo;
 import com.woniuxy.wuye.common.entity.TbClient;
+import com.woniuxy.wuye.common.entity.TbHouse;
 import com.woniuxy.wuye.common.utils.PageBean;
 import org.apache.ibatis.annotations.Param;
 
@@ -60,4 +61,15 @@ public interface ClientService {
      * 根据项目名字查询房产
      */
     PageBean<TbClient> findClientByPName(String projectName,int page,int size);
+
+    /**
+     * 根据项目ID查询客户
+     * @param projectId
+     * @return
+     */
+    List<TbClient> findClientByPId(int projectId);
+    /**
+     * 根据客户ID查询名下房产
+     */
+    List<TbHouse> findHouseByCId(int clientID);
 }

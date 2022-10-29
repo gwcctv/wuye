@@ -7,6 +7,7 @@ import com.woniuxy.clientmanager.mapper.ClientMapper;
 import com.woniuxy.clientmanager.service.ClientService;
 import com.woniuxy.clientmanager.vo.ClientVo;
 import com.woniuxy.wuye.common.entity.TbClient;
+import com.woniuxy.wuye.common.entity.TbHouse;
 import com.woniuxy.wuye.common.utils.PageBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,6 +119,16 @@ public class ClientServiceImpl implements ClientService {
         pageBean.setData(client);   //设置数据
         pageBean.setCurrpageSzie(pageBean.getData().size()); //当前页展示数据条数
         return pageBean;
+    }
+
+    @Override
+    public List<TbClient> findClientByPId(int projectId) {
+        return clientMapper.findClientByPId(projectId);
+    }
+
+    @Override
+    public List<TbHouse> findHouseByCId(int clientID) {
+        return clientMapper.findHouseByCId(clientID);
     }
 
     @Override

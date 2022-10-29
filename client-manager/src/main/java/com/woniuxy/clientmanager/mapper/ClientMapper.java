@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.woniuxy.clientmanager.provider.ClientProvider;
 import com.woniuxy.clientmanager.vo.ClientVo;
 import com.woniuxy.wuye.common.entity.TbClient;
+import com.woniuxy.wuye.common.entity.TbHouse;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -76,15 +77,19 @@ public interface ClientMapper extends BaseMapper {
     List<TbClient> findClientByPName(String projectName);
 
     /**
-     * 通过项目Id查询房产和客户
+     * 通过项目Id查询客户
      */
-    @Select("SELECT c.phone,c.client_name, CONCAT(h.house_number,\"/\",h.unit,\"/\",h.layer) AS address\n" +
-            "FROM tb_project p,tb_house h ,tb_building b,tb_client c\n" +
-            "WHERE p.project_id=#{projectId}\n" +
-            "AND c.house_id = h.house_id\n" +
-            "AND h.building_id = b.building_id\n" +
-            "AND b.project_id = p.project_id")
+    @Select("SELECT c.client_name,p.project_name FROM tb_client c,tb_project p\n" +
+            "WHERE p.project_id = #{projectId}")
     List<TbClient> findClientByPId(int projectId);
 
+    /**
+     * 通过客户ID查询名下房产
+     */
+    @Select("SELECT h.unit,h.layer,h.house_number,b.building_number,c.client_name\n" +
+            "FROM tb_building b,tb_house h,tb_client c\n" +
+            "WHERE c.client_id = #{clientId}\n" +
+            "AND b.building_id = h.building_id")
+    List<TbHouse> findHouseByCId(int clientID);
 
 }

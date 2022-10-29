@@ -25,14 +25,7 @@ class ClientManagerApplicationTests {
     private HouseFeign houseFeign;
     @Test
     void contextLoads() {
-        TbClient tbClient = new TbClient();
-        TbHouse tbHouse  = new TbHouse();
-        tbHouse.setArea(548.0);
-        tbClient.setTbHouse(tbHouse);
-        ResponseEntity responseEntity = houseFeign.addHouse(tbClient.getTbHouse());
-        int houseId = (Integer)responseEntity.getData();
-        tbClient.setHouseId(houseId);
-        boolean b = clientService.insertClient(tbClient);
+        List<TbHouse> houseByCId = clientMapper.findHouseByCId(2);
     }
 
 }

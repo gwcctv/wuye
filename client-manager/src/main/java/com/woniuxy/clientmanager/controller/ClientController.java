@@ -6,6 +6,7 @@ import com.woniuxy.clientmanager.vo.ClientVo;
 import com.woniuxy.clientmanager.vo.Cvo;
 import com.woniuxy.wuye.common.annotation.AutoLog;
 import com.woniuxy.wuye.common.entity.TbClient;
+import com.woniuxy.wuye.common.entity.TbHouse;
 import com.woniuxy.wuye.common.utils.PageBean;
 import com.woniuxy.wuye.common.utils.ResponseEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -233,5 +234,45 @@ public class ClientController {
         tbClient.setHouseId(houseId);
         boolean b = clientService.insertClient(tbClient);
         return  ResponseEntity.SUCCESS;
+    }
+
+    /**
+     * 根据项目id查询客户
+     * @param projectId
+     * @return
+     */
+    @PostMapping("/findClientByPId")
+    public ResponseEntity findClientByPId(@RequestParam int projectId){
+        ResponseEntity responseEntity = new ResponseEntity<>();
+        List<TbClient> clientByPId = clientService.findClientByPId(projectId);
+        if(clientByPId!=null){
+            responseEntity.setData(clientByPId);
+            responseEntity.setCode("200");
+            responseEntity.setMsg("查询成功");
+        }else{
+            responseEntity.setCode("201");
+            responseEntity.setMsg("查询失败");
+        }
+        return responseEntity;
+    }
+
+    /**
+     * 根据客户id查询房产
+     * @param clientId
+     * @return
+     */
+    @PostMapping("/findClientByCId")
+    public ResponseEntity findClientByCId(@RequestParam int clientId){
+        ResponseEntity responseEntity = new ResponseEntity<>();
+        List<TbHouse> houseByCId = clientService.findHouseByCId(clientId);
+        if(houseByCId!=null){
+            responseEntity.setData(houseByCId);
+            responseEntity.setCode("200");
+            responseEntity.setMsg("查询成功");
+        }else{
+            responseEntity.setCode("201");
+            responseEntity.setMsg("查询失败");
+        }
+        return responseEntity;
     }
 }
